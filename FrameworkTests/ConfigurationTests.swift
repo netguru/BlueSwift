@@ -48,7 +48,7 @@ class ConfigurationTests: XCTestCase {
             _ = try Characteristic(uuid: incorrectUUID)
         } catch let error {
             guard let error = error as? CBUUID.CreationError else {
-                assertionFailure()
+                XCTFail()
                 return
             }
             XCTAssertEqual(error, CBUUID.CreationError.invalidString, "Incorrect error returned when parsing wrong UUID.")
