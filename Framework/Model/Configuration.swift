@@ -5,6 +5,8 @@
 
 import Foundation
 
+/// Configuration struct is used to create a complete representation of peripheral's services and characteristics.
+/// Use to initialize Perpiheral class.
 public struct Configuration {
 
     /// An array of services contained in configuration.

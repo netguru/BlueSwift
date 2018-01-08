@@ -6,6 +6,8 @@
 import Foundation
 import CoreBluetooth
 
+/// Struct wrapping Apple's native CBCharacteristic class. Used to create Configuration to connect with peripheral.
+/// It presents a clear interface for interacting with characteristics providing notify property.
 public struct Characteristic {
     
     /// UUID of desired Characteristic.

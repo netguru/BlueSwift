@@ -1,9 +1,6 @@
 //
-//  ConfigurationTests.swift
-//  FrameworkTests
-//
-//  Created by Jan Posz on 08.01.2018.
-//  Copyright © 2018 Netguru. All rights reserved.
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
 //
 
 import XCTest
@@ -21,17 +18,17 @@ class ConfigurationTests: XCTestCase {
         let serviceLong = try? Service(uuid: correctUUIDLong, characteristics: [])
         let serviceShort = try? Service(uuid: correctUUIDShort, characteristics: [])
         
-        assert(serviceLong?.bluetoothUUID.uuidString == correctUUIDLong, "Incorrect parse of long UUID's for Service.")
-        assert(serviceShort?.bluetoothUUID.uuidString == correctUUIDShort, "Incorrect parse of short UUID's for Service.")
+        XCTAssertEqual(serviceLong?.bluetoothUUID.uuidString, correctUUIDLong, "Incorrect parse of long UUID's for Service.")
+        XCTAssertEqual(serviceShort?.bluetoothUUID.uuidString, correctUUIDShort, "Incorrect parse of short UUID's for Service.")
         
         do {
             _ = try Service(uuid: incorrectUUID, characteristics: [])
         } catch let error {
             guard let error = error as? CBUUID.CreationError else {
-                assertionFailure()
+                XCTFail()
                 return
             }
-            assert(error == CBUUID.CreationError.invalidString, "Incorrect error returned when parsing wrong UUID.")
+            XCTAssertEqual(error, CBUUID.CreationError.invalidString, "Incorrect error returned when parsing wrong UUID.")
         }
     }
     
@@ -44,8 +41,8 @@ class ConfigurationTests: XCTestCase {
         let characteristicLong = try? Characteristic(uuid: correctUUIDLong)
         let characteristicShort = try? Characteristic(uuid: correctUUIDShort)
         
-        assert(characteristicLong?.bluetoothUUID.uuidString == correctUUIDLong, "Incorrect parse of long UUID's for Characteristic.")
-        assert(characteristicShort?.bluetoothUUID.uuidString == correctUUIDShort, "Incorrect parse of short UUID's for Characteristic.")
+        XCTAssertEqual(characteristicLong?.bluetoothUUID.uuidString, correctUUIDLong, "Incorrect parse of long UUID's for Characteristic.")
+        XCTAssertEqual(characteristicShort?.bluetoothUUID.uuidString, correctUUIDShort, "Incorrect parse of short UUID's for Characteristic.")
         
         do {
             _ = try Characteristic(uuid: incorrectUUID)
@@ -54,7 +51,7 @@ class ConfigurationTests: XCTestCase {
                 assertionFailure()
                 return
             }
-            assert(error == CBUUID.CreationError.invalidString, "Incorrect error returned when parsing wrong UUID.")
+            XCTAssertEqual(error, CBUUID.CreationError.invalidString, "Incorrect error returned when parsing wrong UUID.")
         }
     }
 }

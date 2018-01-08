@@ -6,6 +6,7 @@
 import Foundation
 import CoreBluetooth.CBUUID
 
+/// Struct wrapping Apple's native CBService class. Used to create Configuration for this framework.
 public struct Service {
     
     /// UUID of desired service.
