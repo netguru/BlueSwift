@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 Netguru Sp. z o.o. All rights reserved.
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
 //  Licensed under the MIT License.
 //
 

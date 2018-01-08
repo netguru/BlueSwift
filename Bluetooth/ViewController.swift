@@ -1,21 +1,15 @@
 //
-//  ViewController.swift
-//  Bluetooth
-//
-//  Created by Jan Posz on 05.01.2018.
-//  Copyright © 2018 Netguru. All rights reserved.
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
 //
 
 import UIKit
 import Bluetooth
-import CoreBluetooth
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let a = Peripheral(configuration: Configuration(services: []))
-        
     }
 }
 
