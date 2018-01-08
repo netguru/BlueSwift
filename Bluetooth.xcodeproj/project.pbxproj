@@ -21,14 +21,14 @@
 		3837BA5620037BBF00DF300E /* Characteristic.swift in Headers */ = {isa = PBXBuildFile; fileRef = 3837BA4B1FFFC6EA00DF300E /* Characteristic.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		3837BA5720037BBF00DF300E /* Configuration.swift in Headers */ = {isa = PBXBuildFile; fileRef = 3837BA521FFFD73B00DF300E /* Configuration.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		3837BA5820037BBF00DF300E /* Peripheral.swift in Headers */ = {isa = PBXBuildFile; fileRef = 3837BA4D1FFFC6F700DF300E /* Peripheral.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		3837BA5920037C0200DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
-		3837BA5A20037C0200DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3837BA602003819300DF300E /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA5F2003819300DF300E /* BluetoothConnection.swift */; };
 		3837BA622003849A00DF300E /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA612003849A00DF300E /* ConnectionService.swift */; };
 		3837BA6520038FC600DF300E /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA6420038FC600DF300E /* CBUUID.swift */; };
 		3837BA6B2003BA6500DF300E /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA6A2003BA6500DF300E /* ConfigurationTests.swift */; };
 		3837BA6D2003C7FF00DF300E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA6C2003C7FF00DF300E /* String.swift */; };
 		3837BA712003CB7700DF300E /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA702003CB7700DF300E /* ExtensionTests.swift */; };
+		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
+		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,13 +39,6 @@
 			remoteGlobalIDString = 3837BA301FFFC4CE00DF300E;
 			remoteInfo = Framework;
 		};
-		3837BA5B20037C0200DF300E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3837BA031FFFC2FE00DF300E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3837BA301FFFC4CE00DF300E;
-			remoteInfo = Bluetooth;
-		};
 		3837BA682003BA4400DF300E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3837BA031FFFC2FE00DF300E /* Project object */;
@@ -53,16 +46,23 @@
 			remoteGlobalIDString = 3837BA0A1FFFC2FE00DF300E;
 			remoteInfo = Sample;
 		};
+		3837BA742003D26700DF300E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3837BA031FFFC2FE00DF300E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3837BA301FFFC4CE00DF300E;
+			remoteInfo = Bluetooth;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3837BA5D20037C0200DF300E /* Embed Frameworks */ = {
+		3837BA762003D26700DF300E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3837BA5A20037C0200DF300E /* Bluetooth.framework in Embed Frameworks */,
+				3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3837BA5920037C0200DF300E /* Bluetooth.framework in Frameworks */,
+				3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,12 +241,12 @@
 				3837BA071FFFC2FE00DF300E /* Sources */,
 				3837BA081FFFC2FE00DF300E /* Frameworks */,
 				3837BA091FFFC2FE00DF300E /* Resources */,
-				3837BA5D20037C0200DF300E /* Embed Frameworks */,
+				3837BA762003D26700DF300E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3837BA5C20037C0200DF300E /* PBXTargetDependency */,
+				3837BA752003D26700DF300E /* PBXTargetDependency */,
 			);
 			name = Sample;
 			productName = Bluetooth;
@@ -404,15 +404,15 @@
 			target = 3837BA301FFFC4CE00DF300E /* Bluetooth */;
 			targetProxy = 3837BA3B1FFFC4CE00DF300E /* PBXContainerItemProxy */;
 		};
-		3837BA5C20037C0200DF300E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3837BA301FFFC4CE00DF300E /* Bluetooth */;
-			targetProxy = 3837BA5B20037C0200DF300E /* PBXContainerItemProxy */;
-		};
 		3837BA692003BA4400DF300E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3837BA0A1FFFC2FE00DF300E /* Sample */;
 			targetProxy = 3837BA682003BA4400DF300E /* PBXContainerItemProxy */;
+		};
+		3837BA752003D26700DF300E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3837BA301FFFC4CE00DF300E /* Bluetooth */;
+			targetProxy = 3837BA742003D26700DF300E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

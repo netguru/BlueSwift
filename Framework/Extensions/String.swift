@@ -5,10 +5,10 @@
 
 import Foundation
 
-extension String {
+internal extension String {
     
     // Validates if String is a proper shoretened UUID which means its 4 or 6 characters long and contains only hexadecimal characters.
-    func isValidShortenedUUID() -> Bool {
+    internal func isValidShortenedUUID() -> Bool {
         var evaluation = self
         if hasPrefix("0x") {
             evaluation = evaluation.replacingOccurrences(of: "0x", with: "")

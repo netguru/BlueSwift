@@ -15,7 +15,7 @@ class ExtensionTests: XCTestCase {
         let fourCharactersCorrect = "1800"
         let sixCharactersCorrext = "2A0B16"
         
-        let tooLong = "180000"
+        let tooLong = "1800000"
         let tooShort = "67A"
         
         let notHexadecimal = "180X"
