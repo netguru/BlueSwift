@@ -1,0 +1,37 @@
+//
+//  Copyright © 2017 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
+//
+
+import Foundation
+import CoreBluetooth
+
+public struct Characteristic {
+    
+    /// UUID of desired Characteristic.
+    public let uuid: String
+    
+    /// A bool indicating if isNotifying value should be set on a characteristic upon discovery.
+    public let isObservingValue: Bool
+    
+    /// A handler indicating characteristic value update events.
+    public var notifyHandler: ((Data) -> ())?
+    
+    /// Raw characteristics value filled after connection.
+    var rawCharacteristic: CBCharacteristic?
+    
+    /// CBUUID parsed from passed UUID String
+    private let bluetoothUUID: CBUUID
+    
+    /// Initializes a new instance of Characteristic. It's failable if passed UUID String is not parseable to UUID standards.
+    ///
+    /// - Parameter uuid: UUID of desired service, should be parseable to CBUUID in order for the initializer to work.
+    /// - Parameter shouldObserveNotification: indicates if this characteristic should notify when it's value changes. Note that this
+    ///                                         will happen only when characteristic properties include Notify.
+    /// - Throws: CBUUID.CreationError.invalidString if uuid String is an invalid UUID.
+    public init(uuid: String, shouldObserveNotification: Bool = false) throws {
+        self.bluetoothUUID = try CBUUID(uuidString: uuid)
+        self.uuid = uuid
+        self.isObservingValue = shouldObserveNotification
+    }
+}
