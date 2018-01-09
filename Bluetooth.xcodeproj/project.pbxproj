@@ -7,15 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3811E1112004E447000BE58C /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1042004E447000BE58C /* ConnectionService.swift */; };
-		3811E1122004E447000BE58C /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1052004E447000BE58C /* BluetoothConnection.swift */; };
-		3811E1132004E447000BE58C /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1072004E447000BE58C /* CBUUID.swift */; };
-		3811E1142004E447000BE58C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1082004E447000BE58C /* String.swift */; };
-		3811E1152004E447000BE58C /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10A2004E447000BE58C /* Peripheral.swift */; };
-		3811E1162004E447000BE58C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10B2004E447000BE58C /* Service.swift */; };
-		3811E1172004E447000BE58C /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10C2004E447000BE58C /* Characteristic.swift */; };
-		3811E1182004E447000BE58C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10D2004E447000BE58C /* Configuration.swift */; };
-		3811E1192004E447000BE58C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3811E1102004E447000BE58C /* Info.plist */; };
 		3837BA0F1FFFC2FE00DF300E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA0E1FFFC2FE00DF300E /* AppDelegate.swift */; };
 		3837BA111FFFC2FE00DF300E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA101FFFC2FE00DF300E /* ViewController.swift */; };
 		3837BA271FFFC35700DF300E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3837BA211FFFC35700DF300E /* Assets.xcassets */; };
@@ -26,6 +17,15 @@
 		3837BA712003CB7700DF300E /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA702003CB7700DF300E /* ExtensionTests.swift */; };
 		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		38D2414A20053F3A00CABC36 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1042004E447000BE58C /* ConnectionService.swift */; };
+		38D2414B20053FC900CABC36 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1052004E447000BE58C /* BluetoothConnection.swift */; };
+		38D2414C20053FCC00CABC36 /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1072004E447000BE58C /* CBUUID.swift */; };
+		38D2414D20053FCF00CABC36 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1082004E447000BE58C /* String.swift */; };
+		38D2414E20053FD200CABC36 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10A2004E447000BE58C /* Peripheral.swift */; };
+		38D2414F20053FD500CABC36 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10B2004E447000BE58C /* Service.swift */; };
+		38D2415020053FD800CABC36 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10C2004E447000BE58C /* Characteristic.swift */; };
+		38D2415120053FDC00CABC36 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10D2004E447000BE58C /* Configuration.swift */; };
+		38D2415220053FE000CABC36 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3811E1102004E447000BE58C /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,8 +130,8 @@
 		3811E1032004E447000BE58C /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				3811E1042004E447000BE58C /* ConnectionService.swift */,
 				3811E1052004E447000BE58C /* BluetoothConnection.swift */,
+				3811E1042004E447000BE58C /* ConnectionService.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -349,7 +349,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3811E1192004E447000BE58C /* Info.plist in Resources */,
 				3837BA271FFFC35700DF300E /* Assets.xcassets in Resources */,
 				3837BA281FFFC35700DF300E /* LaunchScreen.storyboard in Resources */,
 				3837BA2A1FFFC35700DF300E /* Info.plist in Resources */,
@@ -360,6 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38D2415220053FE000CABC36 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,15 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3811E1142004E447000BE58C /* String.swift in Sources */,
-				3811E1162004E447000BE58C /* Service.swift in Sources */,
-				3811E1152004E447000BE58C /* Peripheral.swift in Sources */,
-				3811E1172004E447000BE58C /* Characteristic.swift in Sources */,
-				3811E1112004E447000BE58C /* ConnectionService.swift in Sources */,
 				3837BA111FFFC2FE00DF300E /* ViewController.swift in Sources */,
-				3811E1182004E447000BE58C /* Configuration.swift in Sources */,
-				3811E1122004E447000BE58C /* BluetoothConnection.swift in Sources */,
-				3811E1132004E447000BE58C /* CBUUID.swift in Sources */,
 				3837BA0F1FFFC2FE00DF300E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +386,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38D2414E20053FD200CABC36 /* Peripheral.swift in Sources */,
+				38D2414C20053FCC00CABC36 /* CBUUID.swift in Sources */,
+				38D2414B20053FC900CABC36 /* BluetoothConnection.swift in Sources */,
+				38D2414D20053FCF00CABC36 /* String.swift in Sources */,
+				38D2414A20053F3A00CABC36 /* ConnectionService.swift in Sources */,
+				38D2415020053FD800CABC36 /* Characteristic.swift in Sources */,
+				38D2415120053FDC00CABC36 /* Configuration.swift in Sources */,
+				38D2414F20053FD500CABC36 /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +548,7 @@
 		3837BA1E1FFFC2FE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -564,6 +565,7 @@
 		3837BA1F1FFFC2FE00DF300E /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -671,6 +673,7 @@
 		3837BA461FFFC4CE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FrameworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -685,6 +688,7 @@
 		3837BA471FFFC4CE00DF300E /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

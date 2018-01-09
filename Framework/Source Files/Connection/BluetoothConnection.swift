@@ -23,6 +23,14 @@ public final class BluetoothConnection {
     /// A singleton instance.
     public static let shared = BluetoothConnection()
     
+    /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure will indicate
+    /// if manager should or shouldn't start connection with the passed peripheral according to it's identifier and advertising packet.
+    public var advertisementValidationHandler: ((Peripheral, String, [String: Any]) -> (Bool))? {
+        didSet {
+            connectionService.advertisementValidationHandler = advertisementValidationHandler
+        }
+    }
+    
     /// A private instance of ConnectionService - class implementing default Apple bluetooth LE connection API methods.
     private let connectionService = ConnectionService()
     
@@ -32,7 +40,7 @@ public final class BluetoothConnection {
     /// - SeeAlso: BluetoothConnection.ConnectionError
     /// - SeeAlso: Peripheral
     public func connect(_ peripheral: Peripheral, handler: @escaping (Bool, ConnectionError?) -> ()) {
-        // TODO: fill with connection code
+        connectionService.connect(peripheral, handler: handler)
     }
     
     /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and connection attempts

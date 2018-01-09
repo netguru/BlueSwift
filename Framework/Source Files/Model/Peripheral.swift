@@ -17,6 +17,12 @@ public final class Peripheral {
     /// If passed, every connection should happen much quicker.
     public let deviceIdentifier: String?
     
+    /// Indicates if device is currently connected.
+    public var isConnected: Bool {
+        guard let peripheral = peripheral else { return false }
+        return peripheral.state == .connected
+    }
+    
     /// Deafult initializer for Perpipheral.
     /// - Parameter configuration: proviously created configuration containing all desired services and characteristics.
     /// - Parameter deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here.
@@ -25,4 +31,7 @@ public final class Peripheral {
         self.configuration = configuration
         self.deviceIdentifier = deviceIdentifier
     }
+    
+    /// Private instance of Apple native peripheral class. Used to manage write and read requests.
+    private var peripheral: CBPeripheral?
 }

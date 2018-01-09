@@ -4,19 +4,38 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /// Configuration struct is used to create a complete representation of peripheral's services and characteristics.
 /// Use to initialize Perpiheral class.
 public struct Configuration {
 
     /// An array of services contained in configuration.
-    let services: [Service]
+    public let services: [Service]
+    
+    /// Advertised UUID from initializer parsed to a CBUUID instance.
+    internal let advertisementUUID: CBUUID
     
     /// Creates a new instance of configuration containing Services desired peripheral should contain. Used to initialize a Peripheral
     /// instance.
     /// - Parameter services: An array of Services wished to use.
-    public init(services: [Service]) {
+    /// - Parameter advertisement: UUID of desired peripheral that is sepcified in adverisement header.
+    /// - Throws: CBUUID.CreationError
+    /// - SeeAlso: CBUUID.CreationError
+    public init(services: [Service], advertisement: String) throws {
+        advertisementUUID = try CBUUID(uuidString: advertisement)
         self.services = services
+    }
+}
+
+internal extension Configuration {
+    
+    internal func matches(advertisement: [String: Any]) -> Bool {
+        guard let uuids = advertisement[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] else { return false }
+        for uuid in uuids {
+            if uuid.uuidString.uppercased() == advertisementUUID.uuidString.uppercased() { return true }
+        }
+        return false
     }
 }
 
