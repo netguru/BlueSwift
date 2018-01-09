@@ -7,25 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3811E1112004E447000BE58C /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1042004E447000BE58C /* ConnectionService.swift */; };
+		3811E1122004E447000BE58C /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1052004E447000BE58C /* BluetoothConnection.swift */; };
+		3811E1132004E447000BE58C /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1072004E447000BE58C /* CBUUID.swift */; };
+		3811E1142004E447000BE58C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E1082004E447000BE58C /* String.swift */; };
+		3811E1152004E447000BE58C /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10A2004E447000BE58C /* Peripheral.swift */; };
+		3811E1162004E447000BE58C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10B2004E447000BE58C /* Service.swift */; };
+		3811E1172004E447000BE58C /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10C2004E447000BE58C /* Characteristic.swift */; };
+		3811E1182004E447000BE58C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811E10D2004E447000BE58C /* Configuration.swift */; };
+		3811E1192004E447000BE58C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3811E1102004E447000BE58C /* Info.plist */; };
 		3837BA0F1FFFC2FE00DF300E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA0E1FFFC2FE00DF300E /* AppDelegate.swift */; };
 		3837BA111FFFC2FE00DF300E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA101FFFC2FE00DF300E /* ViewController.swift */; };
 		3837BA271FFFC35700DF300E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3837BA211FFFC35700DF300E /* Assets.xcassets */; };
 		3837BA281FFFC35700DF300E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3837BA221FFFC35700DF300E /* LaunchScreen.storyboard */; };
 		3837BA2A1FFFC35700DF300E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3837BA261FFFC35700DF300E /* Info.plist */; };
 		3837BA3A1FFFC4CE00DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
-		3837BA4F1FFFC6FA00DF300E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA491FFFC6E100DF300E /* Service.swift */; };
-		3837BA501FFFC6FE00DF300E /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA4D1FFFC6F700DF300E /* Peripheral.swift */; };
-		3837BA511FFFC70100DF300E /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA4B1FFFC6EA00DF300E /* Characteristic.swift */; };
-		3837BA541FFFD80800DF300E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA521FFFD73B00DF300E /* Configuration.swift */; };
-		3837BA5520037BBF00DF300E /* Service.swift in Headers */ = {isa = PBXBuildFile; fileRef = 3837BA491FFFC6E100DF300E /* Service.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		3837BA5620037BBF00DF300E /* Characteristic.swift in Headers */ = {isa = PBXBuildFile; fileRef = 3837BA4B1FFFC6EA00DF300E /* Characteristic.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		3837BA5720037BBF00DF300E /* Configuration.swift in Headers */ = {isa = PBXBuildFile; fileRef = 3837BA521FFFD73B00DF300E /* Configuration.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		3837BA5820037BBF00DF300E /* Peripheral.swift in Headers */ = {isa = PBXBuildFile; fileRef = 3837BA4D1FFFC6F700DF300E /* Peripheral.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		3837BA602003819300DF300E /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA5F2003819300DF300E /* BluetoothConnection.swift */; };
-		3837BA622003849A00DF300E /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA612003849A00DF300E /* ConnectionService.swift */; };
-		3837BA6520038FC600DF300E /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA6420038FC600DF300E /* CBUUID.swift */; };
 		3837BA6B2003BA6500DF300E /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA6A2003BA6500DF300E /* ConfigurationTests.swift */; };
-		3837BA6D2003C7FF00DF300E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA6C2003C7FF00DF300E /* String.swift */; };
 		3837BA712003CB7700DF300E /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837BA702003CB7700DF300E /* ExtensionTests.swift */; };
 		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -70,6 +67,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3811E1042004E447000BE58C /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
+		3811E1052004E447000BE58C /* BluetoothConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothConnection.swift; sourceTree = "<group>"; };
+		3811E1072004E447000BE58C /* CBUUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBUUID.swift; sourceTree = "<group>"; };
+		3811E1082004E447000BE58C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		3811E10A2004E447000BE58C /* Peripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		3811E10B2004E447000BE58C /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		3811E10C2004E447000BE58C /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
+		3811E10D2004E447000BE58C /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		3811E1102004E447000BE58C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3837BA0B1FFFC2FE00DF300E /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA0E1FFFC2FE00DF300E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3837BA101FFFC2FE00DF300E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,18 +83,9 @@
 		3837BA231FFFC35700DF300E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3837BA261FFFC35700DF300E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3837BA341FFFC4CE00DF300E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3837BA391FFFC4CE00DF300E /* FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA401FFFC4CE00DF300E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3837BA491FFFC6E100DF300E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		3837BA4B1FFFC6EA00DF300E /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
-		3837BA4D1FFFC6F700DF300E /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
-		3837BA521FFFD73B00DF300E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		3837BA5F2003819300DF300E /* BluetoothConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnection.swift; sourceTree = "<group>"; };
-		3837BA612003849A00DF300E /* ConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
-		3837BA6420038FC600DF300E /* CBUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUID.swift; sourceTree = "<group>"; };
 		3837BA6A2003BA6500DF300E /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
-		3837BA6C2003C7FF00DF300E /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3837BA702003CB7700DF300E /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,12 +116,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3811E1022004E447000BE58C /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				3811E1032004E447000BE58C /* Connection */,
+				3811E1062004E447000BE58C /* Extensions */,
+				3811E1092004E447000BE58C /* Model */,
+				3811E10E2004E447000BE58C /* Command */,
+			);
+			path = "Source Files";
+			sourceTree = "<group>";
+		};
+		3811E1032004E447000BE58C /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				3811E1042004E447000BE58C /* ConnectionService.swift */,
+				3811E1052004E447000BE58C /* BluetoothConnection.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		3811E1062004E447000BE58C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3811E1072004E447000BE58C /* CBUUID.swift */,
+				3811E1082004E447000BE58C /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3811E1092004E447000BE58C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3811E10A2004E447000BE58C /* Peripheral.swift */,
+				3811E10B2004E447000BE58C /* Service.swift */,
+				3811E10C2004E447000BE58C /* Characteristic.swift */,
+				3811E10D2004E447000BE58C /* Configuration.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3811E10E2004E447000BE58C /* Command */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Command;
+			sourceTree = "<group>";
+		};
+		3811E10F2004E447000BE58C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3811E1102004E447000BE58C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3837BA021FFFC2FE00DF300E = {
 			isa = PBXGroup;
 			children = (
 				3837BA0D1FFFC2FE00DF300E /* Bluetooth */,
 				3837BA321FFFC4CE00DF300E /* Framework */,
-				3837BA3D1FFFC4CE00DF300E /* FrameworkTests */,
+				3837BA3D1FFFC4CE00DF300E /* Unit Tests */,
 				3837BA0C1FFFC2FE00DF300E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -162,59 +214,20 @@
 		3837BA321FFFC4CE00DF300E /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				3837BA67200397C700DF300E /* Command */,
-				3837BA6320038FAE00DF300E /* Extensions */,
-				3837BA481FFFC6CE00DF300E /* Model */,
-				3837BA5E2003816800DF300E /* Connection */,
-				3837BA341FFFC4CE00DF300E /* Info.plist */,
+				3811E1022004E447000BE58C /* Source Files */,
+				3811E10F2004E447000BE58C /* Supporting Files */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
 		};
-		3837BA3D1FFFC4CE00DF300E /* FrameworkTests */ = {
+		3837BA3D1FFFC4CE00DF300E /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				3837BA6A2003BA6500DF300E /* ConfigurationTests.swift */,
 				3837BA702003CB7700DF300E /* ExtensionTests.swift */,
 				3837BA401FFFC4CE00DF300E /* Info.plist */,
 			);
-			path = FrameworkTests;
-			sourceTree = "<group>";
-		};
-		3837BA481FFFC6CE00DF300E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3837BA491FFFC6E100DF300E /* Service.swift */,
-				3837BA4B1FFFC6EA00DF300E /* Characteristic.swift */,
-				3837BA521FFFD73B00DF300E /* Configuration.swift */,
-				3837BA4D1FFFC6F700DF300E /* Peripheral.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3837BA5E2003816800DF300E /* Connection */ = {
-			isa = PBXGroup;
-			children = (
-				3837BA5F2003819300DF300E /* BluetoothConnection.swift */,
-				3837BA612003849A00DF300E /* ConnectionService.swift */,
-			);
-			path = Connection;
-			sourceTree = "<group>";
-		};
-		3837BA6320038FAE00DF300E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				3837BA6420038FC600DF300E /* CBUUID.swift */,
-				3837BA6C2003C7FF00DF300E /* String.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		3837BA67200397C700DF300E /* Command */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Command;
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,10 +237,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3837BA5620037BBF00DF300E /* Characteristic.swift in Headers */,
-				3837BA5820037BBF00DF300E /* Peripheral.swift in Headers */,
-				3837BA5720037BBF00DF300E /* Configuration.swift in Headers */,
-				3837BA5520037BBF00DF300E /* Service.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3811E1192004E447000BE58C /* Info.plist in Resources */,
 				3837BA271FFFC35700DF300E /* Assets.xcassets in Resources */,
 				3837BA281FFFC35700DF300E /* LaunchScreen.storyboard in Resources */,
 				3837BA2A1FFFC35700DF300E /* Info.plist in Resources */,
@@ -367,7 +377,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3811E1142004E447000BE58C /* String.swift in Sources */,
+				3811E1162004E447000BE58C /* Service.swift in Sources */,
+				3811E1152004E447000BE58C /* Peripheral.swift in Sources */,
+				3811E1172004E447000BE58C /* Characteristic.swift in Sources */,
+				3811E1112004E447000BE58C /* ConnectionService.swift in Sources */,
 				3837BA111FFFC2FE00DF300E /* ViewController.swift in Sources */,
+				3811E1182004E447000BE58C /* Configuration.swift in Sources */,
+				3811E1122004E447000BE58C /* BluetoothConnection.swift in Sources */,
+				3811E1132004E447000BE58C /* CBUUID.swift in Sources */,
 				3837BA0F1FFFC2FE00DF300E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,14 +394,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3837BA511FFFC70100DF300E /* Characteristic.swift in Sources */,
-				3837BA4F1FFFC6FA00DF300E /* Service.swift in Sources */,
-				3837BA6520038FC600DF300E /* CBUUID.swift in Sources */,
-				3837BA541FFFD80800DF300E /* Configuration.swift in Sources */,
-				3837BA622003849A00DF300E /* ConnectionService.swift in Sources */,
-				3837BA501FFFC6FE00DF300E /* Peripheral.swift in Sources */,
-				3837BA6D2003C7FF00DF300E /* String.swift in Sources */,
-				3837BA602003819300DF300E /* BluetoothConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +548,6 @@
 		3837BA1E1FFFC2FE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -555,7 +564,6 @@
 		3837BA1F1FFFC2FE00DF300E /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -580,7 +588,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Framework/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Framework/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.bluetooth.framework;
@@ -642,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Framework/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Framework/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -663,7 +671,6 @@
 		3837BA461FFFC4CE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FrameworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -678,7 +685,6 @@
 		3837BA471FFFC4CE00DF300E /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
