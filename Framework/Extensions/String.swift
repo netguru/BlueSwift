@@ -7,7 +7,7 @@ import Foundation
 
 internal extension String {
     
-    // Validates if String is a proper shoretened UUID which means its 4 or 6 characters long and contains only hexadecimal characters.
+    /// Validates if String is a proper shoretened UUID which means its 4 or 6 characters long and contains only hexadecimal characters.
     internal func isValidShortenedUUID() -> Bool {
         var evaluation = self
         if hasPrefix("0x") {

@@ -18,10 +18,9 @@ public final class Peripheral {
     public let deviceIdentifier: String?
     
     /// Deafult initializer for Perpipheral.
-    ///
     /// - Parameter configuration: proviously created configuration containing all desired services and characteristics.
     /// - Parameter deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here.
-    ///                               When set, connection to peripheral is much quicker.
+    ///   When set, connection to peripheral is much quicker.
     public init(configuration: Configuration, deviceIdentifier: String? = nil) {
         self.configuration = configuration
         self.deviceIdentifier = deviceIdentifier

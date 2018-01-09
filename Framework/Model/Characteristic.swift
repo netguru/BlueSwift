@@ -20,17 +20,17 @@ public struct Characteristic {
     public var notifyHandler: ((Data) -> ())?
     
     /// Raw characteristics value filled after connection.
-    var rawCharacteristic: CBCharacteristic?
+    internal var rawCharacteristic: CBCharacteristic?
     
     /// CBUUID parsed from passed UUID String
     internal let bluetoothUUID: CBUUID
     
     /// Initializes a new instance of Characteristic. It's failable if passed UUID String is not parseable to UUID standards.
-    ///
     /// - Parameter uuid: UUID of desired service, should be parseable to CBUUID in order for the initializer to work.
     /// - Parameter shouldObserveNotification: indicates if this characteristic should notify when it's value changes. Note that this
-    ///                                         will happen only when characteristic properties include Notify.
-    /// - Throws: CBUUID.CreationError.invalidString if uuid String is an invalid UUID.
+    ///   will happen only when characteristic properties include Notify. False by default.
+    /// - Throws: CBUUID.CreationError
+    /// - SeeAlso: CBUUID.CreationError
     public init(uuid: String, shouldObserveNotification: Bool = false) throws {
         self.bluetoothUUID = try CBUUID(uuidString: uuid)
         self.uuid = uuid
