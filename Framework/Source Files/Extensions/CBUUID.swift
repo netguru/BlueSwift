@@ -26,6 +26,7 @@ internal extension CBUUID {
     }
 }
 
+/// Handy extension used to be able to compare CBUUID's with == operator
 extension CBUUID: Comparable {
     public static func <(lhs: CBUUID, rhs: CBUUID) -> Bool {
         return lhs.uuidString == rhs.uuidString
