@@ -15,7 +15,7 @@ public final class Peripheral {
     
     /// A device parameter. Should be cached locally in order to pass for every connection after the first one.
     /// If passed, every connection should happen much quicker.
-    public let deviceIdentifier: String?
+    public var deviceIdentifier: String?
     
     /// Indicates if device is currently connected.
     public var isConnected: Bool {

@@ -37,7 +37,8 @@ public struct Characteristic {
         self.isObservingValue = shouldObserveNotification
     }
     
-    mutating func setRawCharacteristic(_ characteristic: CBCharacteristic) {
+    /// Sets raw characteristic used for notifying purposes
+    internal mutating func setRawCharacteristic(_ characteristic: CBCharacteristic) {
         rawCharacteristic = characteristic
     }
 }
