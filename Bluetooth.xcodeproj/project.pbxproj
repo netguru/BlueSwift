@@ -10,22 +10,27 @@
 		3837BA3A1FFFC4CE00DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		38FE6B8C2006790800809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6B722006790800809A06 /* Info.plist */; };
-		38FE6B8D2006790800809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B752006790800809A06 /* ConnectionService.swift */; };
-		38FE6B8E2006790800809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B762006790800809A06 /* BluetoothConnection.swift */; };
-		38FE6B8F2006790800809A06 /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B782006790800809A06 /* CBUUID.swift */; };
-		38FE6B902006790800809A06 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B792006790800809A06 /* String.swift */; };
-		38FE6B912006790800809A06 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B7B2006790800809A06 /* Peripheral.swift */; };
-		38FE6B922006790800809A06 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B7C2006790800809A06 /* Service.swift */; };
-		38FE6B932006790800809A06 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B7D2006790800809A06 /* Characteristic.swift */; };
-		38FE6B942006790800809A06 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B7E2006790800809A06 /* Configuration.swift */; };
-		38FE6B9D2006791600809A06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B852006790800809A06 /* ViewController.swift */; };
-		38FE6B9E2006791D00809A06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B8B2006790800809A06 /* AppDelegate.swift */; };
-		38FE6B9F2006792000809A06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6B872006790800809A06 /* Assets.xcassets */; };
-		38FE6BA02006792D00809A06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6B882006790800809A06 /* LaunchScreen.storyboard */; };
-		38FE6BA22006793700809A06 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B812006790800809A06 /* ExtensionTests.swift */; };
-		38FE6BA32006793900809A06 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6B822006790800809A06 /* ConfigurationTests.swift */; };
-		38FE6BA42006793C00809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6B832006790800809A06 /* Info.plist */; };
+		38FE6BCE2006898100809A06 /* Framework-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */; };
+		38FE6BCF2006898100809A06 /* Tests-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BAD2006898100809A06 /* Tests-Base.xcconfig */; };
+		38FE6BD02006898100809A06 /* Sample-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */; };
+		38FE6BD12006898100809A06 /* Common-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB02006898100809A06 /* Common-Base.xcconfig */; };
+		38FE6BD22006898100809A06 /* Common-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB12006898100809A06 /* Common-Development.xcconfig */; };
+		38FE6BD32006898100809A06 /* Common-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB22006898100809A06 /* Common-Release.xcconfig */; };
+		38FE6BD42006898100809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB52006898100809A06 /* Info.plist */; };
+		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
+		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
+		38FE6BD72006898100809A06 /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BBB2006898100809A06 /* CBUUID.swift */; };
+		38FE6BD82006898100809A06 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BBC2006898100809A06 /* String.swift */; };
+		38FE6BD92006898100809A06 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BBE2006898100809A06 /* Peripheral.swift */; };
+		38FE6BDA2006898100809A06 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BBF2006898100809A06 /* Service.swift */; };
+		38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BC02006898100809A06 /* Characteristic.swift */; };
+		38FE6BDC2006898100809A06 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BC12006898100809A06 /* Configuration.swift */; };
+		38FE6BE22006898800809A06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BCA2006898100809A06 /* AppDelegate.swift */; };
+		38FE6BE32006898B00809A06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BC42006898100809A06 /* ViewController.swift */; };
+		38FE6BE42006898F00809A06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BC62006898100809A06 /* Assets.xcassets */; };
+		38FE6BE52006899300809A06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BC72006898100809A06 /* LaunchScreen.storyboard */; };
+		38FE6BE6200689A700809A06 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BA72006898100809A06 /* ExtensionTests.swift */; };
+		38FE6BE7200689AB00809A06 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BA82006898100809A06 /* ConfigurationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,29 +75,29 @@
 		3837BA0B1FFFC2FE00DF300E /* Bluetooth Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bluetooth Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA391FFFC4CE00DF300E /* FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		38FE6B6A2006733C00809A06 /* Framework-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Base.xcconfig"; sourceTree = "<group>"; };
-		38FE6B6C200675D300809A06 /* Common-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
-		38FE6B6D200675E800809A06 /* Common-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
-		38FE6B6E200675F300809A06 /* Common-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Release.xcconfig"; sourceTree = "<group>"; };
-		38FE6B6F2006764500809A06 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
-		38FE6B722006790800809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38FE6B752006790800809A06 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
-		38FE6B762006790800809A06 /* BluetoothConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothConnection.swift; sourceTree = "<group>"; };
-		38FE6B782006790800809A06 /* CBUUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBUUID.swift; sourceTree = "<group>"; };
-		38FE6B792006790800809A06 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		38FE6B7B2006790800809A06 /* Peripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
-		38FE6B7C2006790800809A06 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		38FE6B7D2006790800809A06 /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
-		38FE6B7E2006790800809A06 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		38FE6B812006790800809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
-		38FE6B822006790800809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
-		38FE6B832006790800809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38FE6B852006790800809A06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		38FE6B872006790800809A06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		38FE6B892006790800809A06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		38FE6B8A2006790800809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38FE6B8B2006790800809A06 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		38FE6BA520067AAC00809A06 /* Sample-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Sample-Base.xcconfig"; sourceTree = "<group>"; };
+		38FE6BA72006898100809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
+		38FE6BA82006898100809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
+		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Framework-Base.xcconfig"; sourceTree = "<group>"; };
+		38FE6BAD2006898100809A06 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
+		38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Sample-Base.xcconfig"; sourceTree = "<group>"; };
+		38FE6BB02006898100809A06 /* Common-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
+		38FE6BB12006898100809A06 /* Common-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
+		38FE6BB22006898100809A06 /* Common-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Common-Release.xcconfig"; sourceTree = "<group>"; };
+		38FE6BB52006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38FE6BB82006898100809A06 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
+		38FE6BB92006898100809A06 /* BluetoothConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothConnection.swift; sourceTree = "<group>"; };
+		38FE6BBB2006898100809A06 /* CBUUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBUUID.swift; sourceTree = "<group>"; };
+		38FE6BBC2006898100809A06 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		38FE6BBE2006898100809A06 /* Peripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		38FE6BBF2006898100809A06 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		38FE6BC02006898100809A06 /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
+		38FE6BC12006898100809A06 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		38FE6BC42006898100809A06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		38FE6BC62006898100809A06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		38FE6BC82006898100809A06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		38FE6BC92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38FE6BCA2006898100809A06 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +130,10 @@
 		3837BA021FFFC2FE00DF300E = {
 			isa = PBXGroup;
 			children = (
-				38FE6B842006790800809A06 /* Bluetooth */,
-				38FE6B702006790800809A06 /* Framework */,
-				38FE6B802006790800809A06 /* Unit Tests */,
-				38FE6B682006733C00809A06 /* Configurations */,
+				38FE6BC32006898100809A06 /* Bluetooth */,
+				38FE6BB32006898100809A06 /* Framework */,
+				38FE6BA62006898100809A06 /* Unit Tests */,
+				38FE6BAA2006898100809A06 /* Configurations */,
 				3837BA0C1FFFC2FE00DF300E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,129 +148,125 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		38FE6B682006733C00809A06 /* Configurations */ = {
+		38FE6BA62006898100809A06 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B692006733C00809A06 /* Framework */,
-				38FE6B6B2006733C00809A06 /* Common */,
+				38FE6BA72006898100809A06 /* ExtensionTests.swift */,
+				38FE6BA82006898100809A06 /* ConfigurationTests.swift */,
+				38FE6BA92006898100809A06 /* Info.plist */,
 			);
-			name = Configurations;
-			path = Bluetooth/Configurations;
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
-		38FE6B692006733C00809A06 /* Framework */ = {
+		38FE6BAA2006898100809A06 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B6A2006733C00809A06 /* Framework-Base.xcconfig */,
-				38FE6B6F2006764500809A06 /* Tests-Base.xcconfig */,
-				38FE6BA520067AAC00809A06 /* Sample-Base.xcconfig */,
+				38FE6BAB2006898100809A06 /* Framework */,
+				38FE6BAF2006898100809A06 /* Common */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		38FE6BAB2006898100809A06 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */,
+				38FE6BAD2006898100809A06 /* Tests-Base.xcconfig */,
+				38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
 		};
-		38FE6B6B2006733C00809A06 /* Common */ = {
+		38FE6BAF2006898100809A06 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B6C200675D300809A06 /* Common-Base.xcconfig */,
-				38FE6B6D200675E800809A06 /* Common-Development.xcconfig */,
-				38FE6B6E200675F300809A06 /* Common-Release.xcconfig */,
+				38FE6BB02006898100809A06 /* Common-Base.xcconfig */,
+				38FE6BB12006898100809A06 /* Common-Development.xcconfig */,
+				38FE6BB22006898100809A06 /* Common-Release.xcconfig */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		38FE6B702006790800809A06 /* Framework */ = {
+		38FE6BB32006898100809A06 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B732006790800809A06 /* Source Files */,
-				38FE6B712006790800809A06 /* Supporting Files */,
+				38FE6BB42006898100809A06 /* Supporting Files */,
+				38FE6BB62006898100809A06 /* Source Files */,
 			);
-			name = Framework;
-			path = Bluetooth/Framework;
+			path = Framework;
 			sourceTree = "<group>";
 		};
-		38FE6B712006790800809A06 /* Supporting Files */ = {
+		38FE6BB42006898100809A06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B722006790800809A06 /* Info.plist */,
+				38FE6BB52006898100809A06 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		38FE6B732006790800809A06 /* Source Files */ = {
+		38FE6BB62006898100809A06 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B742006790800809A06 /* Connection */,
-				38FE6B772006790800809A06 /* Extensions */,
-				38FE6B7A2006790800809A06 /* Model */,
-				38FE6B7F2006790800809A06 /* Command */,
+				38FE6BB72006898100809A06 /* Connection */,
+				38FE6BBA2006898100809A06 /* Extensions */,
+				38FE6BBD2006898100809A06 /* Model */,
+				38FE6BC22006898100809A06 /* Command */,
 			);
 			path = "Source Files";
 			sourceTree = "<group>";
 		};
-		38FE6B742006790800809A06 /* Connection */ = {
+		38FE6BB72006898100809A06 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B752006790800809A06 /* ConnectionService.swift */,
-				38FE6B762006790800809A06 /* BluetoothConnection.swift */,
+				38FE6BB82006898100809A06 /* ConnectionService.swift */,
+				38FE6BB92006898100809A06 /* BluetoothConnection.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
 		};
-		38FE6B772006790800809A06 /* Extensions */ = {
+		38FE6BBA2006898100809A06 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B782006790800809A06 /* CBUUID.swift */,
-				38FE6B792006790800809A06 /* String.swift */,
+				38FE6BBB2006898100809A06 /* CBUUID.swift */,
+				38FE6BBC2006898100809A06 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		38FE6B7A2006790800809A06 /* Model */ = {
+		38FE6BBD2006898100809A06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B7B2006790800809A06 /* Peripheral.swift */,
-				38FE6B7C2006790800809A06 /* Service.swift */,
-				38FE6B7D2006790800809A06 /* Characteristic.swift */,
-				38FE6B7E2006790800809A06 /* Configuration.swift */,
+				38FE6BBE2006898100809A06 /* Peripheral.swift */,
+				38FE6BBF2006898100809A06 /* Service.swift */,
+				38FE6BC02006898100809A06 /* Characteristic.swift */,
+				38FE6BC12006898100809A06 /* Configuration.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		38FE6B7F2006790800809A06 /* Command */ = {
+		38FE6BC22006898100809A06 /* Command */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Command;
 			sourceTree = "<group>";
 		};
-		38FE6B802006790800809A06 /* Unit Tests */ = {
+		38FE6BC32006898100809A06 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B812006790800809A06 /* ExtensionTests.swift */,
-				38FE6B822006790800809A06 /* ConfigurationTests.swift */,
-				38FE6B832006790800809A06 /* Info.plist */,
+				38FE6BCA2006898100809A06 /* AppDelegate.swift */,
+				38FE6BC42006898100809A06 /* ViewController.swift */,
+				38FE6BC52006898100809A06 /* Supporting Files */,
 			);
-			name = "Unit Tests";
-			path = "Bluetooth/Unit Tests";
+			path = Bluetooth;
 			sourceTree = "<group>";
 		};
-		38FE6B842006790800809A06 /* Bluetooth */ = {
+		38FE6BC52006898100809A06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6B8B2006790800809A06 /* AppDelegate.swift */,
-				38FE6B852006790800809A06 /* ViewController.swift */,
-				38FE6B862006790800809A06 /* Supporting Files */,
-			);
-			name = Bluetooth;
-			path = Bluetooth/Bluetooth;
-			sourceTree = "<group>";
-		};
-		38FE6B862006790800809A06 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				38FE6B872006790800809A06 /* Assets.xcassets */,
-				38FE6B882006790800809A06 /* LaunchScreen.storyboard */,
-				38FE6B8A2006790800809A06 /* Info.plist */,
+				38FE6BC62006898100809A06 /* Assets.xcassets */,
+				38FE6BC72006898100809A06 /* LaunchScreen.storyboard */,
+				38FE6BC92006898100809A06 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -389,8 +390,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE6B9F2006792000809A06 /* Assets.xcassets in Resources */,
-				38FE6BA02006792D00809A06 /* LaunchScreen.storyboard in Resources */,
+				38FE6BE42006898F00809A06 /* Assets.xcassets in Resources */,
+				38FE6BE52006899300809A06 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +399,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE6B8C2006790800809A06 /* Info.plist in Resources */,
+				38FE6BD42006898100809A06 /* Info.plist in Resources */,
+				38FE6BCF2006898100809A06 /* Tests-Base.xcconfig in Resources */,
+				38FE6BD02006898100809A06 /* Sample-Base.xcconfig in Resources */,
+				38FE6BCE2006898100809A06 /* Framework-Base.xcconfig in Resources */,
+				38FE6BD22006898100809A06 /* Common-Development.xcconfig in Resources */,
+				38FE6BD12006898100809A06 /* Common-Base.xcconfig in Resources */,
+				38FE6BD32006898100809A06 /* Common-Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +413,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE6BA42006793C00809A06 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,8 +423,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE6B9E2006791D00809A06 /* AppDelegate.swift in Sources */,
-				38FE6B9D2006791600809A06 /* ViewController.swift in Sources */,
+				38FE6BE32006898B00809A06 /* ViewController.swift in Sources */,
+				38FE6BE22006898800809A06 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,14 +432,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE6B912006790800809A06 /* Peripheral.swift in Sources */,
-				38FE6B8F2006790800809A06 /* CBUUID.swift in Sources */,
-				38FE6B8E2006790800809A06 /* BluetoothConnection.swift in Sources */,
-				38FE6B902006790800809A06 /* String.swift in Sources */,
-				38FE6B8D2006790800809A06 /* ConnectionService.swift in Sources */,
-				38FE6B932006790800809A06 /* Characteristic.swift in Sources */,
-				38FE6B942006790800809A06 /* Configuration.swift in Sources */,
-				38FE6B922006790800809A06 /* Service.swift in Sources */,
+				38FE6BD82006898100809A06 /* String.swift in Sources */,
+				38FE6BDA2006898100809A06 /* Service.swift in Sources */,
+				38FE6BD92006898100809A06 /* Peripheral.swift in Sources */,
+				38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */,
+				38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */,
+				38FE6BDC2006898100809A06 /* Configuration.swift in Sources */,
+				38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */,
+				38FE6BD72006898100809A06 /* CBUUID.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,8 +447,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE6BA32006793900809A06 /* ConfigurationTests.swift in Sources */,
-				38FE6BA22006793700809A06 /* ExtensionTests.swift in Sources */,
+				38FE6BE7200689AB00809A06 /* ConfigurationTests.swift in Sources */,
+				38FE6BE6200689A700809A06 /* ExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,10 +473,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		38FE6B882006790800809A06 /* LaunchScreen.storyboard */ = {
+		38FE6BC72006898100809A06 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				38FE6B892006790800809A06 /* Base */,
+				38FE6BC82006898100809A06 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -480,7 +486,7 @@
 /* Begin XCBuildConfiguration section */
 		3837BA1B1FFFC2FE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6B6D200675E800809A06 /* Common-Development.xcconfig */;
+			baseConfigurationReference = 38FE6BB12006898100809A06 /* Common-Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -540,7 +546,7 @@
 		};
 		3837BA1C1FFFC2FE00DF300E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6B6E200675F300809A06 /* Common-Release.xcconfig */;
+			baseConfigurationReference = 38FE6BB22006898100809A06 /* Common-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -593,7 +599,7 @@
 		};
 		3837BA1E1FFFC2FE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6BA520067AAC00809A06 /* Sample-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -612,7 +618,7 @@
 		};
 		3837BA1F1FFFC2FE00DF300E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6BA520067AAC00809A06 /* Sample-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -631,7 +637,7 @@
 		};
 		3837BA431FFFC4CE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6B6A2006733C00809A06 /* Framework-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = "$(_CLANG_ENABLE_MODULES)";
 				CODE_SIGN_IDENTITY = "";
@@ -646,6 +652,7 @@
 				INFOPLIST_FILE = "$(_BUNDLE_INFOPLIST_PATH)";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULE_NAME = "$(_BUNDLE_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(_BUNDLE_IDENTIFIER)";
 				PRODUCT_MODULE_NAME = "$(_BUNDLE_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -659,7 +666,7 @@
 		};
 		3837BA441FFFC4CE00DF300E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6B6A2006733C00809A06 /* Framework-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -712,6 +719,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULE_NAME = "$(_BUNDLE_NAME)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(_BUNDLE_IDENTIFIER)";
 				PRODUCT_MODULE_NAME = "$(_BUNDLE_NAME)";
@@ -729,7 +737,7 @@
 		};
 		3837BA461FFFC4CE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6B6F2006764500809A06 /* Tests-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BAD2006898100809A06 /* Tests-Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -745,7 +753,7 @@
 		};
 		3837BA471FFFC4CE00DF300E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6B6F2006764500809A06 /* Tests-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BAD2006898100809A06 /* Tests-Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
