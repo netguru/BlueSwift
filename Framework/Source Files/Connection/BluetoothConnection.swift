@@ -4,24 +4,33 @@
 //
 
 import Foundation
-import CoreBluetooth.CBPeripheral
 
 /// Public facing interface granting methods to connect and disconnect devices
-public final class BluetoothConnection {
+public final class BluetoothConnection: NSObject {
+    
+    // MARK: Public Interface
     
     /// List of possible errrors that can happen during connection.
     public enum ConnectionError: Error {
-        case bluetoothTurnedOff
+        case deviceConnectionLimitExceed
+        case deviceAlreadyConnected
+        case bluetoothUnavailable
         case incompatibleDevice
     }
     
     /// List of possible disconnection errors.
     public enum DisconnectionError: Error {
-        case deviceNotScheduledForConnection
+        case deviceNotConnected
     }
     
     /// A singleton instance.
     public static let shared = BluetoothConnection()
+    
+    /// Connection service implementing native CoreBluetooth stack
+    private lazy var connectionService = ConnectionService()
+    
+    /// Maximum amount of devices capable of connecting to a iOS device
+    private let deviceConnectionLimit = 8
     
     /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure will indicate
     /// if manager should or shouldn't start connection with the passed peripheral according to it's identifier and advertising packet.
@@ -31,16 +40,24 @@ public final class BluetoothConnection {
         }
     }
     
-    /// A private instance of ConnectionService - class implementing default Apple bluetooth LE connection API methods.
-    private let connectionService = ConnectionService()
-    
-    /// Primary method used to connect to a device.
+    /// Primary method used to connect to a device. Can be called
     /// - Parameter peripheral: a configured device you wish to connect to.
-    /// - Parameter handler: a comepletion handler called upon succesfull connection or a error.
+    /// - Parameter handler: a completion handler called upon succesfull connection or a error.
     /// - SeeAlso: BluetoothConnection.ConnectionError
     /// - SeeAlso: Peripheral
-    public func connect(_ peripheral: Peripheral, handler: @escaping (Bool, ConnectionError?) -> ()) {
-        connectionService.connect(peripheral, handler: handler)
+    public func connect(_ peripheral: Peripheral, handler: @escaping (ConnectionError?) -> ()) {
+        guard !peripheral.isConnected else {
+            handler(.deviceAlreadyConnected)
+            return
+        }
+        guard connectionService.connectedDevicesAmount <= deviceConnectionLimit else {
+            handler(.deviceConnectionLimitExceed)
+            return
+        }
+        connectionService.connect(peripheral) { (peripheral, error) in
+            guard peripheral === peripheral else { return }
+            handler(error)
+        }
     }
     
     /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and connection attempts
@@ -49,6 +66,9 @@ public final class BluetoothConnection {
     /// - Throws: BluetoothConnection.ConnectionError in case there was a disconnection problem
     /// - SeeAlso: BluetoothConnection.DisconnectionError
     public func disconnect(_ peripheral: Peripheral) throws {
-        // TODO: fill with disconnection code
+        guard let peripheral = peripheral.peripheral else {
+            throw DisconnectionError.deviceNotConnected
+        }
+        connectionService.disconnect(peripheral)
     }
 }

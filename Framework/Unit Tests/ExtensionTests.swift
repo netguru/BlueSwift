@@ -27,4 +27,13 @@ class ExtensionTests: XCTestCase {
         XCTAssertFalse(notHexadecimal.isValidShortenedUUID())
     }
     
+    func testArrayCommonPart() {
+        
+        let first = [1, 2, 3, 4, 5]
+        let second = [4, 5, 6, 7]
+        
+        let common = first.matchingElementsWith(second) { (firstElement, <#T#>) -> Bool in
+            <#code#>
+        }
+    }
 }

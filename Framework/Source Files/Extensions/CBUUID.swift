@@ -25,3 +25,9 @@ internal extension CBUUID {
         self.init(nsuuid: uuid)
     }
 }
+
+extension CBUUID: Comparable {
+    public static func <(lhs: CBUUID, rhs: CBUUID) -> Bool {
+        return lhs.uuidString == rhs.uuidString
+    }
+}

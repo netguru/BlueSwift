@@ -6,93 +6,164 @@
 import Foundation
 import CoreBluetooth
 
-/// Wrapper around native Apple CentralManager API
-internal class ConnectionService: NSObject {
+/// A wrapper around CoreBluetooth delegate stack.
+internal final class ConnectionService: NSObject {
     
+    /// Closure used to check given peripheral against advertisement packet of discovered peripheral.
     internal var advertisementValidationHandler: ((Peripheral, String, [String: Any]) -> (Bool))?
-    
-    /// CBCentralManager instance. Allows peripheral connection
-    private lazy var centralManager = CBCentralManager(delegate: self, queue: nil, options: nil)
 
+    /// Closure used to manage connection success or failure.
+    internal var connectionHandler: ((Peripheral, BluetoothConnection.ConnectionError?) -> ())?
+    
+    /// Returns the amount of devices already scheduled for connection.
+    internal var connectedDevicesAmount: Int {
+        return peripherals.count
+    }
+    
+    /// Set of peripherals the manager should connect.
+    private var peripherals = [Peripheral]()
+    
+    private weak var connectingPeripheral: Peripheral?
+    
     /// Connection options - means you will be notified on connection and disconnection of devices.
     private lazy var connectionOptions = [CBConnectPeripheralOptionNotifyOnConnectionKey: true,
-                                          CBConnectPeripheralOptionNotifyOnDisconnectionKey: true]
+                                           CBConnectPeripheralOptionNotifyOnDisconnectionKey: true]
     
     /// Scanning options. Means that one device can be discovered multiple times without connecting.
     private lazy var scanningOptions = [CBCentralManagerScanOptionAllowDuplicatesKey : true]
     
+    /// CBCentralManager instance. Allows peripheral connection.
+    private lazy var centralManager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
+    
     /// Set of advertisement UUID central manager should scan for.
-    private var scanParameters : Set<CBUUID> = Set()
-
-    /// Set of peripherals the manager should connect.
-    private var peripherals = [Peripheral]()
-    
-    private var connectionHandler: ((Peripheral, Bool, BluetoothConnection.ConnectionError) -> ())?
-    
-    private weak var connectingPeripheral: Peripheral?
+    private var scanParameters: Set<CBUUID> = Set()
 }
 
-internal extension ConnectionService {
+extension ConnectionService {
     
-    internal func connect(_ peripheral: Peripheral, handler: @escaping (Bool, BluetoothConnection.ConnectionError?) -> ()) {
+    public func connect(_ peripheral: Peripheral, handler: @escaping (Peripheral, BluetoothConnection.ConnectionError?) -> ()) {
+        if connectionHandler == nil {
+            connectionHandler = handler
+        }
         peripherals.append(peripheral)
-        scanParameters.insert(peripheral.configuration.advertisementUUID)
+        reloadScanning()
     }
     
+    public func disconnect(_ peripheral: CBPeripheral) {
+        centralManager.cancelPeripheralConnection(peripheral)
+    }
+}
+
+private extension ConnectionService {
+    
+    /// Reloads scanning if necessary. Adding scan parameters should be ommited in case of possible peripheral retrive.
+    /// In that case connection is available without previous scanning.
     private func reloadScanning() {
         if centralManager.isScanning {
             centralManager.stopScan()
         }
+        performDeviceAutoReconnection()
+        let params = peripherals.flatMap { (peripheral) -> CBUUID? in
+            guard peripheral.peripheral == nil else { return nil }
+            return peripheral.configuration.advertisementUUID
+        }
+        scanParameters = Set(params)
         centralManager.scanForPeripherals(withServices: Array(scanParameters), options: scanningOptions)
+    }
+    
+    /// Tries a peripeheral retrieve for each peripheral model. Peripheral can be retrieved in case the parameter of deviceIdentifier
+    /// was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral can be directly connected.
+    private func performDeviceAutoReconnection() {
+        let identifiers = peripherals.flatMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
+        guard !identifiers.isEmpty else { return }
+        let retrievedPeripherals = centralManager.retrievePeripherals(withIdentifiers: identifiers)
+        let matching = peripherals.matchingElementsWith(retrievedPeripherals)
+        matching.forEach { (peripheral, cbPeripheral) in
+            peripheral.peripheral = cbPeripheral
+            centralManager.connect(cbPeripheral, options: connectionOptions)
+        }
     }
 }
 
 extension ConnectionService: CBCentralManagerDelegate {
     
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    /// Determines Bluetooth sensor state for current device
+    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        guard let handler = connectionHandler, let anyDevice = peripherals.first else { return }
         switch central.state {
         case .poweredOff, .resetting, .unauthorized:
-            break
+            handler(anyDevice, .bluetoothUnavailable)
         case .poweredOn:
-            break
+            reloadScanning()
         case .unsupported, .unknown:
-            break
+            handler(anyDevice, .incompatibleDevice)
         }
     }
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    /// Called when a peripheral with desired advertised service is discovered.
+    public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        let devices = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData)})
         guard let handler = advertisementValidationHandler,
-            let matchingPeripheral = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData) }).first,
+            let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
             !handler(matchingPeripheral, peripheral.identifier.uuidString, advertisementData),
             connectingPeripheral == nil
             else {
                 return
         }
         connectingPeripheral = matchingPeripheral
-        centralManager.connect(peripheral, options: connectionOptions)
+        connectingPeripheral?.peripheral = peripheral
+        central.connect(peripheral, options: connectionOptions)
     }
     
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+    /// Called upon a succesfull peripheral connection
+    public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        guard let connectingPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first else { return }
+        self.connectingPeripheral = connectingPeripheral
+        connectingPeripheral.peripheral = peripheral
         peripheral.delegate = self
-        peripheral.discoverServices(connectingPeripheral?.configuration.services.map({ $0.bluetoothUUID }))
+        peripheral.discoverServices(connectingPeripheral.configuration.services.map({ $0.bluetoothUUID }))
     }
     
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+    /// Called when peripheral connection fails on its initialization, we'll reconnect it right away.
+    public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         central.connect(peripheral, options: connectionOptions)
     }
 }
 
 extension ConnectionService: CBPeripheralDelegate {
     
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        
+    /// Called upon discovery of services of a connected peripheral. Used to map model services to passed configuration and discover
+    /// characteristics for each matching service.
+    public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        guard let services = peripheral.services, error == nil else { return }
+        let matching = connectingPeripheral?.configuration.services.matchingElementsWith(services)
+        matching?.forEach({ (service, cbService) in
+            peripheral.discoverCharacteristics(service.characteristics.map({ $0.bluetoothUUID }), for: cbService)
+        })
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        
+    /// Called upon discovery of characteristics of a connected peripheral per each passed service. Used to map CBCharacteristic
+    /// instances to passed configuration, assign characteristic raw values and setup notifications.
+    public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        guard let characteristics = service.characteristics, error == nil else { return }
+        let matchingService = connectingPeripheral?.configuration.services.filter({ $0.bluetoothUUID == service.uuid }).first
+        let matchingCharacteristics = matchingService?.characteristics.matchingElementsWith(characteristics)
+        matchingCharacteristics?.forEach({ (tuple) in
+            var (characteristic, cbCharacteristic) = tuple
+            characteristic.setRawCharacteristic(cbCharacteristic)
+            peripheral.setNotifyValue(characteristic.isObservingValue, for: cbCharacteristic)
+            if let connectingPeripheral = self.connectingPeripheral {
+                self.connectionHandler?(connectingPeripheral, nil)
+            }
+        })
+        connectingPeripheral = nil
     }
     
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        centralManager.connect(peripheral, options: connectionOptions)
+    /// Called when device is disconnected, inside this method a device is reconnected. Connect method does not have a timeout
+    /// so connection will be triggered anytime in the future when the device is discovered. In case the connection is no longer needed
+    /// we'll just return.
+    public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        guard let disconnectedPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first?.peripheral else { return }
+        centralManager.connect(disconnectedPeripheral, options: connectionOptions)
     }
 }

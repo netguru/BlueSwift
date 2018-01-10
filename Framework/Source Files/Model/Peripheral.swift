@@ -33,5 +33,5 @@ public final class Peripheral {
     }
     
     /// Private instance of Apple native peripheral class. Used to manage write and read requests.
-    private var peripheral: CBPeripheral?
+    internal var peripheral: CBPeripheral?
 }

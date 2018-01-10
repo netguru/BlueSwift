@@ -36,4 +36,8 @@ public struct Characteristic {
         self.uuid = uuid
         self.isObservingValue = shouldObserveNotification
     }
+    
+    mutating func setRawCharacteristic(_ characteristic: CBCharacteristic) {
+        rawCharacteristic = characteristic
+    }
 }
