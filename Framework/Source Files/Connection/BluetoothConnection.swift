@@ -5,10 +5,8 @@
 
 import Foundation
 
-/// Public facing interface granting methods to connect and disconnect devices
+/// Public facing interface granting methods to connect and disconnect devices.
 public final class BluetoothConnection: NSObject {
-    
-    // MARK: Public Interface
     
     /// List of possible errrors that can happen during connection.
     public enum ConnectionError: Error {
@@ -26,21 +24,22 @@ public final class BluetoothConnection: NSObject {
     /// A singleton instance.
     public static let shared = BluetoothConnection()
     
-    /// Connection service implementing native CoreBluetooth stack
+    /// Connection service implementing native CoreBluetooth stack.
     private lazy var connectionService = ConnectionService()
     
-    /// Maximum amount of devices capable of connecting to a iOS device
+    /// Maximum amount of devices capable of connecting to a iOS device.
     private let deviceConnectionLimit = 8
     
-    /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure will indicate
-    /// if manager should or shouldn't start connection with the passed peripheral according to it's identifier and advertising packet.
+    /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
+    /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
+    /// and advertising packet.
     public var advertisementValidationHandler: ((Peripheral, String, [String: Any]) -> (Bool))? {
         didSet {
             connectionService.advertisementValidationHandler = advertisementValidationHandler
         }
     }
     
-    /// Primary method used to connect to a device. Can be called
+    /// Primary method used to connect to a device. Can be called multiple times to connect more than on device at the same time.
     /// - Parameter peripheral: a configured device you wish to connect to.
     /// - Parameter handler: a completion handler called upon succesfull connection or a error.
     /// - SeeAlso: BluetoothConnection.ConnectionError
@@ -60,8 +59,8 @@ public final class BluetoothConnection: NSObject {
         }
     }
     
-    /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and connection attempts
-    /// will stop.
+    /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and
+    /// connection attempts will stop.
     /// - Parameter peripheral: a peripheral you wish to disconnect. Should be exactly the same instance that was used for connection.
     /// - Throws: BluetoothConnection.ConnectionError in case there was a disconnection problem
     /// - SeeAlso: BluetoothConnection.DisconnectionError

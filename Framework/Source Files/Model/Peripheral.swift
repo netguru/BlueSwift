@@ -6,8 +6,8 @@
 import Foundation
 import CoreBluetooth
 
-/// Class wrapping native Apple's CBPeripheral class. Should be passed as connection parameter and initialized with a Configuration.
-/// It presents a clear interface for writing and reading interactions with remote peripherals adding closure reponses.
+/// Class wrapping native Apple's CBPeripheral class. Should be passed as connection parameter and initialized with a
+/// Configuration. It presents a clear interface for writing and reading interactions with remote peripherals adding closure reponses.
 public final class Peripheral {
     
     /// Configuration of services and characteristics desired peripheral should contain.

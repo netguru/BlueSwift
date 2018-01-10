@@ -16,8 +16,8 @@ public struct Configuration {
     /// Advertised UUID from initializer parsed to a CBUUID instance.
     internal let advertisementUUID: CBUUID
     
-    /// Creates a new instance of configuration containing Services desired peripheral should contain. Used to initialize a Peripheral
-    /// instance.
+    /// Creates a new instance of configuration containing Services desired peripheral should contain.
+    /// Used to initialize a Peripheral instance.
     /// - Parameter services: An array of Services wished to use.
     /// - Parameter advertisement: UUID of desired peripheral that is sepcified in adverisement header.
     /// - Throws: CBUUID.CreationError
@@ -30,6 +30,7 @@ public struct Configuration {
 
 internal extension Configuration {
     
+    /// Helper method to check peripheral advertisement against one passed in conifguration.
     internal func matches(advertisement: [String: Any]) -> Bool {
         guard let uuids = advertisement[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] else { return false }
         for uuid in uuids {

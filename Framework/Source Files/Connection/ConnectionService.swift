@@ -73,8 +73,9 @@ private extension ConnectionService {
         centralManager.scanForPeripherals(withServices: Array(scanParameters), options: scanningOptions)
     }
     
-    /// Tries a peripeheral retrieve for each peripheral model. Peripheral can be retrieved in case the parameter of deviceIdentifier
-    /// was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral can be directly connected.
+    /// Tries a peripeheral retrieve for each peripheral model. Peripheral can be retrieved in case the parameter of
+    /// deviceIdentifier was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral
+    /// can be directly connected.
     private func performDeviceAutoReconnection() {
         let identifiers = peripherals.flatMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
         guard !identifiers.isEmpty else { return }
@@ -89,7 +90,7 @@ private extension ConnectionService {
 
 extension ConnectionService: CBCentralManagerDelegate {
     
-    /// Determines Bluetooth sensor state for current device
+    /// Determines Bluetooth sensor state for current device.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         guard let handler = connectionHandler, let anyDevice = peripherals.first else { return }
@@ -119,7 +120,7 @@ extension ConnectionService: CBCentralManagerDelegate {
         central.connect(peripheral, options: connectionOptions)
     }
     
-    /// Called upon a succesfull peripheral connection
+    /// Called upon a succesfull peripheral connection.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         guard let connectingPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first else { return }
@@ -138,8 +139,8 @@ extension ConnectionService: CBCentralManagerDelegate {
 
 extension ConnectionService: CBPeripheralDelegate {
     
-    /// Called upon discovery of services of a connected peripheral. Used to map model services to passed configuration and discover
-    /// characteristics for each matching service.
+    /// Called upon discovery of services of a connected peripheral. Used to map model services to passed configuration and
+    /// discover characteristics for each matching service.
     /// - SeeAlso: CBPeripheralDelegate
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services, error == nil else { return }
@@ -168,8 +169,8 @@ extension ConnectionService: CBPeripheralDelegate {
     }
     
     /// Called when device is disconnected, inside this method a device is reconnected. Connect method does not have a timeout
-    /// so connection will be triggered anytime in the future when the device is discovered. In case the connection is no longer needed
-    /// we'll just return.
+    /// so connection will be triggered anytime in the future when the device is discovered. In case the connection is no
+    /// longer needed we'll just return.
     /// - SeeAlso: CBPeripheralDelegate
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         guard let disconnectedPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first?.peripheral else { return }
