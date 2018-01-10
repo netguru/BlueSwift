@@ -1,0 +1,11 @@
+//
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
+//
+
+_CLANG_ENABLE_MODULES = YES
+_DEFINES_MODULE = YES
+_LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
+_SWIFT_VERSION = 4.0
+
+_DEPLOYMENT_TARGET_IOS = 10.0

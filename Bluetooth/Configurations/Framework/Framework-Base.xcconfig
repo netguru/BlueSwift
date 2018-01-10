@@ -1,0 +1,11 @@
+//
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
+//
+
+_BUILD_VERSION = 0.1
+_BUILD_NUMBER = 1
+_BUNDLE_NAME = Bluetooth
+_BUNDLE_IDENTIFIER = co.netguru.lib.bluetooth
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Bluetooth/Framework/Supporting Files/Info.plist
+_BUNDLE_TESTABLE = YES
