@@ -44,7 +44,6 @@ class ExtensionTests: XCTestCase {
     }
     
     func testServiceMatching() {
-        
         let services = [try! Service(uuid: "1800", characteristics: []),
                         try! Service(uuid: "1801", characteristics: [])]
         let cbServices = [CBMutableService(type: CBUUID(string: "1800"), primary: false) as CBService,
@@ -57,7 +56,6 @@ class ExtensionTests: XCTestCase {
     }
     
     func testCharacteristicMatching() {
-        
         let services = [try! Characteristic(uuid: "2A0B"),
                         try! Characteristic(uuid: "1801")]
         let cbCharacteristics = [CBMutableCharacteristic(type: CBUUID(string: "1801"), properties: [.read], value: nil, permissions: .readable) as CBCharacteristic,
