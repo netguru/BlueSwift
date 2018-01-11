@@ -357,7 +357,7 @@
 					};
 					3837BA381FFFC4CE00DF300E = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = 3837BA0A1FFFC2FE00DF300E;
 					};
 				};
@@ -522,16 +522,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38FE6BAD2006898100809A06 /* Common-Tests.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bluetooth Demo.app/Bluetooth Demo";
 			};
 			name = Debug;
 		};
 		3837BA471FFFC4CE00DF300E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bluetooth Demo.app/Bluetooth Demo";
 			};
 			name = Release;
 		};
@@ -545,7 +541,7 @@
 				3837BA1C1FFFC2FE00DF300E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		3837BA1D1FFFC2FE00DF300E /* Build configuration list for PBXNativeTarget "Sample" */ = {
 			isa = XCConfigurationList;
@@ -554,7 +550,7 @@
 				3837BA1F1FFFC2FE00DF300E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		3837BA421FFFC4CE00DF300E /* Build configuration list for PBXNativeTarget "Bluetooth" */ = {
 			isa = XCConfigurationList;
@@ -563,7 +559,7 @@
 				3837BA441FFFC4CE00DF300E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		3837BA451FFFC4CE00DF300E /* Build configuration list for PBXNativeTarget "FrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -572,7 +568,7 @@
 				3837BA471FFFC4CE00DF300E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
