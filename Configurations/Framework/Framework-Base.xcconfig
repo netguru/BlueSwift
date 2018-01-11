@@ -3,8 +3,9 @@
 //  Licensed under the MIT License.
 //
 
-#include "../Base/Targets/Platforms/iOS.xcconfig
-#include "../Base/Targets/Framework.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig
+#include "../../Carthage/Checkouts/xcconfigs/Targets/Framework.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"
 
 _BUILD_VERSION = 0.1
 _BUILD_NUMBER = 1

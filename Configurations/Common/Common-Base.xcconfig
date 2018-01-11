@@ -3,9 +3,9 @@
 //  Licensed under the MIT License.
 //
 
-#include "../Base/Common/Common.xcconfig"
-#include "../Base/Platforms/iOS.xcconfig"
-#include "../Base/Targets/Application.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Common/Common.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Targets/Application.xcconfig"
 
 _CLANG_ENABLE_MODULES = YES
 _DEFINES_MODULE = YES

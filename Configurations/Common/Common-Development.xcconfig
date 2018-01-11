@@ -4,4 +4,4 @@
 //
 
 #include "Common-Base.xcconfig"
-#include "../Base/Configurations/Debug.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"

@@ -69,19 +69,6 @@
 		3837BA0B1FFFC2FE00DF300E /* Bluetooth Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bluetooth Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA391FFFC4CE00DF300E /* Bluetooth Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bluetooth Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		385B018520078BBE00E3D478 /* macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = macOS.xcconfig; sourceTree = "<group>"; };
-		385B018620078BBE00E3D478 /* tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tvOS.xcconfig; sourceTree = "<group>"; };
-		385B018720078BBE00E3D478 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
-		385B018820078BBE00E3D478 /* watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = watchOS.xcconfig; sourceTree = "<group>"; };
-		385B018A20078BBE00E3D478 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		385B018B20078BBE00E3D478 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		385B018D20078BBE00E3D478 /* Extension.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Extension.xcconfig; sourceTree = "<group>"; };
-		385B018E20078BBE00E3D478 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
-		385B018F20078BBE00E3D478 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
-		385B019020078BBE00E3D478 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
-		385B019220078BBE00E3D478 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
-		385B019320078BBE00E3D478 /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
-		385B019420078BBE00E3D478 /* Variables.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Variables.xcconfig; sourceTree = "<group>"; };
 		38FE6BA72006898100809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		38FE6BA82006898100809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,58 +142,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		385B018320078BA900E3D478 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				385B019120078BBE00E3D478 /* Common */,
-				385B018920078BBE00E3D478 /* Configurations */,
-				385B018420078BBE00E3D478 /* Platforms */,
-				385B018C20078BBE00E3D478 /* Targets */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		385B018420078BBE00E3D478 /* Platforms */ = {
-			isa = PBXGroup;
-			children = (
-				385B018520078BBE00E3D478 /* macOS.xcconfig */,
-				385B018620078BBE00E3D478 /* tvOS.xcconfig */,
-				385B018720078BBE00E3D478 /* iOS.xcconfig */,
-				385B018820078BBE00E3D478 /* watchOS.xcconfig */,
-			);
-			path = Platforms;
-			sourceTree = "<group>";
-		};
-		385B018920078BBE00E3D478 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				385B018A20078BBE00E3D478 /* Debug.xcconfig */,
-				385B018B20078BBE00E3D478 /* Release.xcconfig */,
-			);
-			path = Configurations;
-			sourceTree = "<group>";
-		};
-		385B018C20078BBE00E3D478 /* Targets */ = {
-			isa = PBXGroup;
-			children = (
-				385B018D20078BBE00E3D478 /* Extension.xcconfig */,
-				385B018E20078BBE00E3D478 /* Application.xcconfig */,
-				385B018F20078BBE00E3D478 /* Framework.xcconfig */,
-				385B019020078BBE00E3D478 /* Tests.xcconfig */,
-			);
-			path = Targets;
-			sourceTree = "<group>";
-		};
-		385B019120078BBE00E3D478 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				385B019220078BBE00E3D478 /* Common.xcconfig */,
-				385B019320078BBE00E3D478 /* Carthage.xcconfig */,
-				385B019420078BBE00E3D478 /* Variables.xcconfig */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		38FE6BA62006898100809A06 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +155,6 @@
 		38FE6BAA2006898100809A06 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				385B018320078BA900E3D478 /* Base */,
 				38FE6BAB2006898100809A06 /* Framework */,
 				38FE6BAF2006898100809A06 /* Common */,
 			);
