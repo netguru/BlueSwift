@@ -10,6 +10,7 @@
 		3837BA3A1FFFC4CE00DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		385B01AD2007C93000E3D478 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B01AC2007C93000E3D478 /* Array.swift */; };
 		38FE6BD42006898100809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB52006898100809A06 /* Info.plist */; };
 		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
 		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
@@ -69,6 +70,7 @@
 		3837BA0B1FFFC2FE00DF300E /* Bluetooth Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bluetooth Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA391FFFC4CE00DF300E /* Bluetooth Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bluetooth Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		385B01AC2007C93000E3D478 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		38FE6BA72006898100809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		38FE6BA82006898100809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				38FE6BBB2006898100809A06 /* CBUUID.swift */,
 				38FE6BBC2006898100809A06 /* String.swift */,
+				385B01AC2007C93000E3D478 /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385B01AD2007C93000E3D478 /* Array.swift in Sources */,
 				38FE6BD82006898100809A06 /* String.swift in Sources */,
 				38FE6BDA2006898100809A06 /* Service.swift in Sources */,
 				38FE6BD92006898100809A06 /* Peripheral.swift in Sources */,
