@@ -22,7 +22,7 @@ public struct Characteristic {
     /// Raw characteristics value filled after connection.
     internal var rawCharacteristic: CBCharacteristic?
     
-    /// CBUUID parsed from passed UUID String
+    /// CBUUID parsed from passed UUID String.
     internal let bluetoothUUID: CBUUID
     
     /// Initializes a new instance of Characteristic. It's failable if passed UUID String is not parseable to UUID standards.
@@ -35,5 +35,10 @@ public struct Characteristic {
         self.bluetoothUUID = try CBUUID(uuidString: uuid)
         self.uuid = uuid
         self.isObservingValue = shouldObserveNotification
+    }
+    
+    /// Sets raw characteristic used for notifying purposes
+    internal mutating func setRawCharacteristic(_ characteristic: CBCharacteristic) {
+        rawCharacteristic = characteristic
     }
 }
