@@ -3,8 +3,10 @@
 //  Licensed under the MIT License.
 //
 
+#include "../Common/Common-Base.xcconfig"
 
 _BUNDLE_NAME = Bluetooth Demo
 _BUNDLE_IDENTIFIER = co.netguru.lib.bluetooth.demo
-_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Bluetooth/Bluetooth/Supporting Files/Info.plist
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Bluetooth/Supporting Files/Info.plist
 _BUNDLE_TESTABLE = NO
+

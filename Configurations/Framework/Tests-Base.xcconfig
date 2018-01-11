@@ -1,8 +1,0 @@
-//
-//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
-//  Licensed under the MIT License.
-//
-
-_BUNDLE_NAME = Bluetooth Tests
-_BUNDLE_IDENTIFIER = co.netguru.lib.bluetooth.tests
-_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Bluetooth/Unit Tests/Info.plist

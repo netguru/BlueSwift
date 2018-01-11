@@ -4,3 +4,4 @@
 //
 
 #include "Common-Base.xcconfig"
+#include "../Base/Configurations/Release.xcconfig"

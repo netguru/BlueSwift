@@ -3,9 +3,16 @@
 //  Licensed under the MIT License.
 //
 
+#include "../Base/Common/Common.xcconfig"
+#include "../Base/Platforms/iOS.xcconfig"
+#include "../Base/Targets/Application.xcconfig"
+
 _CLANG_ENABLE_MODULES = YES
 _DEFINES_MODULE = YES
 _LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
-_SWIFT_VERSION = 4.0
+_COMPILER_SWIFT_VERSION = 4.0
 
 _DEPLOYMENT_TARGET_IOS = 10.0
+_CODESIGN_STYLE = Manual
+
+

@@ -3,9 +3,14 @@
 //  Licensed under the MIT License.
 //
 
+#include "../Base/Targets/Platforms/iOS.xcconfig
+#include "../Base/Targets/Framework.xcconfig"
+
 _BUILD_VERSION = 0.1
 _BUILD_NUMBER = 1
+_COMPILER_SWIFT_VERSION = 4.0
 _BUNDLE_NAME = Bluetooth
 _BUNDLE_IDENTIFIER = co.netguru.lib.bluetooth
 _BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Bluetooth/Supporting Files/Info.plist
 _BUNDLE_TESTABLE = YES
+
