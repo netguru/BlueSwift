@@ -1,0 +1,21 @@
+//
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
+//
+
+#include "./Common-Base.xcconfig"
+
+_BUNDLE_NAME = Bluetooth Tests
+_BUNDLE_IDENTIFIER = co.netguru.lib.bluetooth.tests
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Unit Tests/Info.plist
+
+_CODESIGN_STYLE =
+_CODESIGN_DEVELOPMENT_TEAM =
+_CODESIGN_IDENTITY =
+_CODESIGN_PROFILE_SPECIFIER =
+
+TEST_HOST = $(BUILT_PRODUCTS_DIR)/Bluetooth Demo.app/Bluetooth Demo
+BUNDLE_LOADER = $(TEST_HOST)
+LD_RUNPATH_SEARCH_PATHS = $(inhertited) @executable_path/Frameworks @loader_path/Frameworks
+COPY_PHASE_STRIP = NO
+STRIP_INSTALLED_PRODUCT = NO

@@ -1,0 +1,7 @@
+//
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
+//
+
+#include "Common-Base.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"

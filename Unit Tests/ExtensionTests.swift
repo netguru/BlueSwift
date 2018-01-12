@@ -1,9 +1,6 @@
 //
-//  ExtensionTests.swift
-//  FrameworkTests
-//
-//  Created by Jan Posz on 08.01.2018.
-//  Copyright © 2018 Netguru. All rights reserved.
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
 //
 
 import XCTest
@@ -59,7 +56,7 @@ class ExtensionTests: XCTestCase {
         let services = [try! Characteristic(uuid: "2A0B"),
                         try! Characteristic(uuid: "1801")]
         let cbCharacteristics = [CBMutableCharacteristic(type: CBUUID(string: "1801"), properties: [.read], value: nil, permissions: .readable) as CBCharacteristic,
-                          CBMutableCharacteristic(type: CBUUID(string: "1800"), properties: [.read], value: nil, permissions: .readable) as CBCharacteristic]
+                                 CBMutableCharacteristic(type: CBUUID(string: "1800"), properties: [.read], value: nil, permissions: .readable) as CBCharacteristic]
         
         let common = services.matchingElementsWith(cbCharacteristics)
         
@@ -67,3 +64,4 @@ class ExtensionTests: XCTestCase {
         XCTAssertEqual(common.first?.0.bluetoothUUID.uuidString, common.first?.1.uuid.uuidString, "Expected uuid's does not match")
     }
 }
+
