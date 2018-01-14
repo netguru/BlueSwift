@@ -8,7 +8,21 @@ import CoreBluetooth
 
 /// Class wrapping native Apple's CBPeripheral class. Should be passed as connection parameter and initialized with a
 /// Configuration. It presents a clear interface for writing and reading interactions with remote peripherals adding closure reponses.
-public final class Peripheral {
+public final class Peripheral: NSObject {
+    
+    public enum WriteError: Error {
+        case characteristicNotWriteable
+        case characteristicNotDiscovered
+        case deviceNotConnected
+        case writeError(Error)
+    }
+    
+    public enum ReadError: Error {
+        case characteristicNotDiscovered
+        case characteristicNotReadable
+        case deviceNotConnected
+        case readError(Error)
+    }
     
     /// Configuration of services and characteristics desired peripheral should contain.
     public let configuration: Configuration
@@ -33,5 +47,74 @@ public final class Peripheral {
     }
     
     /// Private instance of Apple native peripheral class. Used to manage write and read requests.
-    internal var peripheral: CBPeripheral?
+    internal var peripheral: CBPeripheral? {
+        didSet {
+            peripheral?.delegate = self
+        }
+    }
+    
+    private var writeHandler: ((WriteError?) -> ())?
+    
+    private var readHandler: ((Data?, ReadError?) -> ())?
+}
+
+public extension Peripheral {
+    
+    public func write(command: Command, characteristic: Characteristic, handler: @escaping (WriteError?) -> ()) {
+        writeHandler = handler
+        guard isConnected else {
+            handler(.deviceNotConnected)
+            return
+        }
+        guard let characteristic = characteristic.rawCharacteristic else {
+            handler(.characteristicNotDiscovered)
+            return
+        }
+        guard characteristic.validateForWrite() else {
+            handler(.characteristicNotWriteable)
+            return
+        }
+        peripheral?.writeValue(command.data, for: characteristic, type: .withResponse)
+    }
+    
+    public func read(_ characteristic: Characteristic, handler: @escaping (Data?, ReadError?) -> ()) {
+        readHandler = handler
+        guard isConnected else {
+            handler(nil, .deviceNotConnected)
+            return
+        }
+        guard let characteristic = characteristic.rawCharacteristic else {
+            handler(nil, .characteristicNotDiscovered)
+            return
+        }
+        guard characteristic.validateForRead() else {
+            handler(nil, .characteristicNotReadable)
+            return
+        }
+        peripheral?.readValue(for: characteristic)
+    }
+}
+
+extension Peripheral: CBPeripheralDelegate {
+    
+    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        guard let handler = writeHandler else { return }
+        guard let error = error else {
+            handler(nil)
+            return
+        }
+        handler(.writeError(error))
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        // It's assumed that if someone performed a read request, we'll ignore calling a notification for this value
+        if let handler = readHandler {
+            handler(characteristic.value, nil)
+            return
+        }
+        let wrapped = configuration.characteristic(matching: characteristic)
+        if let notifyHandler = wrapped?.notifyHandler {
+            notifyHandler(characteristic.value)
+        }
+    }
 }

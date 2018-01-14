@@ -17,7 +17,7 @@ public struct Characteristic {
     public let isObservingValue: Bool
     
     /// A handler indicating characteristic value update events.
-    public var notifyHandler: ((Data) -> ())?
+    public var notifyHandler: ((Data?) -> ())?
     
     /// Raw characteristics value filled after connection.
     internal var rawCharacteristic: CBCharacteristic?
