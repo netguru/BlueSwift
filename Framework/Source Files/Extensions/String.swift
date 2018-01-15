@@ -18,3 +18,12 @@ internal extension String {
             && (evaluation.count == 4 || evaluation.count == 6)
     }
 }
+
+/// String extension allowing conversion of strings like 0x2A01 into Data with the same format.
+internal extension String {
+    
+    /// Returns Data with decoded string.
+    internal var hexDecodedData: Data {
+        return Data()
+    }
+}
