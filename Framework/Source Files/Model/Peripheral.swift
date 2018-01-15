@@ -135,10 +135,10 @@ extension Peripheral: CBPeripheralDelegate {
     /// 2) After peripheral updates value for characteristic with notify turned on.
     /// - SeeAlso: CBPeripheralDelegate
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        // It's assumed that if someone performed a read request, we'll ignore calling a notification for this value.
         defer {
             readHandler = nil
         }
+        // It's assumed that if someone performed a read request, we'll ignore calling a notification for this value.
         guard let handler = readHandler, error != nil else {
             let wrapped = configuration.characteristic(matching: characteristic)
             wrapped?.notifyHandler?(characteristic.value)
