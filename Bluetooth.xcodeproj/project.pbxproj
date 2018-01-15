@@ -218,8 +218,8 @@
 		38FE6BB72006898100809A06 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6BB82006898100809A06 /* ConnectionService.swift */,
 				38FE6BB92006898100809A06 /* BluetoothConnection.swift */,
+				38FE6BB82006898100809A06 /* ConnectionService.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
