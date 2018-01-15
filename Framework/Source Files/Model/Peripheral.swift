@@ -11,19 +11,11 @@ import CoreBluetooth
 public final class Peripheral: NSObject {
     
     /// List of errors possible to happen upon a write request.
-    public enum WriteError: Error {
-        case characteristicNotWriteable
+    public enum TransmissionError: Error {
+        case invalidCharacteristicPermissions(CBCharacteristicProperties)
         case characteristicNotDiscovered
         case deviceNotConnected
-        case writeError(Error)
-    }
-    
-    /// List of errors possible to happen upon a read request.
-    public enum ReadError: Error {
-        case characteristicNotDiscovered
-        case characteristicNotReadable
-        case deviceNotConnected
-        case readError(Error)
+        case auxiliaryError(Error)
     }
     
     /// Configuration of services and characteristics desired peripheral should contain.
@@ -55,12 +47,17 @@ public final class Peripheral: NSObject {
             peripheral?.delegate = self
         }
     }
+
+    /// Enum for distinguishing which transmission action was taken.
+    private enum TransmissionAction {
+        case read, write
+    }
     
     /// Private variable for storing reference to write completion callback.
-    private var writeHandler: ((WriteError?) -> ())?
+    private var writeHandler: ((TransmissionError?) -> ())?
     
     /// Private variable for storing reference to read completion callback.
-    private var readHandler: ((Data?, ReadError?) -> ())?
+    private var readHandler: ((Data?, TransmissionError?) -> ())?
 }
 
 public extension Peripheral {
@@ -71,44 +68,49 @@ public extension Peripheral {
     /// - Parameter handler: a completion handler indicating if reuqest was succesfull.
     /// - SeeAlso: Command
     /// - SeeAlso: Characteristic
-    /// - SeeAlso: Peripheral.WriteError
-    public func write(command: Command, characteristic: Characteristic, handler: @escaping (WriteError?) -> ()) {
+    /// - SeeAlso: Peripheral.TransmissionError
+    public func write(command: Command, characteristic: Characteristic, handler: @escaping (TransmissionError?) -> ()) {
         writeHandler = handler
-        guard isConnected else {
-            handler(.deviceNotConnected)
-            return
+        do {
+            let unwrapped = try validateForTransmission(characteristic, action: .write)
+            peripheral?.writeValue(command.data, for: unwrapped, type: .withResponse)
+        } catch let error {
+            handler(error as? TransmissionError)
+            writeHandler = nil
         }
-        guard let characteristic = characteristic.rawCharacteristic else {
-            handler(.characteristicNotDiscovered)
-            return
-        }
-        guard characteristic.validateForWrite() else {
-            handler(.characteristicNotWriteable)
-            return
-        }
-        peripheral?.writeValue(command.data, for: characteristic, type: .withResponse)
     }
     
     /// Method used to perform read request from peripheral after it's connected.
     /// - Parameter characteristic: a characteristic you wish to read.
     /// - Parameter handler: completion handler returning Data retrieved from characteristic or error if it failed.
     /// - SeeAlso: Characteristic
-    /// - SeeAlso: Peripheral.ReadError
-    public func read(_ characteristic: Characteristic, handler: @escaping (Data?, ReadError?) -> ()) {
+    /// - SeeAlso: Peripheral.TransmissionError
+    public func read(_ characteristic: Characteristic, handler: @escaping (Data?, TransmissionError?) -> ()) {
         readHandler = handler
+        do {
+            let unwrapped = try validateForTransmission(characteristic, action: .read)
+            peripheral?.readValue(for: unwrapped)
+        } catch let error {
+            handler(nil, error as? TransmissionError)
+            readHandler = nil
+        }
+    }
+    
+    /// Performs a general validation if write or read requests can be performed on specified characteristic.
+    private func validateForTransmission(_ characteristic: Characteristic, action: TransmissionAction) throws -> CBCharacteristic {
         guard isConnected else {
-            handler(nil, .deviceNotConnected)
-            return
+            throw TransmissionError.deviceNotConnected
         }
         guard let characteristic = characteristic.rawCharacteristic else {
-            handler(nil, .characteristicNotDiscovered)
-            return
+            throw TransmissionError.characteristicNotDiscovered
         }
-        guard characteristic.validateForRead() else {
-            handler(nil, .characteristicNotReadable)
-            return
+        guard characteristic.validateForRead() && action == .read else {
+            throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
         }
-        peripheral?.readValue(for: characteristic)
+        guard characteristic.validateForWrite() && action == .write else {
+            throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
+        }
+        return characteristic
     }
 }
 
@@ -117,12 +119,15 @@ extension Peripheral: CBPeripheralDelegate {
     /// Called after reading data from characteristic.
     /// - SeeAlso: CBPeripheralDelegate
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        defer {
+            writeHandler = nil
+        }
         guard let handler = writeHandler else { return }
         guard let error = error else {
             handler(nil)
             return
         }
-        handler(.writeError(error))
+        handler(.auxiliaryError(error))
     }
     
     /// Called in two cases:
@@ -131,13 +136,18 @@ extension Peripheral: CBPeripheralDelegate {
     /// - SeeAlso: CBPeripheralDelegate
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         // It's assumed that if someone performed a read request, we'll ignore calling a notification for this value.
-        if let handler = readHandler {
+        defer {
+            readHandler = nil
+        }
+        guard let handler = readHandler, error != nil else {
+            let wrapped = configuration.characteristic(matching: characteristic)
+            wrapped?.notifyHandler?(characteristic.value)
+            return
+        }
+        guard let error = error else {
             handler(characteristic.value, nil)
             return
         }
-        let wrapped = configuration.characteristic(matching: characteristic)
-        if let notifyHandler = wrapped?.notifyHandler {
-            notifyHandler(characteristic.value)
-        }
+        handler(nil, .auxiliaryError(error))
     }
 }
