@@ -6,13 +6,14 @@
 import Foundation
 import CoreBluetooth.CBCharacteristic
 
-
 internal extension CBCharacteristic {
     
+    /// Validates if given characteristic is readable.
     internal func validateForRead() -> Bool {
         return properties == .read
     }
     
+    /// Validates if given characteristic is writeable.
     internal func validateForWrite() -> Bool {
         return properties == .write || properties == .writeWithoutResponse
     }
