@@ -10,7 +10,7 @@ import CoreBluetooth
 /// Configuration. It presents a clear interface for writing and reading interactions with remote peripherals adding closure reponses.
 public final class Peripheral: NSObject {
     
-    /// List of errors possible to happen upon a write request.
+    /// List of errors possible to happen upon a write or read request.
     public enum TransmissionError: Error {
         case invalidCharacteristicPermissions(CBCharacteristicProperties)
         case characteristicNotDiscovered
