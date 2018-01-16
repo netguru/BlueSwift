@@ -11,6 +11,8 @@
 		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		385B01AD2007C93000E3D478 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B01AC2007C93000E3D478 /* Array.swift */; };
+		3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE66200BD5E700FD4EC9 /* Command.swift */; };
+		3863BE69200BDDBA00FD4EC9 /* CBCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */; };
 		38FE6BD42006898100809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB52006898100809A06 /* Info.plist */; };
 		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
 		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
@@ -71,6 +73,8 @@
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA391FFFC4CE00DF300E /* Bluetooth Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bluetooth Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		385B01AC2007C93000E3D478 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		3863BE66200BD5E700FD4EC9 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBCharacteristic.swift; sourceTree = "<group>"; };
 		38FE6BA72006898100809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		38FE6BA82006898100809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,8 +190,8 @@
 		38FE6BB32006898100809A06 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6BB42006898100809A06 /* Supporting Files */,
 				38FE6BB62006898100809A06 /* Source Files */,
+				38FE6BB42006898100809A06 /* Supporting Files */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -214,8 +218,8 @@
 		38FE6BB72006898100809A06 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				38FE6BB82006898100809A06 /* ConnectionService.swift */,
 				38FE6BB92006898100809A06 /* BluetoothConnection.swift */,
+				38FE6BB82006898100809A06 /* ConnectionService.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -226,6 +230,7 @@
 				38FE6BBB2006898100809A06 /* CBUUID.swift */,
 				38FE6BBC2006898100809A06 /* String.swift */,
 				385B01AC2007C93000E3D478 /* Array.swift */,
+				3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 		38FE6BC22006898100809A06 /* Command */ = {
 			isa = PBXGroup;
 			children = (
+				3863BE66200BD5E700FD4EC9 /* Command.swift */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -423,9 +429,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3863BE69200BDDBA00FD4EC9 /* CBCharacteristic.swift in Sources */,
 				385B01AD2007C93000E3D478 /* Array.swift in Sources */,
 				38FE6BD82006898100809A06 /* String.swift in Sources */,
 				38FE6BDA2006898100809A06 /* Service.swift in Sources */,
+				3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */,
 				38FE6BD92006898100809A06 /* Peripheral.swift in Sources */,
 				38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */,
 				38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */,

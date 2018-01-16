@@ -38,5 +38,11 @@ internal extension Configuration {
         }
         return false
     }
+    
+    /// Helper method used to search characteristics wrapper for specified CBCharacteristic
+    internal func characteristic(matching cbCharacteristic: CBCharacteristic) -> Characteristic? {
+        let characteristics = services.flatMap { $0.characteristics }
+        return characteristics.filter { $0.rawCharacteristic === cbCharacteristic }.first
+    }
 }
 
