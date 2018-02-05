@@ -27,10 +27,11 @@ internal extension String {
     
     /// Returns Data with decoded string.
     internal func hexDecodedData() throws -> Data {
-        var data = Data(capacity: count / 2)
-        guard let regex = try? NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive), isHexadecimal() else {
+        guard isHexadecimal() else {
             throw Command.ConversionError.incorrectInputFormat
         }
+        var data = Data(capacity: count / 2)
+        let regex = try! NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive)
         regex.enumerateMatches(in: self, range: NSMakeRange(0, utf16.count)) { match, _, _ in
             guard let nsRange = match?.range, let range = Range(nsRange, in: self) else { return }
             let byteString = self[range]
