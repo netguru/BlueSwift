@@ -16,6 +16,7 @@ internal extension String {
         return isHexadecimal() && (evaluation.count == 4 || evaluation.count == 6)
     }
     
+    /// Checks if string contains only hexadecimal characters.
     internal func isHexadecimal() -> Bool {
         let invertedHexCharacterSet = NSCharacterSet(charactersIn: "0123456789ABCDEF").inverted
         return uppercased().rangeOfCharacter(from: invertedHexCharacterSet) == nil
