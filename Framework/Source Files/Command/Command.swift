@@ -16,12 +16,29 @@ public enum Command {
     case int32(UInt32)
     case hexString(String)
     case data(Data)
+    
+    /// An error triggered when data parse fails.
+    public enum ConversionError: Error {
+        case incorrectInputFormat
+    }
 }
 
 internal extension Command {
     
     /// Variable used for conversion of parameters to Data possible to write to peripheral.
-    internal var data: Data {
-        return Data()
+    /// - Throws: Command.ConversionError
+    internal func convertedData() throws -> Data {
+        switch self {
+        case .int8(let number):
+            return number.decodedData
+        case .int16(let number):
+            return number.decodedData
+        case .int32(let number):
+            return number.decodedData
+        case .hexString(let string):
+            return try string.hexDecodedData()
+        case .data(let data):
+            return data
+        }
     }
 }

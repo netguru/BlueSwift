@@ -6,7 +6,7 @@
 import Foundation
 
 /// Data extension allowing conversion from Data into String containing exactly the same bytes.
-extension Data {
+internal extension Data {
     
     /// Returns encoded String.
     internal var hexEncodedString: String {

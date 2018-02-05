@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		382CD41C2028E5950065DFF6 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE73200D582600FD4EC9 /* Int.swift */; };
 		3837BA3A1FFFC4CE00DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		385B01AD2007C93000E3D478 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B01AC2007C93000E3D478 /* Array.swift */; };
-		3863BE74200D582600FD4EC9 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE73200D582600FD4EC9 /* Int.swift */; };
-		3863BE76200D5B9B00FD4EC9 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE75200D5B9B00FD4EC9 /* Data.swift */; };
 		3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE66200BD5E700FD4EC9 /* Command.swift */; };
 		3863BE69200BDDBA00FD4EC9 /* CBCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */; };
+		3863BE76200D5B9B00FD4EC9 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE75200D5B9B00FD4EC9 /* Data.swift */; };
 		38FE6BD42006898100809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB52006898100809A06 /* Info.plist */; };
 		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
 		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
@@ -75,10 +75,10 @@
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA391FFFC4CE00DF300E /* Bluetooth Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bluetooth Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		385B01AC2007C93000E3D478 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		3863BE73200D582600FD4EC9 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
-		3863BE75200D5B9B00FD4EC9 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		3863BE66200BD5E700FD4EC9 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBCharacteristic.swift; sourceTree = "<group>"; };
+		3863BE73200D582600FD4EC9 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		3863BE75200D5B9B00FD4EC9 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		38FE6BA72006898100809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		38FE6BA82006898100809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -426,7 +426,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3863BE74200D582600FD4EC9 /* Int.swift in Sources */,
 				38FE6BE32006898B00809A06 /* ViewController.swift in Sources */,
 				38FE6BE22006898800809A06 /* AppDelegate.swift in Sources */,
 				3863BE76200D5B9B00FD4EC9 /* Data.swift in Sources */,
@@ -440,6 +439,7 @@
 				3863BE69200BDDBA00FD4EC9 /* CBCharacteristic.swift in Sources */,
 				385B01AD2007C93000E3D478 /* Array.swift in Sources */,
 				38FE6BD82006898100809A06 /* String.swift in Sources */,
+				382CD41C2028E5950065DFF6 /* Int.swift in Sources */,
 				38FE6BDA2006898100809A06 /* Service.swift in Sources */,
 				3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */,
 				38FE6BD92006898100809A06 /* Peripheral.swift in Sources */,

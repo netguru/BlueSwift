@@ -23,7 +23,20 @@ internal extension String {
 internal extension String {
     
     /// Returns Data with decoded string.
-    internal var hexDecodedData: Data {
-        return Data()
+    internal func hexDecodedData() throws -> Data {
+        var data = Data(capacity: count / 2)
+        guard let regex = try? NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive) else {
+            throw Command.ConversionError.incorrectInputFormat
+        }
+        regex.enumerateMatches(in: self, range: NSMakeRange(0, utf16.count)) { match, _, _ in
+            guard let nsRange = match?.range, let range = Range(nsRange, in: self) else { return }
+            let byteString = self[range]
+            guard var num = UInt8(byteString, radix: 16) else { return }
+            data.append(&num, count: 1)
+        }
+        guard data.count != 0 else {
+            throw Command.ConversionError.incorrectInputFormat
+        }
+        return data
     }
 }

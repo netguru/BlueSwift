@@ -15,6 +15,7 @@ public final class Peripheral: NSObject {
         case invalidCharacteristicPermissions(CBCharacteristicProperties)
         case characteristicNotDiscovered
         case deviceNotConnected
+        case incorrectInputFormat(Command.ConversionError)
         case auxiliaryError(Error)
     }
     
@@ -70,13 +71,16 @@ public extension Peripheral {
     /// - SeeAlso: Characteristic
     /// - SeeAlso: Peripheral.TransmissionError
     public func write(command: Command, characteristic: Characteristic, handler: @escaping (TransmissionError?) -> ()) {
-        writeHandler = handler
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .write)
-            peripheral?.writeValue(command.data, for: unwrapped, type: .withResponse)
+            try peripheral?.writeValue(command.convertedData(), for: unwrapped, type: .withResponse)
+            writeHandler = handler
         } catch let error {
-            handler(error as? TransmissionError)
-            writeHandler = nil
+            guard let conversionError = error as? Command.ConversionError else {
+                handler(error as? TransmissionError)
+                return
+            }
+            handler(TransmissionError.incorrectInputFormat(conversionError))
         }
     }
     
@@ -86,13 +90,12 @@ public extension Peripheral {
     /// - SeeAlso: Characteristic
     /// - SeeAlso: Peripheral.TransmissionError
     public func read(_ characteristic: Characteristic, handler: @escaping (Data?, TransmissionError?) -> ()) {
-        readHandler = handler
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .read)
             peripheral?.readValue(for: unwrapped)
+            readHandler = handler
         } catch let error {
             handler(nil, error as? TransmissionError)
-            readHandler = nil
         }
     }
     
