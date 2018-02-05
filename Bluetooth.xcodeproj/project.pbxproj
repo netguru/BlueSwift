@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		382CD41C2028E5950065DFF6 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE73200D582600FD4EC9 /* Int.swift */; };
+		382CD41D2028F1360065DFF6 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE75200D5B9B00FD4EC9 /* Data.swift */; };
+		382CD41F2028F4B50065DFF6 /* CommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CD41E2028F4B50065DFF6 /* CommandTests.swift */; };
 		3837BA3A1FFFC4CE00DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA722003D26700DF300E /* Bluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; };
 		3837BA732003D26700DF300E /* Bluetooth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3837BA311FFFC4CE00DF300E /* Bluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		385B01AD2007C93000E3D478 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B01AC2007C93000E3D478 /* Array.swift */; };
 		3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE66200BD5E700FD4EC9 /* Command.swift */; };
 		3863BE69200BDDBA00FD4EC9 /* CBCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */; };
-		3863BE76200D5B9B00FD4EC9 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE75200D5B9B00FD4EC9 /* Data.swift */; };
 		38FE6BD42006898100809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB52006898100809A06 /* Info.plist */; };
 		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
 		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		382CD41E2028F4B50065DFF6 /* CommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTests.swift; sourceTree = "<group>"; };
 		3837BA0B1FFFC2FE00DF300E /* Bluetooth Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bluetooth Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA391FFFC4CE00DF300E /* Bluetooth Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bluetooth Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				38FE6BA72006898100809A06 /* ExtensionTests.swift */,
+				382CD41E2028F4B50065DFF6 /* CommandTests.swift */,
 				38FE6BA82006898100809A06 /* ConfigurationTests.swift */,
 				38FE6BA92006898100809A06 /* Info.plist */,
 			);
@@ -428,7 +431,6 @@
 			files = (
 				38FE6BE32006898B00809A06 /* ViewController.swift in Sources */,
 				38FE6BE22006898800809A06 /* AppDelegate.swift in Sources */,
-				3863BE76200D5B9B00FD4EC9 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +446,7 @@
 				3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */,
 				38FE6BD92006898100809A06 /* Peripheral.swift in Sources */,
 				38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */,
+				382CD41D2028F1360065DFF6 /* Data.swift in Sources */,
 				38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */,
 				38FE6BDC2006898100809A06 /* Configuration.swift in Sources */,
 				38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */,
@@ -455,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				382CD41F2028F4B50065DFF6 /* CommandTests.swift in Sources */,
 				38FE6BE7200689AB00809A06 /* ConfigurationTests.swift in Sources */,
 				38FE6BE6200689A700809A06 /* ExtensionTests.swift in Sources */,
 			);

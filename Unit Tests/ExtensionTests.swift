@@ -63,9 +63,5 @@ class ExtensionTests: XCTestCase {
         XCTAssertEqual(common.count, 1, "Expected matches count is invalid")
         XCTAssertEqual(common.first?.0.bluetoothUUID.uuidString, common.first?.1.uuid.uuidString, "Expected uuid's does not match")
     }
-    
-    func testDataConversion() {
-        
-    }
 }
 

@@ -13,9 +13,12 @@ internal extension String {
         if hasPrefix("0x") {
             evaluation = evaluation.replacingOccurrences(of: "0x", with: "")
         }
+        return isHexadecimal() && (evaluation.count == 4 || evaluation.count == 6)
+    }
+    
+    internal func isHexadecimal() -> Bool {
         let invertedHexCharacterSet = NSCharacterSet(charactersIn: "0123456789ABCDEF").inverted
-        return evaluation.uppercased().rangeOfCharacter(from: invertedHexCharacterSet) == nil
-            && (evaluation.count == 4 || evaluation.count == 6)
+        return uppercased().rangeOfCharacter(from: invertedHexCharacterSet) == nil
     }
 }
 
@@ -25,7 +28,7 @@ internal extension String {
     /// Returns Data with decoded string.
     internal func hexDecodedData() throws -> Data {
         var data = Data(capacity: count / 2)
-        guard let regex = try? NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive) else {
+        guard let regex = try? NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive), isHexadecimal() else {
             throw Command.ConversionError.incorrectInputFormat
         }
         regex.enumerateMatches(in: self, range: NSMakeRange(0, utf16.count)) { match, _, _ in
@@ -33,9 +36,6 @@ internal extension String {
             let byteString = self[range]
             guard var num = UInt8(byteString, radix: 16) else { return }
             data.append(&num, count: 1)
-        }
-        guard data.count != 0 else {
-            throw Command.ConversionError.incorrectInputFormat
         }
         return data
     }
