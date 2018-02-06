@@ -23,6 +23,7 @@ class ConfigurationTests: XCTestCase {
         
         do {
             _ = try Service(uuid: incorrectUUID, characteristics: [])
+            XCTFail("Improper Service creation should throw an error.")
         } catch let error {
             guard let error = error as? CBUUID.CreationError else {
                 XCTFail()
@@ -46,6 +47,7 @@ class ConfigurationTests: XCTestCase {
         
         do {
             _ = try Characteristic(uuid: incorrectUUID)
+            XCTFail("Improper Characteristic creation should throw an error.")
         } catch let error {
             guard let error = error as? CBUUID.CreationError else {
                 XCTFail()
