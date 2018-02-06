@@ -13,11 +13,11 @@ internal extension String {
         if hasPrefix("0x") {
             evaluation = evaluation.replacingOccurrences(of: "0x", with: "")
         }
-        return isHexadecimal() && (evaluation.count == 4 || evaluation.count == 6)
+        return isHexadecimal && (evaluation.count == 4 || evaluation.count == 6)
     }
     
     /// Checks if string contains only hexadecimal characters.
-    internal func isHexadecimal() -> Bool {
+    internal var isHexadecimal: Bool {
         let invertedHexCharacterSet = NSCharacterSet(charactersIn: "0123456789ABCDEF").inverted
         return uppercased().rangeOfCharacter(from: invertedHexCharacterSet) == nil
     }
@@ -28,7 +28,7 @@ internal extension String {
     
     /// Returns Data with decoded string.
     internal func hexDecodedData() throws -> Data {
-        guard isHexadecimal() else {
+        guard isHexadecimal else {
             throw Command.ConversionError.incorrectInputFormat
         }
         var data = Data(capacity: count / 2)
