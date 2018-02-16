@@ -6,10 +6,17 @@
 import Foundation
 import CoreBluetooth
 
+/// A phantom type protocol making it easier to distinguish peripherals.
+public protocol PeripheralType {}
+
+/// A phantom type enums allowing to distinguish between Peripheral used for connection and advertisement.
+public enum Connectable: PeripheralType {}
+public enum Advertisable: PeripheralType {}
+
 /// Class wrapping native Apple's CBPeripheral class. Should be passed as connection parameter and initialized with a
 /// Configuration. It presents a clear interface for writing and reading interactions with remote peripherals adding closure reponses.
-public final class Peripheral: NSObject {
-    
+public final class Peripheral<Type: PeripheralType>: NSObject {
+
     /// List of errors possible to happen upon a write or read request.
     public enum TransmissionError: Error {
         case invalidCharacteristicPermissions(CBCharacteristicProperties)
@@ -59,6 +66,14 @@ public final class Peripheral: NSObject {
     
     /// Private variable for storing reference to read completion callback.
     private var readHandler: ((Data?, TransmissionError?) -> ())?
+}
+
+public extension Peripheral where Type == Connectable {
+    
+}
+
+public extension Peripheral where Type == Advertisable {
+    
 }
 
 public extension Peripheral {
@@ -121,7 +136,7 @@ extension Peripheral: CBPeripheralDelegate {
     
     /// Called after reading data from characteristic.
     /// - SeeAlso: CBPeripheralDelegate
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+    @nonobjc public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         defer {
             writeHandler = nil
         }
@@ -137,7 +152,7 @@ extension Peripheral: CBPeripheralDelegate {
     /// 1) After performing read request from peripheral.
     /// 2) After peripheral updates value for characteristic with notify turned on.
     /// - SeeAlso: CBPeripheralDelegate
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+    @nonobjc public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         defer {
             readHandler = nil
         }

@@ -10,10 +10,10 @@ import CoreBluetooth
 internal final class ConnectionService: NSObject {
     
     /// Closure used to check given peripheral against advertisement packet of discovered peripheral.
-    internal var advertisementValidationHandler: ((Peripheral, String, [String: Any]) -> (Bool))?
+    internal var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))?
 
     /// Closure used to manage connection success or failure.
-    internal var connectionHandler: ((Peripheral, BluetoothConnection.ConnectionError?) -> ())?
+    internal var connectionHandler: ((Peripheral<Connectable>, BluetoothConnection.ConnectionError?) -> ())?
     
     /// Returns the amount of devices already scheduled for connection.
     internal var connectedDevicesAmount: Int {
@@ -21,9 +21,9 @@ internal final class ConnectionService: NSObject {
     }
     
     /// Set of peripherals the manager should connect.
-    private var peripherals = [Peripheral]()
+    private var peripherals = [Peripheral<Connectable>]()
     
-    private weak var connectingPeripheral: Peripheral?
+    private weak var connectingPeripheral: Peripheral<Connectable>?
     
     /// Connection options - means you will be notified on connection and disconnection of devices.
     private lazy var connectionOptions = [CBConnectPeripheralOptionNotifyOnConnectionKey: true,
@@ -42,7 +42,7 @@ internal final class ConnectionService: NSObject {
 extension ConnectionService {
     
     /// Starts connection with passed device. Connection result is passed in handler closure.
-    public func connect(_ peripheral: Peripheral, handler: @escaping (Peripheral, BluetoothConnection.ConnectionError?) -> ()) {
+    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (Peripheral<Connectable>, BluetoothConnection.ConnectionError?) -> ()) {
         if connectionHandler == nil {
             connectionHandler = handler
         }

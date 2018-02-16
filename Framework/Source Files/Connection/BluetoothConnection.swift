@@ -33,7 +33,7 @@ public final class BluetoothConnection: NSObject {
     /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
     /// and advertising packet.
-    public var advertisementValidationHandler: ((Peripheral, String, [String: Any]) -> (Bool))? {
+    public var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))? {
         didSet {
             connectionService.advertisementValidationHandler = advertisementValidationHandler
         }
@@ -44,7 +44,7 @@ public final class BluetoothConnection: NSObject {
     /// - Parameter handler: a completion handler called upon succesfull connection or a error.
     /// - SeeAlso: BluetoothConnection.ConnectionError
     /// - SeeAlso: Peripheral
-    public func connect(_ peripheral: Peripheral, handler: @escaping (ConnectionError?) -> ()) {
+    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (ConnectionError?) -> ()) {
         guard !peripheral.isConnected else {
             handler(.deviceAlreadyConnected)
             return
@@ -64,7 +64,7 @@ public final class BluetoothConnection: NSObject {
     /// - Parameter peripheral: a peripheral you wish to disconnect. Should be exactly the same instance that was used for connection.
     /// - Throws: BluetoothConnection.ConnectionError in case there was a disconnection problem
     /// - SeeAlso: BluetoothConnection.DisconnectionError
-    public func disconnect(_ peripheral: Peripheral) throws {
+    public func disconnect(_ peripheral: Peripheral<Connectable>) throws {
         guard let peripheral = peripheral.peripheral else {
             throw DisconnectionError.deviceNotConnected
         }

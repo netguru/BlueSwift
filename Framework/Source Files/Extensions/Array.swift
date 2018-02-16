@@ -38,10 +38,10 @@ internal extension Array where Element == Characteristic {
     }
 }
 
-internal extension Array where Element == Peripheral {
+internal extension Array where Element == Peripheral<Connectable> {
     
     /// Convenience method for easier matching of Peripheral and CBPeripheral objects.
-    internal func matchingElementsWith(_ array: [CBPeripheral]) -> [(Peripheral, CBPeripheral)] {
+    internal func matchingElementsWith(_ array: [CBPeripheral]) -> [(Peripheral<Connectable>, CBPeripheral)] {
         return matchingElementsWith(array, comparison: { (peripheral, cbPeripheral) -> Bool in
             return peripheral.deviceIdentifier == cbPeripheral.identifier.uuidString
         })
