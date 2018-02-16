@@ -26,6 +26,11 @@ public final class Peripheral<Type: PeripheralType>: NSObject {
         case auxiliaryError(Error)
     }
     
+    private init(configuration: Configuration, deviceIdentifier: String? = nil) {
+        self.configuration = configuration
+        self.deviceIdentifier = deviceIdentifier
+    }
+    
     /// Configuration of services and characteristics desired peripheral should contain.
     public let configuration: Configuration
     
@@ -37,16 +42,6 @@ public final class Peripheral<Type: PeripheralType>: NSObject {
     public var isConnected: Bool {
         guard let peripheral = peripheral else { return false }
         return peripheral.state == .connected
-    }
-    
-    /// Deafult initializer for Perpipheral.
-    /// - Parameter configuration: proviously created configuration containing all desired services and characteristics.
-    /// - Parameter deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here.
-    ///   When set, connection to peripheral is much quicker.
-    /// - SeeAlso: Configuration
-    public init(configuration: Configuration, deviceIdentifier: String? = nil) {
-        self.configuration = configuration
-        self.deviceIdentifier = deviceIdentifier
     }
     
     /// Private instance of Apple native peripheral class. Used to manage write and read requests.
@@ -69,11 +64,19 @@ public final class Peripheral<Type: PeripheralType>: NSObject {
 }
 
 public extension Peripheral where Type == Connectable {
-    
+
+    /// Deafult initializer for Perpipheral.
+    /// - Parameter configuration: proviously created configuration containing all desired services and characteristics.
+    /// - Parameter deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here.
+    ///   When set, connection to peripheral is much quicker.
+    /// - SeeAlso: Configuration
+    public convenience init(configuration: Configuration, deviceIdentifier: String? = nil) {
+        self.init(configuration: configuration, deviceIdentifier: deviceIdentifier)
+    }
 }
 
 public extension Peripheral where Type == Advertisable {
-    
+
 }
 
 public extension Peripheral {

@@ -17,6 +17,7 @@
 		3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE66200BD5E700FD4EC9 /* Command.swift */; };
 		3863BE69200BDDBA00FD4EC9 /* CBCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */; };
 		38974AF8203738F30024CCD5 /* BluetoothAdvertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38974AF6203732DB0024CCD5 /* BluetoothAdvertisement.swift */; };
+		38974AFA20373A660024CCD5 /* AdvertisementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38974AF920373A660024CCD5 /* AdvertisementService.swift */; };
 		38FE6BD42006898100809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB52006898100809A06 /* Info.plist */; };
 		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
 		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
@@ -83,6 +84,7 @@
 		3863BE73200D582600FD4EC9 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		3863BE75200D5B9B00FD4EC9 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		38974AF6203732DB0024CCD5 /* BluetoothAdvertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAdvertisement.swift; sourceTree = "<group>"; };
+		38974AF920373A660024CCD5 /* AdvertisementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementService.swift; sourceTree = "<group>"; };
 		38FE6BA72006898100809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		38FE6BA82006898100809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				38974AF6203732DB0024CCD5 /* BluetoothAdvertisement.swift */,
+				38974AF920373A660024CCD5 /* AdvertisementService.swift */,
 			);
 			path = Advertisement;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */,
 				382CD41D2028F1360065DFF6 /* Data.swift in Sources */,
 				38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */,
+				38974AFA20373A660024CCD5 /* AdvertisementService.swift in Sources */,
 				38974AF8203738F30024CCD5 /* BluetoothAdvertisement.swift in Sources */,
 				38FE6BDC2006898100809A06 /* Configuration.swift in Sources */,
 				38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */,

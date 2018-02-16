@@ -7,6 +7,8 @@ import Foundation
 
 public final class BluetoothAdvertisement {
     
+    private lazy var advertisementService = AdvertisementService()
+    
     public func advertise(peripheral: Peripheral<Advertisable>) {
         
     }
