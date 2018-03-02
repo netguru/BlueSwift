@@ -10,6 +10,10 @@ public final class BluetoothAdvertisement {
     private lazy var advertisementService = AdvertisementService()
     
     public func advertise(peripheral: Peripheral<Advertisable>) {
+        advertisementService.startAdvertising(peripheral)
+    }
+    
+    public func updateValue(for characteristic: Characteristic) {
         
     }
 }

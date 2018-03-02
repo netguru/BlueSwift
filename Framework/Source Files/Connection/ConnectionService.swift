@@ -94,13 +94,13 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         guard let handler = connectionHandler, let anyDevice = peripherals.first else { return }
-        switch central.state {
-        case .poweredOff, .resetting, .unauthorized:
-            handler(anyDevice, .bluetoothUnavailable)
-        case .poweredOn:
+        do {
+            try central.validateState()
             reloadScanning()
-        case .unsupported, .unknown:
-            handler(anyDevice, .incompatibleDevice)
+        } catch let error {
+            if let error = error as? BluetoothConnection.ConnectionError {
+                handler(anyDevice, error)
+            }
         }
     }
     

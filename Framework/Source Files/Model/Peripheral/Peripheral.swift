@@ -26,9 +26,14 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
         case auxiliaryError(Error)
     }
     
-    private init(configuration: Configuration, deviceIdentifier: String? = nil) {
+    public override init() {
+        fatalError("Init is unavailable, please use init(configuration:deviceIdentifier:) instead.")
+    }
+    
+    internal init(configuration: Configuration, deviceIdentifier: String? = nil, advertisementData: AdvertisementData? = nil) {
         self.configuration = configuration
         self.deviceIdentifier = deviceIdentifier
+        self.advertisementData = advertisementData
     }
     
     /// Configuration of services and characteristics desired peripheral should contain.
@@ -37,6 +42,8 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
     /// A device parameter. Should be cached locally in order to pass for every connection after the first one.
     /// If passed, every connection should happen much quicker.
     public var deviceIdentifier: String?
+    
+    internal var advertisementData: AdvertisementData?
     
     /// Private instance of Apple native peripheral class. Used to manage write and read requests.
     internal var peripheral: CBPeripheral? {
@@ -50,40 +57,4 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
     
     /// Private variable for storing reference to read completion callback.
     internal var readHandler: ((Data?, TransmissionError?) -> ())?
-    
-    /// Called after reading data from characteristic.
-    /// - SeeAlso: CBPeripheralDelegate
-    /// This should be moved to an extension in Swift 5 according to: https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md feature.
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        defer {
-            writeHandler = nil
-        }
-        guard let handler = writeHandler else { return }
-        guard let error = error else {
-            handler(nil)
-            return
-        }
-        handler(.auxiliaryError(error))
-    }
-    
-    /// Called in two cases:
-    /// 1) After performing read request from peripheral.
-    /// 2) After peripheral updates value for characteristic with notify turned on.
-    /// - SeeAlso: CBPeripheralDelegate
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        defer {
-            readHandler = nil
-        }
-        // It's assumed that if someone performed a read request, we'll ignore calling a notification for this value.
-        guard let handler = readHandler, error != nil else {
-            let wrapped = configuration.characteristic(matching: characteristic)
-            wrapped?.notifyHandler?(characteristic.value)
-            return
-        }
-        guard let error = error else {
-            handler(characteristic.value, nil)
-            return
-        }
-        handler(nil, .auxiliaryError(error))
-    }
 }
