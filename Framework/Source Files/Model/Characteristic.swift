@@ -22,6 +22,9 @@ public struct Characteristic {
     /// Raw characteristics value filled after connection.
     internal var rawCharacteristic: CBCharacteristic?
     
+    /// Raw mutable characteristic, assigned for advertisement needs.
+    internal var advertisementCharacteristic: CBMutableCharacteristic?
+    
     /// CBUUID parsed from passed UUID String.
     internal let bluetoothUUID: CBUUID
     

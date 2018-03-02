@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import CoreBluetooth.CBUUID
+import CoreBluetooth
 
 /// Struct wrapping Apple's native CBService class. Used to create Configuration for this framework.
 public struct Service {
@@ -18,7 +18,7 @@ public struct Service {
     /// CBUUID parsed from passed UUID String.
     internal let bluetoothUUID: CBUUID
     
-    internal var c
+    internal var advertisementService: CBMutableService?
     
     /// Initializes a new instance of Service. It's failable if passed UUID String is not parseable to UUID standards.
     /// - Parameter uuid: UUID of desired service, should be parseable to CBUUID in order for the initializer to work.
@@ -31,12 +31,5 @@ public struct Service {
         self.bluetoothUUID = try CBUUID(uuidString: uuid)
         self.uuid = uuid
         self.characteristics = characteristics
-    }
-}
-
-internal extension Service {
-    
-    func createAdvertisementConfiguration() {
-        
     }
 }

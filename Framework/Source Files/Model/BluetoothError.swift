@@ -16,6 +16,6 @@ public enum BluetoothError: Error {
     }
     
     public enum AdvertisementError: Error {
-        
+        case deviceNotAdvertising
     }
 }

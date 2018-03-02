@@ -13,7 +13,7 @@ public final class BluetoothAdvertisement {
     
     public init() { }
     
-    public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> (Void)) {
+    public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> ()) {
         advertisementService.startAdvertising(peripheral, errorHandler: errorHandler)
     }
     
@@ -21,9 +21,15 @@ public final class BluetoothAdvertisement {
         advertisementService.updateValue(value, characteristic: characteristic, errorHandler: errorHandler)
     }
     
-    public var readCallback: ((Data) -> (Void))? {
+    public var writeRequestCallback: ((Characteristic, Data?) -> ())? {
         didSet {
-            advertisementService.readCallback = readCallback
+            advertisementService.writeCallback = writeRequestCallback
+        }
+    }
+    
+    public var readRequestCallback: ((Characteristic) -> (Data))? {
+        didSet {
+            advertisementService.readCallback = readRequestCallback
         }
     }
 }

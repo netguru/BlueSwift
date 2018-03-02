@@ -14,18 +14,24 @@ internal final class AdvertisementService: NSObject {
     
     private var subsribedCentrals = [CBCentral]()
     
-    internal var readCallback: ((Data) -> (Void))?
+    internal var readCallback: ((Characteristic) -> (Data))?
     
-    private var errorHandler: ((BluetoothError) -> (Void))?
+    internal var writeCallback: ((Characteristic, Data?) -> ())?
     
-    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> (Void)) {
+    private var errorHandler: ((BluetoothError) -> ())?
+    
+    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> ()) {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
         peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
     }
     
-    internal func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (BluetoothError.AdvertisementError) -> (Void)) {
-        
+    internal func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (BluetoothError.AdvertisementError) -> ()) {
+        guard let advertisementCharacteristic = characteristic.advertisementCharacteristic else {
+            errorHandler(.deviceNotAdvertising)
+            return
+        }
+        peripheralManager.updateValue(value, for: advertisementCharacteristic, onSubscribedCentrals: subsribedCentrals)
     }
 }
 
@@ -43,19 +49,27 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         }
     }
     
-    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
-        
-    }
-    
-    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
-        
-    }
-    
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
-        
+        let rawCharacteristic = request.characteristic
+        guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
+        let data = readCallback?(characteristic)
+        request.value = data
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        
+        requests.forEach { request in
+            let rawCharacteristic = request.characteristic
+            guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
+            writeCallback?(characteristic, request.value)
+        }
+    }
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+        subsribedCentrals.append(central)
+    }
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
+        guard let index = subsribedCentrals.index(where: { $0 === central }) else { return }
+        subsribedCentrals.remove(at: index)
     }
 }
