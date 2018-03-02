@@ -21,7 +21,11 @@ internal final class AdvertisementService: NSObject {
     internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> (Void)) {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
-        peripheralManager.startAdvertising(peripheral.advertisementData?.data)
+        peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
+    }
+    
+    internal func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (BluetoothError.AdvertisementError) -> (Void)) {
+        
     }
 }
 
@@ -31,7 +35,7 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         do {
             try peripheral.validateState()
             if !peripheralManager.isAdvertising {
-                peripheralManager.startAdvertising(self.peripheral?.advertisementData?.data)
+                peripheralManager.startAdvertising(self.peripheral?.advertisementData?.combined())
             }
         } catch let error {
             guard let error = error as? BluetoothError else { return }

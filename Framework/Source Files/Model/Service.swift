@@ -18,6 +18,8 @@ public struct Service {
     /// CBUUID parsed from passed UUID String.
     internal let bluetoothUUID: CBUUID
     
+    internal var c
+    
     /// Initializes a new instance of Service. It's failable if passed UUID String is not parseable to UUID standards.
     /// - Parameter uuid: UUID of desired service, should be parseable to CBUUID in order for the initializer to work.
     /// - Parameter characteristics: a list of Characteristic desired Service should contain. Please note that this list does not
@@ -29,5 +31,12 @@ public struct Service {
         self.bluetoothUUID = try CBUUID(uuidString: uuid)
         self.uuid = uuid
         self.characteristics = characteristics
+    }
+}
+
+internal extension Service {
+    
+    func createAdvertisementConfiguration() {
+        
     }
 }

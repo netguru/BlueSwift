@@ -9,8 +9,13 @@ import Foundation
 public enum BluetoothError: Error {
     case bluetoothUnavailable
     case incompatibleDevice
+    
     public enum ConnectionError: Error {
         case deviceConnectionLimitExceed
         case deviceAlreadyConnected
+    }
+    
+    public enum AdvertisementError: Error {
+        
     }
 }

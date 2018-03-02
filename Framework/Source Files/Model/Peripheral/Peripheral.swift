@@ -30,7 +30,7 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
         fatalError("Init is unavailable, please use init(configuration:deviceIdentifier:) instead.")
     }
     
-    internal init(configuration: Configuration, deviceIdentifier: String? = nil, advertisementData: AdvertisementData? = nil) {
+    internal init(configuration: Configuration, deviceIdentifier: String? = nil, advertisementData: [AdvertisementData]? = nil) {
         self.configuration = configuration
         self.deviceIdentifier = deviceIdentifier
         self.advertisementData = advertisementData
@@ -43,7 +43,7 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
     /// If passed, every connection should happen much quicker.
     public var deviceIdentifier: String?
     
-    internal var advertisementData: AdvertisementData?
+    internal var advertisementData: [AdvertisementData]?
     
     /// Private instance of Apple native peripheral class. Used to manage write and read requests.
     internal var peripheral: CBPeripheral? {
