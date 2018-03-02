@@ -13,7 +13,7 @@ internal final class ConnectionService: NSObject {
     internal var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))?
 
     /// Closure used to manage connection success or failure.
-    internal var connectionHandler: ((Peripheral<Connectable>, BluetoothConnection.ConnectionError?) -> ())?
+    internal var connectionHandler: ((Peripheral<Connectable>, BluetoothError.ConnectionError?) -> ())?
     
     /// Returns the amount of devices already scheduled for connection.
     internal var connectedDevicesAmount: Int {
@@ -42,7 +42,7 @@ internal final class ConnectionService: NSObject {
 extension ConnectionService {
     
     /// Starts connection with passed device. Connection result is passed in handler closure.
-    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (Peripheral<Connectable>, BluetoothConnection.ConnectionError?) -> ()) {
+    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (Peripheral<Connectable>, BluetoothError.ConnectionError?) -> ()) {
         if connectionHandler == nil {
             connectionHandler = handler
         }
@@ -98,7 +98,7 @@ extension ConnectionService: CBCentralManagerDelegate {
             try central.validateState()
             reloadScanning()
         } catch let error {
-            if let error = error as? BluetoothConnection.ConnectionError {
+            if let error = error as? BluetoothError.ConnectionError {
                 handler(anyDevice, error)
             }
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		382516562049899F0097F9D7 /* AdvertisementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382516552049899F0097F9D7 /* AdvertisementData.swift */; };
+		3825165820498C450097F9D7 /* BluetoothError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825165720498C450097F9D7 /* BluetoothError.swift */; };
 		382CD41C2028E5950065DFF6 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE73200D582600FD4EC9 /* Int.swift */; };
 		382CD41D2028F1360065DFF6 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE75200D5B9B00FD4EC9 /* Data.swift */; };
 		382CD41F2028F4B50065DFF6 /* CommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CD41E2028F4B50065DFF6 /* CommandTests.swift */; };
@@ -79,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		382516552049899F0097F9D7 /* AdvertisementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementData.swift; sourceTree = "<group>"; };
+		3825165720498C450097F9D7 /* BluetoothError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothError.swift; sourceTree = "<group>"; };
 		382CD41E2028F4B50065DFF6 /* CommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTests.swift; sourceTree = "<group>"; };
 		3837BA0B1FFFC2FE00DF300E /* Bluetooth Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bluetooth Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,6 +287,7 @@
 				38FE6BC02006898100809A06 /* Characteristic.swift */,
 				38FE6BC12006898100809A06 /* Configuration.swift */,
 				382516552049899F0097F9D7 /* AdvertisementData.swift */,
+				3825165720498C450097F9D7 /* BluetoothError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				382CD41C2028E5950065DFF6 /* Int.swift in Sources */,
 				38FE6BDA2006898100809A06 /* Service.swift in Sources */,
 				38BE35E1203DD8D40018EA0D /* CBManager.swift in Sources */,
+				3825165820498C450097F9D7 /* BluetoothError.swift in Sources */,
 				3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */,
 				38FE6BD92006898100809A06 /* Peripheral.swift in Sources */,
 				38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */,

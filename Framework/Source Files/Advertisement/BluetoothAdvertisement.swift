@@ -9,11 +9,17 @@ public final class BluetoothAdvertisement {
     
     private lazy var advertisementService = AdvertisementService()
     
-    public func advertise(peripheral: Peripheral<Advertisable>) {
-        advertisementService.startAdvertising(peripheral)
+    public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> (Void)) {
+        advertisementService.startAdvertising(peripheral, errorHandler: errorHandler)
     }
     
     public func updateValue(for characteristic: Characteristic) {
         
+    }
+    
+    public var readCallback: ((Data) -> (Void))? {
+        didSet {
+            advertisementService.readCallback = readCallback
+        }
     }
 }

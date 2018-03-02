@@ -14,8 +14,13 @@ internal final class AdvertisementService: NSObject {
     
     private var subsribedCentrals = [CBCentral]()
     
-    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>) {
+    internal var readCallback: ((Data) -> (Void))?
+    
+    private var errorHandler: ((BluetoothError) -> (Void))?
+    
+    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> (Void)) {
         self.peripheral = peripheral
+        self.errorHandler = errorHandler
         peripheralManager.startAdvertising(peripheral.advertisementData?.data)
     }
 }
@@ -28,8 +33,9 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
             if !peripheralManager.isAdvertising {
                 peripheralManager.startAdvertising(self.peripheral?.advertisementData?.data)
             }
-        } catch {
-            print("Error in peripheral manager state.")
+        } catch let error {
+            guard let error = error as? BluetoothError else { return }
+            errorHandler?(error)
         }
     }
     

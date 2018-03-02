@@ -8,14 +8,6 @@ import Foundation
 /// Public facing interface granting methods to connect and disconnect devices.
 public final class BluetoothConnection: NSObject {
     
-    /// List of possible errrors that can happen during connection.
-    public enum ConnectionError: Error {
-        case deviceConnectionLimitExceed
-        case deviceAlreadyConnected
-        case bluetoothUnavailable
-        case incompatibleDevice
-    }
-    
     /// List of possible disconnection errors.
     public enum DisconnectionError: Error {
         case deviceNotConnected
@@ -44,7 +36,7 @@ public final class BluetoothConnection: NSObject {
     /// - Parameter handler: a completion handler called upon succesfull connection or a error.
     /// - SeeAlso: BluetoothConnection.ConnectionError
     /// - SeeAlso: Peripheral
-    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (ConnectionError?) -> ()) {
+    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (BluetoothError.ConnectionError?) -> ()) {
         guard !peripheral.isConnected else {
             handler(.deviceAlreadyConnected)
             return

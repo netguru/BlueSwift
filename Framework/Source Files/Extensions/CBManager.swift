@@ -11,9 +11,9 @@ internal extension CBManager {
     func validateState() throws {
         switch state {
         case .poweredOff, .resetting, .unauthorized:
-            throw BluetoothConnection.ConnectionError.bluetoothUnavailable
+            throw BluetoothError.bluetoothUnavailable
         case .unsupported, .unknown:
-            throw BluetoothConnection.ConnectionError.incompatibleDevice
+            throw BluetoothError.incompatibleDevice
         default:
             break
         }
