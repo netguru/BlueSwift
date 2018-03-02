@@ -9,6 +9,6 @@ import CoreBluetooth
 public extension Peripheral where Type == Advertisable {
     
     public convenience init(configuration: Configuration, advertisementData: [AdvertisementData]) {
-        self.init(configuration: configuration, advertisementData: advertisementData)
+        self.init(configuration: configuration, deviceIdentifier: nil, advertisementData: advertisementData)
     }
 }

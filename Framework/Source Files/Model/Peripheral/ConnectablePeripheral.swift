@@ -19,7 +19,7 @@ public extension Peripheral where Type == Connectable {
     ///   When set, connection to peripheral is much quicker.
     /// - SeeAlso: Configuration
     public convenience init(configuration: Configuration, deviceIdentifier: String? = nil) {
-        self.init(configuration: configuration, deviceIdentifier: deviceIdentifier)
+        self.init(configuration: configuration, deviceIdentifier: deviceIdentifier, advertisementData: nil)
     }
     
     /// Indicates if device is currently connected.
