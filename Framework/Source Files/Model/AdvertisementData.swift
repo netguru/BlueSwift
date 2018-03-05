@@ -6,6 +6,7 @@
 import Foundation
 import CoreBluetooth
 
+/// An enum used to specify advertising parameters of a peripheral.
 public enum AdvertisementData {
     
     case localName(String)
@@ -15,6 +16,9 @@ public enum AdvertisementData {
     case txPower(Int)
     case manufacturersData(String)
     case custom(String, Any)
+}
+
+internal extension AdvertisementData {
     
     internal var data: Any {
         switch self {
