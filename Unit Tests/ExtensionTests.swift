@@ -66,11 +66,11 @@ class ExtensionTests: XCTestCase {
     
     func testAdvertisementCombine() {
         
-        let advertisementParameters = [AdvertisementData.connectable(true), .localName("Test"), .servicesUUIDs("2A01"), .servicesUUIDs("2A02")]
+        let advertisementParameters: [AdvertisementData] = [.localName("Test"), .servicesUUIDs("2A01"), .servicesUUIDs("2A02"), .txPower(30)]
         let dictionary = advertisementParameters.combined()
         
-        XCTAssertEqual(dictionary[CBAdvertisementDataIsConnectable] as? Bool, true)
         XCTAssertEqual(dictionary[CBAdvertisementDataLocalNameKey] as? String, "Test")
+        XCTAssertEqual(dictionary[CBAdvertisementDataTxPowerLevelKey] as? Int, 30)
         guard let array = dictionary[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] else {
             XCTFail()
             return

@@ -10,7 +10,6 @@ import CoreBluetooth
 public enum AdvertisementData {
     
     case localName(String)
-    case connectable(Bool)
     case servicesUUIDs(String)
     case serviceData(Data)
     case txPower(Int)
@@ -24,8 +23,6 @@ internal extension AdvertisementData {
         switch self {
         case .localName(let name):
             return name
-        case .connectable(let connectable):
-            return connectable
         case .servicesUUIDs(let uuid):
             return try? CBUUID(uuidString: uuid)
         case .serviceData(let data):
@@ -43,8 +40,6 @@ internal extension AdvertisementData {
         switch self {
         case .localName(_):
             return CBAdvertisementDataLocalNameKey
-        case .connectable(_):
-            return CBAdvertisementDataIsConnectable
         case .servicesUUIDs(_):
             return CBAdvertisementDataServiceUUIDsKey
         case .serviceData(_):
