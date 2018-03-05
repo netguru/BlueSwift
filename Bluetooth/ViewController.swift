@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        connect()
+        advertise()
     }
     
     func connect() {
@@ -25,10 +25,6 @@ class ViewController: UIViewController {
         
         connection.connect(peripheral) { _ in
             print("Connected")
-            let command: Command = .int8(3)
-            peripheral.write(command: command, characteristic: characteristic, handler: { error in
-                print("Written")
-            })
         }
     }
     
@@ -37,7 +33,7 @@ class ViewController: UIViewController {
         let service = try! Service(uuid: "58D48B4E-4F40-4E6A-8C4E-23B1B54452A9", characteristics: [characteristic])
         let configuration = try! Configuration(services: [service], advertisement: "58D48B4E-4F40-4E6A-8C4E-23B1B54452A9")
         
-        let peripheral = Peripheral(configuration: configuration, advertisementData: [.connectable(true), .localName("Test"), .servicesUUIDs("58D48B4E-4F40-4E6A-8C4E-23B1B54452A9")])
+        let peripheral = Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("58D48B4E-4F40-4E6A-8C4E-23B1B54452A9")])
         
         advertisement.advertise(peripheral: peripheral) { _ in
             print("Error during adverisement")

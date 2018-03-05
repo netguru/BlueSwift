@@ -18,6 +18,7 @@ public class Service {
     /// CBUUID parsed from passed UUID String.
     internal let bluetoothUUID: CBUUID
     
+    /// Mutable characteristic used for advertisement.
     internal var advertisementService: CBMutableService?
     
     /// Initializes a new instance of Service. It's failable if passed UUID String is not parseable to UUID standards.
@@ -31,5 +32,20 @@ public class Service {
         self.bluetoothUUID = try CBUUID(uuidString: uuid)
         self.uuid = uuid
         self.characteristics = characteristics
+    }
+}
+
+internal extension Service {
+    
+    func assignAdvertisementService() -> CBMutableService {
+        let service = CBMutableService(type: bluetoothUUID, primary: false)
+        var cbCharacteristics = [CBMutableCharacteristic]()
+        characteristics.forEach { characteristic in
+            let cbCharacteristc = CBMutableCharacteristic(type: characteristic.bluetoothUUID, properties: [.read, .write, .notify], value: nil, permissions: [.readable, .writeable])
+            cbCharacteristics.append(cbCharacteristc)
+        }
+        service.characteristics = cbCharacteristics
+        advertisementService = service
+        return service
     }
 }

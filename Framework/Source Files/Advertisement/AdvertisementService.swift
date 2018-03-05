@@ -23,6 +23,7 @@ internal final class AdvertisementService: NSObject {
     internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (AdvertisementError) -> ()) {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
+        peripheral.configuration.services.map({ $0.assignAdvertisementService() }).forEach(peripheralManager.add(_:))
         peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
     }
     
@@ -47,6 +48,10 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
             guard let error = error as? BluetoothError else { return }
             errorHandler?(.bluetoothError(error))
         }
+    }
+    
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        print("Did start advertising")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
