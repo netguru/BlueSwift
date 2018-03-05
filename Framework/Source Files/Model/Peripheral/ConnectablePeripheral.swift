@@ -72,10 +72,10 @@ public extension Peripheral where Type == Connectable {
         guard let characteristic = characteristic.rawCharacteristic else {
             throw TransmissionError.characteristicNotDiscovered
         }
-        guard characteristic.validateForRead() && action == .read else {
+        if action == .read && characteristic.validateForRead() {
             throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
         }
-        guard characteristic.validateForWrite() && action == .write else {
+        if action == .write && characteristic.validateForWrite() {
             throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
         }
         return characteristic
