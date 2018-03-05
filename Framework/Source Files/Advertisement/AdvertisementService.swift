@@ -18,15 +18,15 @@ internal final class AdvertisementService: NSObject {
     
     internal var writeCallback: ((Characteristic, Data?) -> ())?
     
-    private var errorHandler: ((BluetoothError) -> ())?
+    private var errorHandler: ((AdvertisementError) -> ())?
     
-    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> ()) {
+    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (AdvertisementError) -> ()) {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
         peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
     }
     
-    internal func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (BluetoothError.AdvertisementError) -> ()) {
+    internal func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (AdvertisementError) -> ()) {
         guard let advertisementCharacteristic = characteristic.advertisementCharacteristic else {
             errorHandler(.deviceNotAdvertising)
             return
@@ -45,7 +45,7 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
             }
         } catch let error {
             guard let error = error as? BluetoothError else { return }
-            errorHandler?(error)
+            errorHandler?(.bluetoothError(error))
         }
     }
     

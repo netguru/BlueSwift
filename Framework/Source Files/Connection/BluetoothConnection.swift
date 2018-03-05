@@ -36,7 +36,7 @@ public final class BluetoothConnection: NSObject {
     /// - Parameter handler: a completion handler called upon succesfull connection or a error.
     /// - SeeAlso: BluetoothConnection.ConnectionError
     /// - SeeAlso: Peripheral
-    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (BluetoothError.ConnectionError?) -> ()) {
+    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (ConnectionError?) -> ()) {
         guard !peripheral.isConnected else {
             handler(.deviceAlreadyConnected)
             return

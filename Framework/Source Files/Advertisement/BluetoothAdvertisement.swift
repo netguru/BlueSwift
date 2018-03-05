@@ -13,11 +13,11 @@ public final class BluetoothAdvertisement {
     
     public init() { }
     
-    public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: @escaping (BluetoothError) -> ()) {
+    public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: @escaping (AdvertisementError) -> ()) {
         advertisementService.startAdvertising(peripheral, errorHandler: errorHandler)
     }
     
-    public func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (BluetoothError.AdvertisementError) -> (Void)) {
+    public func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (AdvertisementError) -> (Void)) {
         advertisementService.updateValue(value, characteristic: characteristic, errorHandler: errorHandler)
     }
     
