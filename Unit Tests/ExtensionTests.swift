@@ -63,5 +63,20 @@ class ExtensionTests: XCTestCase {
         XCTAssertEqual(common.count, 1, "Expected matches count is invalid")
         XCTAssertEqual(common.first?.0.bluetoothUUID.uuidString, common.first?.1.uuid.uuidString, "Expected uuid's does not match")
     }
+    
+    func testAdvertisementCombine() {
+        
+        let advertisementParameters = [AdvertisementData.connectable(true), .localName("Test"), .servicesUUIDs("2A01"), .servicesUUIDs("2A02")]
+        let dictionary = advertisementParameters.combined()
+        
+        XCTAssertEqual(dictionary[CBAdvertisementDataIsConnectable] as? Bool, true)
+        XCTAssertEqual(dictionary[CBAdvertisementDataLocalNameKey] as? String, "Test")
+        guard let array = dictionary[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(array[0].uuidString, "2A02")
+        XCTAssertEqual(array[1].uuidString, "2A01")
+    }
 }
 
