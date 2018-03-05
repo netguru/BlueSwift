@@ -42,7 +42,7 @@ internal final class ConnectionService: NSObject {
 extension ConnectionService {
     
     /// Starts connection with passed device. Connection result is passed in handler closure.
-    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (Peripheral<Connectable>, ConnectionError?) -> ()) {
+    internal func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (Peripheral<Connectable>, ConnectionError?) -> ()) {
         if connectionHandler == nil {
             connectionHandler = handler
         }
@@ -51,7 +51,7 @@ extension ConnectionService {
     }
     
     /// Disconnects given device.
-    public func disconnect(_ peripheral: CBPeripheral) {
+    internal func disconnect(_ peripheral: CBPeripheral) {
         centralManager.cancelPeripheralConnection(peripheral)
     }
 }

@@ -54,16 +54,17 @@ internal extension Array where Element == AdvertisementData {
     internal func combined() -> [String: Any] {
         var dictionary = [String: Any]()
         forEach {
+            guard let data = $0.data else { return }
             var assignedValue: Any = $0
             if let currentValue = dictionary[$0.key] {
                 if var arrayValue = currentValue as? [Any] {
-                    arrayValue.append($0.data)
+                    arrayValue.append(data)
                     assignedValue = arrayValue
                 } else {
                     assignedValue = [$0.data, currentValue]
                 }
             } else {
-                assignedValue = $0.data
+                assignedValue = data
             }
             dictionary[$0.key] = assignedValue
         }

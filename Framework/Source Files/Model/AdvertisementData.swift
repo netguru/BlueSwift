@@ -20,14 +20,14 @@ public enum AdvertisementData {
 
 internal extension AdvertisementData {
     
-    internal var data: Any {
+    internal var data: Any? {
         switch self {
         case .localName(let name):
             return name
         case .connectable(let connectable):
             return connectable
         case .servicesUUIDs(let uuid):
-            return try! CBUUID(uuidString: uuid)
+            return try? CBUUID(uuidString: uuid)
         case .serviceData(let data):
             return data
         case .txPower(let level):
