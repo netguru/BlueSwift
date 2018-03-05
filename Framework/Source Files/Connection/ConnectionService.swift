@@ -162,7 +162,7 @@ extension ConnectionService: CBPeripheralDelegate {
         let matchingService = connectingPeripheral?.configuration.services.filter({ $0.bluetoothUUID == service.uuid }).first
         let matchingCharacteristics = matchingService?.characteristics.matchingElementsWith(characteristics)
         matchingCharacteristics?.forEach({ (tuple) in
-            var (characteristic, cbCharacteristic) = tuple
+            let (characteristic, cbCharacteristic) = tuple
             characteristic.setRawCharacteristic(cbCharacteristic)
             peripheral.setNotifyValue(characteristic.isObservingValue, for: cbCharacteristic)
             if let connectingPeripheral = self.connectingPeripheral {
