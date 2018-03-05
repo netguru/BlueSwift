@@ -7,12 +7,20 @@ import Foundation
 
 public final class BluetoothAdvertisement {
     
+    /// Advertisement service.
+    /// SeeAlso: AdvertisementService
     private lazy var advertisementService = AdvertisementService()
     
+    /// A singleton instance.
     public static let shared = BluetoothAdvertisement()
     
+    /// Default initializer
     public init() { }
     
+    /// Start advertising peripheral with parameters given by a configuration of passed peripheral.
+    /// Parameter peripheral:
+    /// Parameter errorHandler:
+    /// SeeAlso: AdvertisementError
     public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: @escaping (AdvertisementError) -> ()) {
         advertisementService.startAdvertising(peripheral, errorHandler: errorHandler)
     }

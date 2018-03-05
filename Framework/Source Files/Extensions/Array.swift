@@ -50,7 +50,7 @@ internal extension Array where Element == Peripheral<Connectable> {
 
 internal extension Array where Element == AdvertisementData {
     
-    ///
+    /// Convenience method used to generate advertising packet from array of AdvertisementData objects.
     internal func combined() -> [String: Any] {
         var dictionary = [String: Any]()
         forEach {

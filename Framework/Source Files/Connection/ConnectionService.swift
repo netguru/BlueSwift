@@ -107,7 +107,6 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Called when a peripheral with desired advertised service is discovered.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print("Found: \(advertisementData)")
         let devices = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData)})
         guard let handler = advertisementValidationHandler,
             let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
@@ -124,7 +123,6 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Called upon a succesfull peripheral connection.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected")
         guard let connectingPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first else { return }
         self.connectingPeripheral = connectingPeripheral
         connectingPeripheral.peripheral = peripheral
@@ -145,7 +143,6 @@ extension ConnectionService: CBPeripheralDelegate {
     /// discover characteristics for each matching service.
     /// - SeeAlso: CBPeripheralDelegate
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("Discovered services")
         guard let services = peripheral.services, error == nil else { return }
         let matching = connectingPeripheral?.configuration.services.matchingElementsWith(services)
         matching?.forEach({ (service, cbService) in
@@ -157,7 +154,6 @@ extension ConnectionService: CBPeripheralDelegate {
     /// instances to passed configuration, assign characteristic raw values and setup notifications.
     /// - SeeAlso: CBPeripheralDelegate
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        print("Discovered characteristics")
         guard let characteristics = service.characteristics, error == nil else { return }
         let matchingService = connectingPeripheral?.configuration.services.filter({ $0.bluetoothUUID == service.uuid }).first
         let matchingCharacteristics = matchingService?.characteristics.matchingElementsWith(characteristics)
