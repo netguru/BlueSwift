@@ -23,7 +23,6 @@
 		38BE35DC203DD67D0018EA0D /* ConnectablePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BE35DA203DD6450018EA0D /* ConnectablePeripheral.swift */; };
 		38BE35DF203DD6B30018EA0D /* AdvertisablePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BE35DD203DD6B10018EA0D /* AdvertisablePeripheral.swift */; };
 		38BE35E1203DD8D40018EA0D /* CBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BE35E0203DD8D40018EA0D /* CBManager.swift */; };
-		38FE6BD42006898100809A06 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BB52006898100809A06 /* Info.plist */; };
 		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
 		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
 		38FE6BD72006898100809A06 /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BBB2006898100809A06 /* CBUUID.swift */; };
@@ -100,7 +99,6 @@
 		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Framework-Base.xcconfig"; sourceTree = "<group>"; };
 		38FE6BAD2006898100809A06 /* Common-Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Common-Tests.xcconfig"; sourceTree = "<group>"; };
-		38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Sample-Base.xcconfig"; sourceTree = "<group>"; };
 		38FE6BB02006898100809A06 /* Common-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
 		38FE6BB12006898100809A06 /* Common-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
 		38FE6BB22006898100809A06 /* Common-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Common-Release.xcconfig"; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */,
-				38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -448,7 +445,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE6BD42006898100809A06 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,14 +552,17 @@
 		};
 		3837BA1E1FFFC2FE00DF300E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BB12006898100809A06 /* Common-Development.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9HJ69C5G9K;
+				PROVISIONING_PROFILE = "c26b423f-5131-436b-81be-b39da7ee84ea";
+				PROVISIONING_PROFILE_SPECIFIER = "Bluetooth Sample Development";
 			};
 			name = Debug;
 		};
 		3837BA1F1FFFC2FE00DF300E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38FE6BAE2006898100809A06 /* Sample-Base.xcconfig */;
+			baseConfigurationReference = 38FE6BB22006898100809A06 /* Common-Release.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -591,6 +590,7 @@
 		};
 		3837BA471FFFC4CE00DF300E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38FE6BAD2006898100809A06 /* Common-Tests.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
