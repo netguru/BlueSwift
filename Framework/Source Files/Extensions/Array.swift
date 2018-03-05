@@ -48,3 +48,25 @@ internal extension Array where Element == Peripheral<Connectable> {
     }
 }
 
+internal extension Array where Element == AdvertisementData {
+    
+    ///
+    internal func combined() -> [String: Any] {
+        var dictionary = [String: Any]()
+        forEach {
+            var assignedValue: Any = $0
+            if let currentValue = dictionary[$0.key] {
+                if var arrayValue = currentValue as? [Any] {
+                    arrayValue.append($0.data)
+                    assignedValue = arrayValue
+                } else {
+                    assignedValue = [$0.data, currentValue]
+                }
+            } else {
+                assignedValue = $0.data
+            }
+            dictionary[$0.key] = assignedValue
+        }
+        return dictionary
+    }
+}

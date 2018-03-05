@@ -54,13 +54,3 @@ public enum AdvertisementData {
         }
     }
 }
-
-internal extension Array where Element == AdvertisementData {
-    internal func combined() -> [String: Any] {
-        var dictionary = [String: Any]()
-        forEach {
-            dictionary[$0.key] = $0.data
-        }
-        return dictionary
-    }
-}
