@@ -15,6 +15,7 @@ public enum BluetoothError: Error {
 public enum AdvertisementError: Error {
     case bluetoothError(BluetoothError)
     case deviceNotAdvertising
+    case otherError(Error)
 }
 
 /// List of possible errors during connection.

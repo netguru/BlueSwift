@@ -38,7 +38,7 @@ public class Service {
 internal extension Service {
     
     func assignAdvertisementService() -> CBMutableService {
-        let service = CBMutableService(type: bluetoothUUID, primary: false)
+        let service = CBMutableService(type: bluetoothUUID, primary: true)
         var cbCharacteristics = [CBMutableCharacteristic]()
         characteristics.forEach { characteristic in
             let cbCharacteristc = CBMutableCharacteristic(type: characteristic.bluetoothUUID, properties: [.read, .write, .notify], value: nil, permissions: [.readable, .writeable])

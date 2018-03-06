@@ -24,7 +24,7 @@ internal extension AdvertisementData {
         case .localName(let name):
             return name
         case .servicesUUIDs(let uuid):
-            return try? CBUUID(uuidString: uuid)
+            return try? [CBUUID(uuidString: uuid)]
         case .serviceData(let data):
             return data
         case .txPower(let level):

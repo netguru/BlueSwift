@@ -32,8 +32,15 @@ internal final class AdvertisementService: NSObject {
     internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (AdvertisementError) -> ()) {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
-        peripheral.configuration.services.map({ $0.assignAdvertisementService() }).forEach(peripheralManager.add(_:))
         peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
+    }
+    
+    /// Stops advertising peripheral.
+    internal func stopAdvertising() {
+        peripheralManager.stopAdvertising()
+        peripheral?.configuration.services
+            .flatMap { $0.advertisementService }
+            .forEach { peripheralManager.remove($0) }
     }
     
     /// Updates a value on given characteristic.
@@ -58,6 +65,22 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         } catch let error {
             guard let error = error as? BluetoothError else { return }
             errorHandler?(.bluetoothError(error))
+        }
+    }
+    
+    /// SeeAlso: CBPeripheralManagerDelegate
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        if let error = error {
+            errorHandler?(.otherError(error))
+            return
+        }
+        self.peripheral?.configuration.services.map({ $0.assignAdvertisementService() }).forEach(peripheralManager.add(_:))
+    }
+    
+    /// SeeAlso: CBPeripheralManagerDelegate
+    func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
+        if let error = error {
+            errorHandler?(.otherError(error))
         }
     }
     

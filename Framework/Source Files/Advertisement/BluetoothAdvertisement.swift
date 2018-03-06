@@ -27,6 +27,11 @@ public final class BluetoothAdvertisement {
         advertisementService.startAdvertising(peripheral, errorHandler: errorHandler)
     }
     
+    /// Stops advertising peripheral.
+    public func stopAdvertising() {
+        
+    }
+    
     /// Updates a value for specified characteristic with data.
     /// After the reuest a notify will be called on all subscribed centrals.
     /// Parameter value: a data to update on characteristic.
