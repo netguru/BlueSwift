@@ -75,8 +75,8 @@ class ExtensionTests: XCTestCase {
             XCTFail()
             return
         }
-        XCTAssertEqual(array[0].uuidString, "2A02")
-        XCTAssertEqual(array[1].uuidString, "2A01")
+        XCTAssertEqual(array[0].uuidString, "2A01")
+        XCTAssertEqual(array[1].uuidString, "2A02")
     }
 }
 

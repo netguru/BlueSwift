@@ -56,9 +56,10 @@ internal extension Array where Element == AdvertisementData {
         forEach {
             guard let data = $0.data else { return }
             var assignedValue: Any = $0
-            if let currentValue = dictionary[$0.key] {
+            if let currentValue = dictionary[$0.key],
+                let newValue = $0.data as? [Any] {
                 if var arrayValue = currentValue as? [Any] {
-                    arrayValue.append(data)
+                    arrayValue.append(contentsOf: newValue)
                     assignedValue = arrayValue
                 } else {
                     assignedValue = [$0.data, currentValue]
