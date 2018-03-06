@@ -29,7 +29,7 @@ public final class BluetoothAdvertisement {
     
     /// Stops advertising peripheral.
     public func stopAdvertising() {
-        
+        advertisementService.stopAdvertising()
     }
     
     /// Updates a value for specified characteristic with data.
