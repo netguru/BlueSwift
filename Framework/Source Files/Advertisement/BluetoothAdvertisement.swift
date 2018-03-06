@@ -33,7 +33,7 @@ public final class BluetoothAdvertisement {
     }
     
     /// Updates a value for specified characteristic with data.
-    /// After the reuest a notify will be called on all subscribed centrals.
+    /// After the request a notify will be called on all subscribed centrals.
     /// Parameter value: a data to update on characteristic.
     /// Parameter characteristic: specified characteristic to be updated.
     /// Parameter errorHandler: an error handler called if data update fails.

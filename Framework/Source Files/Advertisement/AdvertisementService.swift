@@ -13,6 +13,10 @@ internal final class AdvertisementService: NSObject {
     /// SeeAlso: CBPeripheralManager
     private lazy var peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     
+    /// Boolean value indicating whether device should advertise.
+    /// Used in Bluetooth state change handler to prevent unwanted advertisement.
+    private var shouldAdvertise = false
+    
     /// Currently advertising peripheral.
     private var peripheral: Peripheral<Advertisable>?
     
@@ -33,6 +37,7 @@ internal final class AdvertisementService: NSObject {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
         peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
+        shouldAdvertise = true
     }
     
     /// Stops advertising peripheral.
@@ -41,6 +46,7 @@ internal final class AdvertisementService: NSObject {
         peripheral?.configuration.services
             .flatMap { $0.advertisementService }
             .forEach { peripheralManager.remove($0) }
+        shouldAdvertise = false
     }
     
     /// Updates a value on given characteristic.
@@ -59,7 +65,7 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         do {
             try peripheral.validateState()
-            if !peripheralManager.isAdvertising {
+            if !peripheralManager.isAdvertising && shouldAdvertise {
                 peripheralManager.startAdvertising(self.peripheral?.advertisementData?.combined())
             }
         } catch let error {
