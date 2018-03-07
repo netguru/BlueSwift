@@ -4,42 +4,40 @@
 //
 
 import UIKit
-import Bluetooth
 
 class ViewController: UIViewController {
     
-    let connection = BluetoothConnection()
-    let advertisement = BluetoothAdvertisement()
-
+    private lazy var stackView: UIStackView = {
+        let connectionButton = UIButton(type: .custom)
+        connectionButton.setTitleColor(UIColor.black, for: .normal)
+        connectionButton.setTitle("Connect", for: .normal)
+        connectionButton.addTarget(self, action: #selector(presentConnection), for: .touchUpInside)
+        let advertisementButton = UIButton(type: .custom)
+        advertisementButton.setTitleColor(UIColor.black, for: .normal)
+        advertisementButton.setTitle("Advertise", for: .normal)
+        advertisementButton.addTarget(self, action: #selector(presentAdvertisement), for: .touchUpInside)
+        let stackView = UIStackView(arrangedSubviews: [connectionButton, advertisementButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 50
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-}
-
-extension ViewController {
-    
-    func connect() {
-        let characteristic = try! Characteristic(uuid: "00001002-4554-2049-4E43-2E205555726F")
-        let service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic])
-        let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4E43-2E205555726F")
-        
-        let peripheral = Peripheral(configuration: configuration)
-        
-        connection.connect(peripheral) { _ in
-            print("Connected")
-        }
+        view.backgroundColor = UIColor.white
+        view.addSubview(stackView)
+        let constraints = [stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                           stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)]
+        NSLayoutConstraint.activate(constraints)
     }
     
-    func advertise() {
-        let characteristic = try! Characteristic(uuid: "00001002-4554-2049-4e43-2e205555726f")
-        let service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic])
-        let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4e43-2e205555726f")
-        
-        let peripheral = Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("00001001-4554-2049-4e43-2e205555726f")])
-        
-        advertisement.advertise(peripheral: peripheral) { _ in
-            print("Error during adverisement")
-        }
+    @objc func presentAdvertisement() {
+        let viewController = AdvertisementViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func presentConnection() {
+        let viewController = ConnectionViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
-
