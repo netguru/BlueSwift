@@ -4,10 +4,10 @@
 //
 
 import Foundation
-import CoreBluetooth.CBUUID
+import CoreBluetooth
 
 /// Struct wrapping Apple's native CBService class. Used to create Configuration for this framework.
-public struct Service {
+public class Service {
     
     /// UUID of desired service.
     public let uuid: String
@@ -17,6 +17,9 @@ public struct Service {
     
     /// CBUUID parsed from passed UUID String.
     internal let bluetoothUUID: CBUUID
+    
+    /// Mutable characteristic used for advertisement.
+    internal var advertisementService: CBMutableService?
     
     /// Initializes a new instance of Service. It's failable if passed UUID String is not parseable to UUID standards.
     /// - Parameter uuid: UUID of desired service, should be parseable to CBUUID in order for the initializer to work.
@@ -29,5 +32,21 @@ public struct Service {
         self.bluetoothUUID = try CBUUID(uuidString: uuid)
         self.uuid = uuid
         self.characteristics = characteristics
+    }
+}
+
+internal extension Service {
+    
+    /// Creates CBMutableService used for advertisement and assigns it to the local variable.
+    internal func assignAdvertisementService() -> CBMutableService {
+        let service = CBMutableService(type: bluetoothUUID, primary: true)
+        var cbCharacteristics = [CBMutableCharacteristic]()
+        characteristics.forEach { characteristic in
+            let cbCharacteristc = CBMutableCharacteristic(type: characteristic.bluetoothUUID, properties: [.read, .write, .notify], value: nil, permissions: [.readable, .writeable])
+            cbCharacteristics.append(cbCharacteristc)
+        }
+        service.characteristics = cbCharacteristics
+        advertisementService = service
+        return service
     }
 }

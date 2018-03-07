@@ -6,30 +6,11 @@
 import Foundation
 import CoreBluetooth
 
-/// Class wrapping native Apple's CBPeripheral class. Should be passed as connection parameter and initialized with a
-/// Configuration. It presents a clear interface for writing and reading interactions with remote peripherals adding closure reponses.
-public final class Peripheral: NSObject {
+public extension Peripheral where Type == Connectable {
     
-    /// List of errors possible to happen upon a write or read request.
-    public enum TransmissionError: Error {
-        case invalidCharacteristicPermissions(CBCharacteristicProperties)
-        case characteristicNotDiscovered
-        case deviceNotConnected
-        case incorrectInputFormat(Command.ConversionError)
-        case auxiliaryError(Error)
-    }
-    
-    /// Configuration of services and characteristics desired peripheral should contain.
-    public let configuration: Configuration
-    
-    /// A device parameter. Should be cached locally in order to pass for every connection after the first one.
-    /// If passed, every connection should happen much quicker.
-    public var deviceIdentifier: String?
-    
-    /// Indicates if device is currently connected.
-    public var isConnected: Bool {
-        guard let peripheral = peripheral else { return false }
-        return peripheral.state == .connected
+    /// Enum for distinguishing which transmission action was taken.
+    private enum TransmissionAction {
+        case read, write
     }
     
     /// Deafult initializer for Perpipheral.
@@ -37,31 +18,15 @@ public final class Peripheral: NSObject {
     /// - Parameter deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here.
     ///   When set, connection to peripheral is much quicker.
     /// - SeeAlso: Configuration
-    public init(configuration: Configuration, deviceIdentifier: String? = nil) {
-        self.configuration = configuration
-        self.deviceIdentifier = deviceIdentifier
+    public convenience init(configuration: Configuration, deviceIdentifier: String? = nil) {
+        self.init(configuration: configuration, deviceIdentifier: deviceIdentifier, advertisementData: nil)
     }
     
-    /// Private instance of Apple native peripheral class. Used to manage write and read requests.
-    internal var peripheral: CBPeripheral? {
-        didSet {
-            peripheral?.delegate = self
-        }
+    /// Indicates if device is currently connected.
+    public var isConnected: Bool {
+        guard let peripheral = peripheral else { return false }
+        return peripheral.state == .connected
     }
-
-    /// Enum for distinguishing which transmission action was taken.
-    private enum TransmissionAction {
-        case read, write
-    }
-    
-    /// Private variable for storing reference to write completion callback.
-    private var writeHandler: ((TransmissionError?) -> ())?
-    
-    /// Private variable for storing reference to read completion callback.
-    private var readHandler: ((Data?, TransmissionError?) -> ())?
-}
-
-public extension Peripheral {
     
     /// Method used for writing to the peripheral after it's connected.
     /// - Parameter command: a command to write to the device.
@@ -107,20 +72,18 @@ public extension Peripheral {
         guard let characteristic = characteristic.rawCharacteristic else {
             throw TransmissionError.characteristicNotDiscovered
         }
-        guard characteristic.validateForRead() && action == .read else {
+        if action == .read && characteristic.validateForRead() {
             throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
         }
-        guard characteristic.validateForWrite() && action == .write else {
+        if action == .write && characteristic.validateForWrite() {
             throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
         }
         return characteristic
     }
-}
-
-extension Peripheral: CBPeripheralDelegate {
     
     /// Called after reading data from characteristic.
     /// - SeeAlso: CBPeripheralDelegate
+    /// This should be moved to an extension in Swift 5 according to: https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md feature.
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         defer {
             writeHandler = nil

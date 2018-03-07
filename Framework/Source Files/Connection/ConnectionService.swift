@@ -10,10 +10,10 @@ import CoreBluetooth
 internal final class ConnectionService: NSObject {
     
     /// Closure used to check given peripheral against advertisement packet of discovered peripheral.
-    internal var advertisementValidationHandler: ((Peripheral, String, [String: Any]) -> (Bool))?
+    internal var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))? = { _,_,_ in return true }
 
     /// Closure used to manage connection success or failure.
-    internal var connectionHandler: ((Peripheral, BluetoothConnection.ConnectionError?) -> ())?
+    internal var connectionHandler: ((Peripheral<Connectable>, ConnectionError?) -> ())?
     
     /// Returns the amount of devices already scheduled for connection.
     internal var connectedDevicesAmount: Int {
@@ -21,9 +21,9 @@ internal final class ConnectionService: NSObject {
     }
     
     /// Set of peripherals the manager should connect.
-    private var peripherals = [Peripheral]()
+    private var peripherals = [Peripheral<Connectable>]()
     
-    private weak var connectingPeripheral: Peripheral?
+    private weak var connectingPeripheral: Peripheral<Connectable>?
     
     /// Connection options - means you will be notified on connection and disconnection of devices.
     private lazy var connectionOptions = [CBConnectPeripheralOptionNotifyOnConnectionKey: true,
@@ -42,7 +42,7 @@ internal final class ConnectionService: NSObject {
 extension ConnectionService {
     
     /// Starts connection with passed device. Connection result is passed in handler closure.
-    public func connect(_ peripheral: Peripheral, handler: @escaping (Peripheral, BluetoothConnection.ConnectionError?) -> ()) {
+    internal func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (Peripheral<Connectable>, ConnectionError?) -> ()) {
         if connectionHandler == nil {
             connectionHandler = handler
         }
@@ -51,7 +51,7 @@ extension ConnectionService {
     }
     
     /// Disconnects given device.
-    public func disconnect(_ peripheral: CBPeripheral) {
+    internal func disconnect(_ peripheral: CBPeripheral) {
         centralManager.cancelPeripheralConnection(peripheral)
     }
 }
@@ -94,13 +94,13 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         guard let handler = connectionHandler, let anyDevice = peripherals.first else { return }
-        switch central.state {
-        case .poweredOff, .resetting, .unauthorized:
-            handler(anyDevice, .bluetoothUnavailable)
-        case .poweredOn:
+        do {
+            try central.validateState()
             reloadScanning()
-        case .unsupported, .unknown:
-            handler(anyDevice, .incompatibleDevice)
+        } catch let error {
+            if let error = error as? BluetoothError {
+                handler(anyDevice, .bluetoothError(error))
+            }
         }
     }
     
@@ -110,7 +110,7 @@ extension ConnectionService: CBCentralManagerDelegate {
         let devices = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData)})
         guard let handler = advertisementValidationHandler,
             let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
-            !handler(matchingPeripheral, peripheral.identifier.uuidString, advertisementData),
+            handler(matchingPeripheral, peripheral.identifier.uuidString, advertisementData),
             connectingPeripheral == nil
             else {
                 return
@@ -158,7 +158,7 @@ extension ConnectionService: CBPeripheralDelegate {
         let matchingService = connectingPeripheral?.configuration.services.filter({ $0.bluetoothUUID == service.uuid }).first
         let matchingCharacteristics = matchingService?.characteristics.matchingElementsWith(characteristics)
         matchingCharacteristics?.forEach({ (tuple) in
-            var (characteristic, cbCharacteristic) = tuple
+            let (characteristic, cbCharacteristic) = tuple
             characteristic.setRawCharacteristic(cbCharacteristic)
             peripheral.setNotifyValue(characteristic.isObservingValue, for: cbCharacteristic)
             if let connectingPeripheral = self.connectingPeripheral {

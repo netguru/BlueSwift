@@ -8,7 +8,7 @@ import CoreBluetooth
 
 /// Struct wrapping Apple's native CBCharacteristic class. Used to create Configuration to connect with peripheral.
 /// It presents a clear interface for interacting with characteristics providing notify property.
-public struct Characteristic {
+public class Characteristic {
     
     /// UUID of desired Characteristic.
     public let uuid: String
@@ -21,6 +21,9 @@ public struct Characteristic {
     
     /// Raw characteristics value filled after connection.
     internal var rawCharacteristic: CBCharacteristic?
+    
+    /// Raw mutable characteristic, assigned for advertisement needs.
+    internal var advertisementCharacteristic: CBMutableCharacteristic?
     
     /// CBUUID parsed from passed UUID String.
     internal let bluetoothUUID: CBUUID
@@ -38,7 +41,7 @@ public struct Characteristic {
     }
     
     /// Sets raw characteristic used for notifying purposes
-    internal mutating func setRawCharacteristic(_ characteristic: CBCharacteristic) {
+    internal func setRawCharacteristic(_ characteristic: CBCharacteristic) {
         rawCharacteristic = characteristic
     }
 }
