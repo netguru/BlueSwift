@@ -38,5 +38,14 @@ class AdvertisementViewController: UIViewController {
         advertisement.advertise(peripheral: peripheral) { _ in
             print("Error during adverisement")
         }
+        
+        advertisement.writeRequestCallback = { characteristic, data in
+            print("Tried to write data")
+        }
+        
+        advertisement.readRequestCallback = { characteristic -> Data in
+            print("Tried to read data")
+            return Data()
+        }
     }
 }
