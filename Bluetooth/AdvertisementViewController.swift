@@ -13,14 +13,15 @@ class AdvertisementViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
 
     let advertisement = BluetoothAdvertisement.shared
-    let characteristic = try! Characteristic(uuid: "00001002-4554-2049-4e43-2e205555726f")
-    let otherCharacteristic = try! Characteristic(uuid: "00001003-4554-2049-4e43-2e205555726f")
+    lazy var characteristic = try! Characteristic(uuid: "00001002-4554-2049-4e43-2e205555726f")
+    lazy var otherCharacteristic = try! Characteristic(uuid: "00001003-4554-2049-4e43-2e205555726f")
+    lazy var service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic, otherCharacteristic])
+    lazy var peripheral: Peripheral<Advertisable> = {
+        let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4e43-2e205555726f")
+        return Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("00001001-4554-2049-4e43-2e205555726f")])
+    }()
     
     @IBAction func advertise() {
-        let service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic, otherCharacteristic])
-        let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4e43-2e205555726f")
-        let peripheral = Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("00001001-4554-2049-4e43-2e205555726f")])
-        
         advertisement.advertise(peripheral: peripheral) { _ in
             print("Error during adverisement")
         }
