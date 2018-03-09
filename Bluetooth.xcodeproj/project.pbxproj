@@ -25,6 +25,7 @@
 		38BE35DC203DD67D0018EA0D /* ConnectablePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BE35DA203DD6450018EA0D /* ConnectablePeripheral.swift */; };
 		38BE35DF203DD6B30018EA0D /* AdvertisablePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BE35DD203DD6B10018EA0D /* AdvertisablePeripheral.swift */; };
 		38BE35E1203DD8D40018EA0D /* CBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BE35E0203DD8D40018EA0D /* CBManager.swift */; };
+		38EBB9572052D0EF002797A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38EBB9552052CC2D002797A1 /* Main.storyboard */; };
 		38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB82006898100809A06 /* ConnectionService.swift */; };
 		38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BB92006898100809A06 /* BluetoothConnection.swift */; };
 		38FE6BD72006898100809A06 /* CBUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BBB2006898100809A06 /* CBUUID.swift */; };
@@ -34,7 +35,6 @@
 		38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BC02006898100809A06 /* Characteristic.swift */; };
 		38FE6BDC2006898100809A06 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BC12006898100809A06 /* Configuration.swift */; };
 		38FE6BE22006898800809A06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BCA2006898100809A06 /* AppDelegate.swift */; };
-		38FE6BE32006898B00809A06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BC42006898100809A06 /* ViewController.swift */; };
 		38FE6BE42006898F00809A06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BC62006898100809A06 /* Assets.xcassets */; };
 		38FE6BE52006899300809A06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FE6BC72006898100809A06 /* LaunchScreen.storyboard */; };
 		38FE6BE6200689A700809A06 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BA72006898100809A06 /* ExtensionTests.swift */; };
@@ -98,6 +98,7 @@
 		38BE35DA203DD6450018EA0D /* ConnectablePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectablePeripheral.swift; sourceTree = "<group>"; };
 		38BE35DD203DD6B10018EA0D /* AdvertisablePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisablePeripheral.swift; sourceTree = "<group>"; };
 		38BE35E0203DD8D40018EA0D /* CBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBManager.swift; sourceTree = "<group>"; };
+		38EBB9552052CC2D002797A1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		38FE6BA72006898100809A06 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		38FE6BA82006898100809A06 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		38FE6BA92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		38FE6BBF2006898100809A06 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		38FE6BC02006898100809A06 /* Characteristic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
 		38FE6BC12006898100809A06 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		38FE6BC42006898100809A06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		38FE6BC62006898100809A06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38FE6BC82006898100809A06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38FE6BC92006898100809A06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -305,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				38FE6BCA2006898100809A06 /* AppDelegate.swift */,
-				38FE6BC42006898100809A06 /* ViewController.swift */,
 				385BDC15204FD961003B2689 /* AdvertisementViewController.swift */,
 				385BDC18204FD972003B2689 /* ConnectionViewController.swift */,
 				38FE6BC52006898100809A06 /* Supporting Files */,
@@ -316,6 +315,7 @@
 		38FE6BC52006898100809A06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				38EBB9552052CC2D002797A1 /* Main.storyboard */,
 				38FE6BC62006898100809A06 /* Assets.xcassets */,
 				38FE6BC72006898100809A06 /* LaunchScreen.storyboard */,
 				38FE6BC92006898100809A06 /* Info.plist */,
@@ -442,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EBB9572052D0EF002797A1 /* Main.storyboard in Resources */,
 				38FE6BE42006898F00809A06 /* Assets.xcassets in Resources */,
 				38FE6BE52006899300809A06 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -469,7 +470,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				385BDC19204FD972003B2689 /* ConnectionViewController.swift in Sources */,
-				38FE6BE32006898B00809A06 /* ViewController.swift in Sources */,
 				38FE6BE22006898800809A06 /* AppDelegate.swift in Sources */,
 				385BDC17204FD964003B2689 /* AdvertisementViewController.swift in Sources */,
 			);
