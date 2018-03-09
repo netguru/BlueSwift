@@ -40,14 +40,16 @@ class ConnectionViewController: UIViewController {
     
     func handleNotifications() {
         characteristic.notifyHandler = { [weak self] data in
-            guard let data = data else { return }
-            self?.notifyLabel.text = "Notify result: \(String(data: data, encoding: .utf8) ?? "Error encoding.")"
+            guard
+                let data = data,
+                let encoded = String(data: data, encoding: .utf8)
+                else { return }
+            self?.notifyLabel.text = "Notify result: \(encoded)"
         }
     }
     
     @IBAction func write() {
-        guard let text = textField.text, text.count > 0 else { return }
-        let command = Command.utf8String(text)
+        let command = Command.utf8String(textField.text!)
         peripheral?.write(command: command, characteristic: otherCharacteristic, handler: { error in
             print("Did write")
         })
@@ -55,8 +57,11 @@ class ConnectionViewController: UIViewController {
     
     @IBAction func read() {
         peripheral?.read(characteristic, handler: { [weak self] data, error in
-            guard let data = data else { return }
-            self?.readLabel.text = "Read result: \(String(data: data, encoding: .utf8) ?? "Error encoding.")"
+            guard
+                let data = data,
+                let encoded = String(data: data, encoding: .utf8)
+                else { return }
+            self?.readLabel.text = "Read result: \(encoded)"
         })
     }
     

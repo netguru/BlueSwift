@@ -36,13 +36,20 @@ class AdvertisementViewController: UIViewController {
     
     func handleRequests() {
         advertisement.writeRequestCallback = { [weak self] characteristic, data in
-            guard var text = self?.textView.text, let data = data else { return }
-            text = text + "\nWrote: \(String(data: data, encoding: .utf8) ?? "(Error encoding.)"). Characteristic: \(characteristic.uuid)"
+            guard
+                var text = self?.textView.text,
+                let data = data,
+                let encoded = String(data: data, encoding: .utf8)
+                else { return }
+            text = text + "\nWrote: \(encoded). Characteristic: \(characteristic.uuid)"
             self?.textView.text = text
         }
         
         advertisement.readRequestCallback = { [weak self] characteristic -> Data in
-            guard var text = self?.textView.text, let notifyValue = self?.readTextField.text else { return Data() }
+            guard
+                var text = self?.textView.text,
+                let notifyValue = self?.readTextField.text
+                else { return Data() }
             text = text + "\nReceived read request. Characteristic: \(characteristic.uuid)"
             self?.textView.text = text
             return notifyValue.data(using: .utf8, allowLossyConversion: false)!
