@@ -41,7 +41,7 @@ class ConnectionViewController: UIViewController {
     func handleNotifications() {
         characteristic.notifyHandler = { [weak self] data in
             guard let data = data else { return }
-            self?.notifyLabel.text = "Notify result: " + (String(data: data, encoding: .utf8) ?? "Error encoding.")
+            self?.notifyLabel.text = "Notify result: \(String(data: data, encoding: .utf8) ?? "Error encoding.")"
         }
     }
     
@@ -56,7 +56,7 @@ class ConnectionViewController: UIViewController {
     @IBAction func read() {
         peripheral?.read(characteristic, handler: { [weak self] data, error in
             guard let data = data else { return }
-            self?.readLabel.text = "Read result: " + (String(data: data, encoding: .utf8) ?? "Error encoding.")
+            self?.readLabel.text = "Read result: \(String(data: data, encoding: .utf8) ?? "Error encoding.")"
         })
     }
     
