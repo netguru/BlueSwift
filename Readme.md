@@ -1,52 +1,114 @@
-# Bluetooth Open Source Library
-
 ![](https://img.shields.io/badge/swift-4.0-orange.svg)
 
-An open source Bluetooth library providing a clean interface for interacting with remote Bluetooth devices. It allows connecting, reading and writng data over Bluetooth. See the sample app for a basic usage describtion.
+Easy to use Bluetooth open source library by Netguru. Provides convenient methods of interacting with Bluetooth LE peripherals.
 
-## Team
+## Features
 
-* [Jan Posz](mailto:jan.posz@netguru.co) - Product Owner, iOS Developer
+- [x] Handles connection with remote peripharals.
+- [x] Handles advertising an iPhone as Bluetooth LE peripheral.
+- [x] Closure based read/write/notify requests.
+- [x] Built in data conversion method with `Command` wrapper.
 
-## Tools & Services
+## Requirements
 
-* Tools:
-  * Xcode 9.2 with latest iOS SDK (11.2)
-* Services:
-  * [JIRA](https://netguru.atlassian.net/projects/IOS/issues)
+Swift 4, iOS 10.0 or higher.
 
-## Configuration
+## Cocoapods
 
-### Instalation
+TODO
 
-1. Clone repository:
+## Carthage
 
-  ```bash
-  # over https:
-  git clone https://github.com/netguru/bluetooth.git
-  # or over SSH:
-  git clone git@github.com:netguru/bluetooth.git
-  ```
-  
-2. Open `Bluetooth.xcodeproj` file and build the project.
- 
- 
-## Coding guidelines
+TODO
 
-- Respect Swift [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-- The code must be readable and self-explanatory - full variable names, meaningful methods, etc.
-- Don't leave any commented-out code.
-- Write documentation for every method and property accessible outside the class. For example well documented method looks as follows:
-  
-  for **Swift**:
-  
-  ```swift
-  /// Tells the magician to perform a given trick.
-  ///
-  /// - Parameter trick: The magic trick to perform.
-  /// - Returns: Whether the magician succeeded in performing the magic trick.
-  func perform(magicTrick trick: MagicTrick) -> Bool {
-    // body
-  }
-  ```
+## Example connection usage
+
+Feel free to check out bundled sample project.
+
+### Connection:
+
+Here you can find a sample code used to connect with a remote peripheral with one service and characteristic:
+
+```
+let connection = BluetoothConnection.shared
+let characteristic = try! Characteristic(uuid: "your_characteristic_uuid", shouldObserveNotification: true)
+let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
+let configuration = try! Configuration(services: [service], advertisement: "your_advertising_uuid")
+let peripheral = Peripheral(configuration: configuration)
+connection.connect(peripheral) { _ in
+	print("Connected")
+}
+```
+
+### Data transfer:
+
+Handling write requests:
+
+```
+let command = Command.utf8String("Hello world")
+peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
+	// do sth
+})
+```
+
+Handling read requests:
+
+```
+peripheral.read(characteristic, handler: { [weak self] data, error in
+	// do sth
+})
+```
+
+Handling characteristic notifications:
+
+```
+characteristic.notifyHandler = { [weak self] data in
+	// do sth
+}
+```
+
+## Example advertisement usage.
+
+### Advertisement setup:
+
+```
+let characteristic = try! Characteristic(uuid: "your_characteristic_uuid")
+let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
+let configuration = try! Configuration(services: [service], advertisement: "your_service_uuid")
+let peripheral = Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("your_service_uuid")])
+advertisement.advertise(peripheral: peripheral) { _ in
+	// handle possible error            
+}
+```
+
+### Handling requests:
+
+Updating values for characteristics:
+
+```
+let command = Command.int8(3)
+advertisement.update(command, characteristic: characteristic) { error in
+	// notified subscribed centrals
+}
+```
+
+Handling write requests:
+
+```
+advertisement.writeRequestCallback = { characteristic, data in
+	// handle write request
+}
+```
+
+Handling read requests:
+
+```
+advertisement.readRequestCallback = { characteristic -> Data in
+	// respond to read request
+}
+```
+
+### License
+
+Licensed under MIT license.
 
