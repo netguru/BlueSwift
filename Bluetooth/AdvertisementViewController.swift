@@ -10,6 +10,7 @@ class AdvertisementViewController: UIViewController {
 
     let advertisement = BluetoothAdvertisement.shared
     let characteristic = try! Characteristic(uuid: "00001002-4554-2049-4e43-2e205555726f")
+    let otherCharacteristic = try! Characteristic(uuid: "00001003-4554-2049-4e43-2e205555726f")
     
     private lazy var advertiseButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -68,7 +69,7 @@ class AdvertisementViewController: UIViewController {
     }
     
     @objc func advertise() {
-        let service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic])
+        let service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic, otherCharacteristic])
         let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4e43-2e205555726f")
         
         let peripheral = Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("00001001-4554-2049-4e43-2e205555726f")])
@@ -79,20 +80,20 @@ class AdvertisementViewController: UIViewController {
         
         advertisement.writeRequestCallback = { [weak self] characteristic, data in
             guard var text = self?.textView.text, let data = data else { return }
-            text = text + "\nWrote: " + (String(data: data, encoding: .utf8) ?? "(Error encoding.)")
+            text = text + "\nWrote: " + (String(data: data, encoding: .utf8) ?? "(Error encoding.)") + ". Characteristic: " + characteristic.uuid
             self?.textView.text = text
         }
         
         advertisement.readRequestCallback = { [weak self] characteristic -> Data in
             guard var text = self?.textView.text else { return Data() }
-            text = text + "\nReceived read request."
+            text = text + "\nReceived read request. Characteristic: " + characteristic.uuid
             self?.textView.text = text
             return "Hello world".data(using: .utf8, allowLossyConversion: false)!
         }
     }
     
     @objc func update() {
-        let command = Command.utf8String("Hello world")
+        let command = Command.utf8String(textField.text!)
         advertisement.update(command, characteristic: characteristic) { error in
             print("Updated")
         }

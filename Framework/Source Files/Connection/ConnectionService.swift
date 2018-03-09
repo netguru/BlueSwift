@@ -148,6 +148,10 @@ extension ConnectionService: CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services, error == nil else { return }
         let matching = connectingPeripheral?.configuration.services.matchingElementsWith(services)
+        guard matching?.count == services.count else {
+            centralManager.cancelPeripheralConnection(peripheral)
+            return
+        }
         matching?.forEach({ (service, cbService) in
             peripheral.discoverCharacteristics(service.characteristics.map({ $0.bluetoothUUID }), for: cbService)
         })
@@ -160,15 +164,19 @@ extension ConnectionService: CBPeripheralDelegate {
         guard let characteristics = service.characteristics, error == nil else { return }
         let matchingService = connectingPeripheral?.configuration.services.filter({ $0.bluetoothUUID == service.uuid }).first
         let matchingCharacteristics = matchingService?.characteristics.matchingElementsWith(characteristics)
+        guard matchingCharacteristics?.count == matchingService?.characteristics.count else {
+            centralManager.cancelPeripheralConnection(peripheral)
+            return
+        }
         matchingCharacteristics?.forEach({ (tuple) in
             let (characteristic, cbCharacteristic) = tuple
             characteristic.setRawCharacteristic(cbCharacteristic)
             peripheral.setNotifyValue(characteristic.isObservingValue, for: cbCharacteristic)
-            if let connectingPeripheral = self.connectingPeripheral {
-                connectingPeripheral.peripheral?.delegate = connectingPeripheral
-                self.connectionHandler?(connectingPeripheral, nil)
-            }
         })
+        if let connectingPeripheral = self.connectingPeripheral {
+            connectingPeripheral.peripheral?.delegate = connectingPeripheral
+            self.connectionHandler?(connectingPeripheral, nil)
+        }
         connectingPeripheral = nil
     }
     

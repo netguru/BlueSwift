@@ -10,6 +10,7 @@ class ConnectionViewController: UIViewController {
     
     let connection = BluetoothConnection.shared
     let characteristic = try! Characteristic(uuid: "00001002-4554-2049-4E43-2E205555726F", shouldObserveNotification: true)
+    let otherCharacteristic = try! Characteristic(uuid: "00001003-4554-2049-4E43-2E205555726F", shouldObserveNotification: true)
     var peripheral: Peripheral<Connectable>?
     
     private var loading = false {
@@ -88,7 +89,7 @@ class ConnectionViewController: UIViewController {
     }
     
     @objc func connect() {
-        let service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic])
+        let service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic, otherCharacteristic])
         let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4E43-2E205555726F")
         peripheral = Peripheral(configuration: configuration)
         loading = true
@@ -105,7 +106,7 @@ class ConnectionViewController: UIViewController {
     @objc func write() {
         guard let text = textField.text, text.count > 0 else { return }
         let command = Command.utf8String(text)
-        peripheral?.write(command: command, characteristic: characteristic, handler: { error in
+        peripheral?.write(command: command, characteristic: otherCharacteristic, handler: { error in
             print("Did write")
         })
     }
