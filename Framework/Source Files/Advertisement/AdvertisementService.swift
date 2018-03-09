@@ -33,7 +33,7 @@ internal final class AdvertisementService: NSObject {
     private var errorHandler: ((AdvertisementError) -> ())?
     
     /// Starts advertising peripheral with given configuration of services and characteristics.
-    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: @escaping (AdvertisementError) -> ()) {
+    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: ((AdvertisementError) -> ())?) {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
         peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
@@ -50,9 +50,9 @@ internal final class AdvertisementService: NSObject {
     }
     
     /// Updates a value on given characteristic.
-    internal func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (AdvertisementError) -> ()) {
+    internal func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: ((AdvertisementError) -> ())?) {
         guard let advertisementCharacteristic = characteristic.advertisementCharacteristic else {
-            errorHandler(.deviceNotAdvertising)
+            errorHandler?(.deviceNotAdvertising)
             return
         }
         peripheralManager.updateValue(value, for: advertisementCharacteristic, onSubscribedCentrals: subsribedCentrals)

@@ -35,17 +35,17 @@ public extension Peripheral where Type == Connectable {
     /// - SeeAlso: Command
     /// - SeeAlso: Characteristic
     /// - SeeAlso: Peripheral.TransmissionError
-    public func write(command: Command, characteristic: Characteristic, handler: @escaping (TransmissionError?) -> ()) {
+    public func write(command: Command, characteristic: Characteristic, handler: ((TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .write)
             writeHandler = handler
             try peripheral?.writeValue(command.convertedData(), for: unwrapped, type: .withResponse)
         } catch let error {
             guard let conversionError = error as? Command.ConversionError else {
-                handler(error as? TransmissionError)
+                handler?(error as? TransmissionError)
                 return
             }
-            handler(TransmissionError.incorrectInputFormat(conversionError))
+            handler?(TransmissionError.incorrectInputFormat(conversionError))
         }
     }
     
@@ -54,13 +54,13 @@ public extension Peripheral where Type == Connectable {
     /// - Parameter handler: completion handler returning Data retrieved from characteristic or error if it failed.
     /// - SeeAlso: Characteristic
     /// - SeeAlso: Peripheral.TransmissionError
-    public func read(_ characteristic: Characteristic, handler: @escaping (Data?, TransmissionError?) -> ()) {
+    public func read(_ characteristic: Characteristic, handler: ((Data?, TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .read)
             readHandler = handler
             peripheral?.readValue(for: unwrapped)
         } catch let error {
-            handler(nil, error as? TransmissionError)
+            handler?(nil, error as? TransmissionError)
         }
     }
     
