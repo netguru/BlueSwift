@@ -39,8 +39,12 @@ public final class BluetoothAdvertisement {
     /// Parameter errorHandler: an error handler called if data update fails.
     /// SeeAlso: AdvertisementError
     /// SeeAlso: Characteristic
-    public func updateValue(_ value: Data, characteristic: Characteristic, errorHandler: @escaping (AdvertisementError) -> (Void)) {
-        advertisementService.updateValue(value, characteristic: characteristic, errorHandler: errorHandler)
+    public func update(_ command: Command, characteristic: Characteristic, errorHandler: @escaping (AdvertisementError) -> (Void)) {
+        do {
+            try advertisementService.updateValue(command.convertedData(), characteristic: characteristic, errorHandler: errorHandler)
+        } catch {
+            errorHandler(.incorrectUpdateData)
+        }
     }
     
     /// Caled when a connected central submits a write reuqest to a specified characteristic.

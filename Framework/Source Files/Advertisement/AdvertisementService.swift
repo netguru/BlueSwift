@@ -94,8 +94,10 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
         let rawCharacteristic = request.characteristic
         guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
-        let data = readCallback?(characteristic)
+        guard let data = readCallback?(characteristic) else { return }
         request.value = data
+        // TODO: handle other results.
+        peripheral.respond(to: request, withResult: .success)
     }
     
     /// SeeAlso: CBPeripheralManagerDelegate
@@ -104,6 +106,8 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
             let rawCharacteristic = request.characteristic
             guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
             writeCallback?(characteristic, request.value)
+            // TODO: handle other results.
+            peripheral.respond(to: request, withResult: .success)
         }
     }
     

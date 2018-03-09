@@ -52,6 +52,9 @@ extension ConnectionService {
     
     /// Disconnects given device.
     internal func disconnect(_ peripheral: CBPeripheral) {
+        if let index = peripherals.index(where: { $0.peripheral === peripheral }) {
+            peripherals.remove(at: index)
+        }
         centralManager.cancelPeripheralConnection(peripheral)
     }
 }
@@ -162,6 +165,7 @@ extension ConnectionService: CBPeripheralDelegate {
             characteristic.setRawCharacteristic(cbCharacteristic)
             peripheral.setNotifyValue(characteristic.isObservingValue, for: cbCharacteristic)
             if let connectingPeripheral = self.connectingPeripheral {
+                connectingPeripheral.peripheral?.delegate = connectingPeripheral
                 self.connectionHandler?(connectingPeripheral, nil)
             }
         })

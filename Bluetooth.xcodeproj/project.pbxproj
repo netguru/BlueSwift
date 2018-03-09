@@ -562,6 +562,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38FE6BB12006898100809A06 /* Common-Development.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9HJ69C5G9K;
+				PROVISIONING_PROFILE = "d800e2b3-1e95-4792-a4a5-71b3dd0f9532";
+				PROVISIONING_PROFILE_SPECIFIER = "Bluetooth Sample Development";
 			};
 			name = Debug;
 		};

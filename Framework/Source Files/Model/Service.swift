@@ -44,6 +44,7 @@ internal extension Service {
         characteristics.forEach { characteristic in
             let cbCharacteristc = CBMutableCharacteristic(type: characteristic.bluetoothUUID, properties: [.read, .write, .notify], value: nil, permissions: [.readable, .writeable])
             cbCharacteristics.append(cbCharacteristc)
+            characteristic.advertisementCharacteristic = cbCharacteristc
         }
         service.characteristics = cbCharacteristics
         advertisementService = service
