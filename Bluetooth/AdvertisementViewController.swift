@@ -40,7 +40,9 @@ class AdvertisementViewController: UIViewController {
                 var text = self?.textView.text,
                 let data = data,
                 let encoded = String(data: data, encoding: .utf8)
-                else { return }
+            else {
+                return
+            }
             text = text + "\nWrote: \(encoded). Characteristic: \(characteristic.uuid)"
             self?.textView.text = text
         }
@@ -49,7 +51,9 @@ class AdvertisementViewController: UIViewController {
             guard
                 var text = self?.textView.text,
                 let notifyValue = self?.readTextField.text
-                else { return Data() }
+            else {
+                return Data()
+            }
             text = text + "\nReceived read request. Characteristic: \(characteristic.uuid)"
             self?.textView.text = text
             return notifyValue.data(using: .utf8, allowLossyConversion: false)!

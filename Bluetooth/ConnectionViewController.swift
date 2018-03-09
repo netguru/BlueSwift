@@ -43,7 +43,9 @@ class ConnectionViewController: UIViewController {
             guard
                 let data = data,
                 let encoded = String(data: data, encoding: .utf8)
-                else { return }
+            else {
+                return
+            }
             self?.notifyLabel.text = "Notify result: \(encoded)"
         }
     }
@@ -60,7 +62,9 @@ class ConnectionViewController: UIViewController {
             guard
                 let data = data,
                 let encoded = String(data: data, encoding: .utf8)
-                else { return }
+            else {
+                return
+            }
             self?.readLabel.text = "Read result: \(encoded)"
         })
     }
