@@ -22,11 +22,11 @@ class ConnectionViewController: UIViewController {
     }
     
     let connection = BluetoothConnection.shared
-    lazy var characteristic = try! Characteristic(uuid: "00001002-4554-2049-4E43-2E205555726F", shouldObserveNotification: true)
-    lazy var otherCharacteristic = try! Characteristic(uuid: "00001003-4554-2049-4E43-2E205555726F", shouldObserveNotification: true)
-    lazy var service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic, otherCharacteristic])
+    lazy var characteristic = try! Characteristic(uuid: "1104FD87-820F-438A-B757-7AC2C15C2D56", shouldObserveNotification: true)
+    lazy var otherCharacteristic = try! Characteristic(uuid: "1204FD87-820F-438A-B757-7AC2C15C2D56", shouldObserveNotification: true)
+    lazy var service = try! Service(uuid: "1004FD87-820F-438A-B757-7AC2C15C2D56", characteristics: [characteristic, otherCharacteristic])
     lazy var peripheral: Peripheral<Connectable> = {
-        let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4E43-2E205555726F")
+        let configuration = try! Configuration(services: [service], advertisement: "1004FD87-820F-438A-B757-7AC2C15C2D56")
         return Peripheral(configuration: configuration)
     }()
     

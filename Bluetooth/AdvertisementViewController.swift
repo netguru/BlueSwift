@@ -13,12 +13,12 @@ class AdvertisementViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
 
     let advertisement = BluetoothAdvertisement.shared
-    lazy var characteristic = try! Characteristic(uuid: "00001002-4554-2049-4e43-2e205555726f")
-    lazy var otherCharacteristic = try! Characteristic(uuid: "00001003-4554-2049-4e43-2e205555726f")
-    lazy var service = try! Service(uuid: "00001001-4554-2049-4e43-2e205555726f", characteristics: [characteristic, otherCharacteristic])
+    lazy var characteristic = try! Characteristic(uuid: "1104FD87-820F-438A-B757-7AC2C15C2D56")
+    lazy var otherCharacteristic = try! Characteristic(uuid: "1204FD87-820F-438A-B757-7AC2C15C2D56")
+    lazy var service = try! Service(uuid: "1004FD87-820F-438A-B757-7AC2C15C2D56", characteristics: [characteristic, otherCharacteristic])
     lazy var peripheral: Peripheral<Advertisable> = {
-        let configuration = try! Configuration(services: [service], advertisement: "00001001-4554-2049-4e43-2e205555726f")
-        return Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("00001001-4554-2049-4e43-2e205555726f")])
+        let configuration = try! Configuration(services: [service], advertisement: "1004FD87-820F-438A-B757-7AC2C15C2D56")
+        return Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("1004FD87-820F-438A-B757-7AC2C15C2D56")])
     }()
     
     @IBAction func advertise() {
