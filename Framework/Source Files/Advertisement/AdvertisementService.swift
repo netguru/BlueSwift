@@ -96,7 +96,6 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
         guard let data = readCallback?(characteristic) else { return }
         request.value = data
-        // TODO: handle other results.
         peripheral.respond(to: request, withResult: .success)
     }
     
@@ -106,7 +105,6 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
             let rawCharacteristic = request.characteristic
             guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
             writeCallback?(characteristic, request.value)
-            // TODO: handle other results.
             peripheral.respond(to: request, withResult: .success)
         }
     }
