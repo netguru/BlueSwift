@@ -72,6 +72,9 @@ private extension ConnectionService {
             guard peripheral.peripheral == nil else { return nil }
             return peripheral.configuration.advertisementUUID
         }
+        guard params.count != 0 else {
+            return
+        }
         scanParameters = Set(params)
         centralManager.scanForPeripherals(withServices: Array(scanParameters), options: scanningOptions)
     }
