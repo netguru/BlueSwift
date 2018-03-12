@@ -14,6 +14,7 @@ public enum Command {
     case int8(UInt8)
     case int16(UInt16)
     case int32(UInt32)
+    case utf8String(String)
     case hexString(String)
     case data(Data)
     
@@ -35,6 +36,11 @@ internal extension Command {
             return number.decodedData
         case .int32(let number):
             return number.decodedData
+        case .utf8String(let string):
+            guard let data = string.data(using: .utf8, allowLossyConversion: false) else {
+                throw ConversionError.incorrectInputFormat
+            }
+            return data
         case .hexString(let string):
             return try string.hexDecodedData()
         case .data(let data):

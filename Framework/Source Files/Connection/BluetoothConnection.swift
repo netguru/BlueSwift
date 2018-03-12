@@ -36,18 +36,18 @@ public final class BluetoothConnection: NSObject {
     /// - Parameter handler: a completion handler called upon succesfull connection or a error.
     /// - SeeAlso: BluetoothConnection.ConnectionError
     /// - SeeAlso: Peripheral
-    public func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (ConnectionError?) -> ()) {
+    public func connect(_ peripheral: Peripheral<Connectable>, handler: ((ConnectionError?) -> ())?) {
         guard !peripheral.isConnected else {
-            handler(.deviceAlreadyConnected)
+            handler?(.deviceAlreadyConnected)
             return
         }
         guard connectionService.connectedDevicesAmount <= deviceConnectionLimit else {
-            handler(.deviceConnectionLimitExceed)
+            handler?(.deviceConnectionLimitExceed)
             return
         }
         connectionService.connect(peripheral) { (peripheral, error) in
             guard peripheral === peripheral else { return }
-            handler(error)
+            handler?(error)
         }
     }
     

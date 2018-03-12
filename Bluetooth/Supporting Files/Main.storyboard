@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kEX-h7-8hn">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="kMO-Vq-l1h">
+            <objects>
+                <navigationController id="kEX-h7-8hn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9M2-TF-UyM">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KMh-Kw-yG4" kind="relationship" relationship="rootViewController" id="OLu-Zt-pdy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMk-Xf-H0x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1006" y="209"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JDY-UX-VJl">
+            <objects>
+                <viewController id="KMh-Kw-yG4" customClass="ViewController" customModule="Bluetooth_Demo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="frN-J3-f3d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="hQT-YX-G5g">
+                                <rect key="frame" x="134" y="278.5" width="106" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1W5-pn-g4j">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="30"/>
+                                        <state key="normal" title="Connection"/>
+                                        <connections>
+                                            <segue destination="0eC-V9-5DZ" kind="show" id="CdC-rd-VJ6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nw-Mt-oSb">
+                                        <rect key="frame" x="0.0" y="80" width="106" height="30"/>
+                                        <state key="normal" title="Adverrtisement"/>
+                                        <connections>
+                                            <segue destination="hEK-kS-TRu" kind="show" id="l5g-AN-UKX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hQT-YX-G5g" firstAttribute="centerX" secondItem="frN-J3-f3d" secondAttribute="centerX" id="WN7-Qy-7oB"/>
+                            <constraint firstItem="hQT-YX-G5g" firstAttribute="centerY" secondItem="frN-J3-f3d" secondAttribute="centerY" id="on3-lW-LHd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uu5-Mh-66i"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dBf-4x-QMP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kaz-mh-dGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-178" y="210"/>
+        </scene>
+        <!--Advertisement View Controller-->
+        <scene sceneID="UYj-xF-5gF">
+            <objects>
+                <viewController id="hEK-kS-TRu" customClass="AdvertisementViewController" customModule="Bluetooth_Demo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="frJ-vL-qJg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="oWa-Jl-NK6">
+                                <rect key="frame" x="37.5" y="103.5" width="300" height="300.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGg-ff-DJc">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <state key="normal" title="Start advertising"/>
+                                        <connections>
+                                            <action selector="advertise" destination="hEK-kS-TRu" eventType="touchUpInside" id="EPv-dD-ymT"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value that should be notified." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L1e-1Q-bec">
+                                        <rect key="frame" x="0.0" y="70" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwS-3g-E4Y">
+                                        <rect key="frame" x="0.0" y="140" width="300" height="30"/>
+                                        <state key="normal" title="Send notification!"/>
+                                        <connections>
+                                            <action selector="update" destination="hEK-kS-TRu" eventType="touchUpInside" id="mVu-eJ-pi9"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value that should be read." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2G6-hd-DUd">
+                                        <rect key="frame" x="0.0" y="210" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMI-Cn-f06">
+                                        <rect key="frame" x="0.0" y="280" width="300" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dSo-c5-C1d">
+                                <rect key="frame" x="37" y="414" width="300" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="MiW-3k-0Fb"/>
+                                    <constraint firstAttribute="width" constant="300" id="TqJ-L4-Y5G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="dSo-c5-C1d" firstAttribute="width" secondItem="oWa-Jl-NK6" secondAttribute="width" id="4UF-HK-7yI"/>
+                            <constraint firstItem="dSo-c5-C1d" firstAttribute="centerX" secondItem="frJ-vL-qJg" secondAttribute="centerX" id="5X7-jf-n4q"/>
+                            <constraint firstItem="oWa-Jl-NK6" firstAttribute="centerY" secondItem="frJ-vL-qJg" secondAttribute="centerY" constant="-80" id="5z1-yL-5vh"/>
+                            <constraint firstItem="dSo-c5-C1d" firstAttribute="top" secondItem="oWa-Jl-NK6" secondAttribute="bottom" constant="10" id="6sh-A0-d2S"/>
+                            <constraint firstItem="oWa-Jl-NK6" firstAttribute="centerX" secondItem="frJ-vL-qJg" secondAttribute="centerX" id="a34-j5-S8g"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Psd-We-DeF"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="hcF-mH-XA5" appends="YES" id="dGZ-kW-pM4"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="notifyTextField" destination="L1e-1Q-bec" id="8VN-RN-HHK"/>
+                        <outlet property="readTextField" destination="2G6-hd-DUd" id="wCO-11-mjx"/>
+                        <outlet property="textView" destination="dSo-c5-C1d" id="Qsl-Ty-a2W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egr-AW-Vss" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hcF-mH-XA5">
+                    <connections>
+                        <action selector="hideKeyboard" destination="hEK-kS-TRu" id="EMV-vT-4UZ"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1134" y="670"/>
+        </scene>
+        <!--Connection View Controller-->
+        <scene sceneID="9QC-iW-zk4">
+            <objects>
+                <viewController id="0eC-V9-5DZ" customClass="ConnectionViewController" customModule="Bluetooth_Demo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HT6-Lc-Q64">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="tD4-dv-mGE">
+                                <rect key="frame" x="37.5" y="153.5" width="300" height="361"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxK-tF-iWY">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <state key="normal" title="Start connection."/>
+                                        <connections>
+                                            <action selector="connect" destination="0eC-V9-5DZ" eventType="touchUpInside" id="nEY-yE-evb"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value to write to peripheral." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XYB-JQ-M7G">
+                                        <rect key="frame" x="0.0" y="70" width="300" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-gX-BYB">
+                                        <rect key="frame" x="0.0" y="140" width="300" height="30"/>
+                                        <state key="normal" title="Send!"/>
+                                        <connections>
+                                            <action selector="write" destination="0eC-V9-5DZ" eventType="touchUpInside" id="oKG-gh-32H"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibe-dQ-lHh">
+                                        <rect key="frame" x="0.0" y="210" width="300" height="30"/>
+                                        <state key="normal" title="Read!"/>
+                                        <connections>
+                                            <action selector="read" destination="0eC-V9-5DZ" eventType="touchUpInside" id="wcg-zc-68h"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbA-58-6gg">
+                                        <rect key="frame" x="0.0" y="280" width="300" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwt-Fx-l1k">
+                                        <rect key="frame" x="0.0" y="340.5" width="300" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="5T0-iS-9jH"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="tD4-dv-mGE" firstAttribute="centerX" secondItem="HT6-Lc-Q64" secondAttribute="centerX" id="Sl9-n9-Bmk"/>
+                            <constraint firstItem="tD4-dv-mGE" firstAttribute="centerY" secondItem="HT6-Lc-Q64" secondAttribute="centerY" id="Zd2-P3-VDU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WBa-6r-bv2"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Ghg-jW-awx" appends="YES" id="se0-EH-AxT"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="notifyLabel" destination="Zwt-Fx-l1k" id="6Wf-6T-2cz"/>
+                        <outlet property="readLabel" destination="tbA-58-6gg" id="ErK-af-c9L"/>
+                        <outlet property="textField" destination="XYB-JQ-M7G" id="fZo-Pl-of2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YV5-4N-oUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ghg-jW-awx">
+                    <connections>
+                        <action selector="hideKeyboard" destination="0eC-V9-5DZ" id="V1f-IN-jsl"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1135" y="-56"/>
+        </scene>
+    </scenes>
+</document>

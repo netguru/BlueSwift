@@ -52,6 +52,9 @@ extension ConnectionService {
     
     /// Disconnects given device.
     internal func disconnect(_ peripheral: CBPeripheral) {
+        if let index = peripherals.index(where: { $0.peripheral === peripheral }) {
+            peripherals.remove(at: index)
+        }
         centralManager.cancelPeripheralConnection(peripheral)
     }
 }
@@ -68,6 +71,9 @@ private extension ConnectionService {
         let params = peripherals.flatMap { (peripheral) -> CBUUID? in
             guard peripheral.peripheral == nil else { return nil }
             return peripheral.configuration.advertisementUUID
+        }
+        guard params.count != 0 else {
+            return
         }
         scanParameters = Set(params)
         centralManager.scanForPeripherals(withServices: Array(scanParameters), options: scanningOptions)
@@ -145,6 +151,10 @@ extension ConnectionService: CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services, error == nil else { return }
         let matching = connectingPeripheral?.configuration.services.matchingElementsWith(services)
+        guard matching?.count != 0 else {
+            centralManager.cancelPeripheralConnection(peripheral)
+            return
+        }
         matching?.forEach({ (service, cbService) in
             peripheral.discoverCharacteristics(service.characteristics.map({ $0.bluetoothUUID }), for: cbService)
         })
@@ -157,14 +167,19 @@ extension ConnectionService: CBPeripheralDelegate {
         guard let characteristics = service.characteristics, error == nil else { return }
         let matchingService = connectingPeripheral?.configuration.services.filter({ $0.bluetoothUUID == service.uuid }).first
         let matchingCharacteristics = matchingService?.characteristics.matchingElementsWith(characteristics)
+        guard matchingCharacteristics?.count != 0 else {
+            centralManager.cancelPeripheralConnection(peripheral)
+            return
+        }
         matchingCharacteristics?.forEach({ (tuple) in
             let (characteristic, cbCharacteristic) = tuple
             characteristic.setRawCharacteristic(cbCharacteristic)
             peripheral.setNotifyValue(characteristic.isObservingValue, for: cbCharacteristic)
-            if let connectingPeripheral = self.connectingPeripheral {
-                self.connectionHandler?(connectingPeripheral, nil)
-            }
         })
+        if let connectingPeripheral = self.connectingPeripheral {
+            connectingPeripheral.peripheral?.delegate = connectingPeripheral
+            self.connectionHandler?(connectingPeripheral, nil)
+        }
         connectingPeripheral = nil
     }
     
