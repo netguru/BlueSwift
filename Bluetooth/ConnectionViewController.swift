@@ -34,7 +34,6 @@ class ConnectionViewController: UIViewController {
         loading = true
         connection.connect(peripheral) { [weak self] _ in
             self?.loading = false
-            print("Connected")
         }
         handleNotifications()
     }
@@ -53,9 +52,9 @@ class ConnectionViewController: UIViewController {
     
     @IBAction func write() {
         let command = Command.utf8String(textField.text!)
-        peripheral.write(command: command, characteristic: otherCharacteristic, handler: { error in
+        peripheral.write(command: command, characteristic: otherCharacteristic) { error in
             print("Did write")
-        })
+        }
     }
     
     @IBAction func read() {
