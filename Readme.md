@@ -38,7 +38,7 @@ let peripheral = Peripheral(configuration: configuration)
 connection.connect(peripheral) { _ in
 	print("Connected")
 }
-```
+```swift
 
 ### Data transfer:
 
@@ -49,7 +49,7 @@ let command = Command.utf8String("Hello world")
 peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
 	// do sth
 })
-```
+```swift
 
 Handling read requests:
 
@@ -57,7 +57,7 @@ Handling read requests:
 peripheral.read(characteristic, handler: { [weak self] data, error in
 	// do sth
 })
-```
+```swift
 
 Handling characteristic notifications:
 
@@ -65,7 +65,7 @@ Handling characteristic notifications:
 characteristic.notifyHandler = { [weak self] data in
 	// do sth
 }
-```
+```swift
 
 ## Example advertisement usage.
 
@@ -79,7 +79,7 @@ let peripheral = Peripheral(configuration: configuration, advertisementData: [.l
 advertisement.advertise(peripheral: peripheral) { _ in
 	// handle possible error            
 }
-```
+```swift
 
 ### Handling requests:
 
@@ -90,7 +90,7 @@ let command = Command.int8(3)
 advertisement.update(command, characteristic: characteristic) { error in
 	// notified subscribed centrals
 }
-```
+```swift
 
 Handling write requests:
 
@@ -98,7 +98,7 @@ Handling write requests:
 advertisement.writeRequestCallback = { characteristic, data in
 	// handle write request
 }
-```
+```swift
 
 Handling read requests:
 
@@ -106,7 +106,7 @@ Handling read requests:
 advertisement.readRequestCallback = { characteristic -> Data in
 	// respond to read request
 }
-```
+```swift
 
 ### License
 
