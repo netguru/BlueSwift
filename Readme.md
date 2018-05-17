@@ -29,7 +29,7 @@ Feel free to check out bundled sample project.
 
 Here you can find a sample code used to connect with a remote peripheral with one service and characteristic:
 
-```
+```swift
 let connection = BluetoothConnection.shared
 let characteristic = try! Characteristic(uuid: "your_characteristic_uuid", shouldObserveNotification: true)
 let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
@@ -38,40 +38,40 @@ let peripheral = Peripheral(configuration: configuration)
 connection.connect(peripheral) { _ in
 	print("Connected")
 }
-```swift
+```
 
 ### Data transfer:
 
 Handling write requests:
 
-```
+```swift
 let command = Command.utf8String("Hello world")
 peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
 	// do sth
 })
-```swift
+```
 
 Handling read requests:
 
-```
+```swift
 peripheral.read(characteristic, handler: { [weak self] data, error in
 	// do sth
 })
-```swift
+```
 
 Handling characteristic notifications:
 
-```
+```swift
 characteristic.notifyHandler = { [weak self] data in
 	// do sth
 }
-```swift
+```
 
 ## Example advertisement usage.
 
 ### Advertisement setup:
 
-```
+```swift
 let characteristic = try! Characteristic(uuid: "your_characteristic_uuid")
 let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
 let configuration = try! Configuration(services: [service], advertisement: "your_service_uuid")
@@ -79,34 +79,34 @@ let peripheral = Peripheral(configuration: configuration, advertisementData: [.l
 advertisement.advertise(peripheral: peripheral) { _ in
 	// handle possible error            
 }
-```swift
+```
 
 ### Handling requests:
 
 Updating values for characteristics:
 
-```
+```swift
 let command = Command.int8(3)
 advertisement.update(command, characteristic: characteristic) { error in
 	// notified subscribed centrals
 }
-```swift
+```
 
 Handling write requests:
 
-```
+```swift
 advertisement.writeRequestCallback = { characteristic, data in
 	// handle write request
 }
-```swift
+```
 
 Handling read requests:
 
-```
+```swift
 advertisement.readRequestCallback = { characteristic -> Data in
 	// respond to read request
 }
-```swift
+```
 
 ### License
 
