@@ -68,7 +68,7 @@ private extension ConnectionService {
             centralManager.stopScan()
         }
         performDeviceAutoReconnection()
-        let params = peripherals.flatMap { (peripheral) -> CBUUID? in
+        let params = peripherals.compactMap { (peripheral) -> CBUUID? in
             guard peripheral.peripheral == nil else { return nil }
             return peripheral.configuration.advertisementUUID
         }
@@ -83,7 +83,7 @@ private extension ConnectionService {
     /// deviceIdentifier was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral
     /// can be directly connected.
     private func performDeviceAutoReconnection() {
-        let identifiers = peripherals.flatMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
+        let identifiers = peripherals.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
         guard !identifiers.isEmpty else { return }
         let retrievedPeripherals = centralManager.retrievePeripherals(withIdentifiers: identifiers)
         let matching = peripherals.matchingElementsWith(retrievedPeripherals)

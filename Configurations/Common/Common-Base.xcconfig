@@ -3,9 +3,9 @@
 //  Licensed under the MIT License.
 //
 
-#include "../../Carthage/Checkouts/xcconfigs/Common/Common.xcconfig"
-#include "../../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig"
-#include "../../Carthage/Checkouts/xcconfigs/Targets/Application.xcconfig"
+#include "../xcconfigs/Common/Common.xcconfig"
+#include "../xcconfigs/Platforms/iOS.xcconfig"
+#include "../xcconfigs/Targets/Application.xcconfig"
 
 _BUNDLE_NAME = Bluetooth Demo
 _BUNDLE_IDENTIFIER = co.netguru.sample.bluetooth
@@ -18,7 +18,7 @@ PRODUCT_BUNDLE_VERSION = 1
 _CLANG_ENABLE_MODULES = YES
 _DEFINES_MODULE = YES
 _LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
-_COMPILER_SWIFT_VERSION = 4.0
+_COMPILER_SWIFT_VERSION = 4.1
 
 _DEPLOYMENT_TARGET_IOS = 10.0
 _CODESIGN_STYLE = Manual

@@ -86,6 +86,32 @@
 		3837BA0B1FFFC2FE00DF300E /* Bluetooth Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bluetooth Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA311FFFC4CE00DF300E /* Bluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3837BA391FFFC4CE00DF300E /* Bluetooth Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bluetooth Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3838CEBA20ADEC75006E4AC5 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		3838CEBB20ADEC75006E4AC5 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		3838CEBC20ADEC75006E4AC5 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		3838CEBE20ADEC75006E4AC5 /* Best-Practices.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Best-Practices.md"; sourceTree = "<group>"; };
+		3838CEC020ADEC75006E4AC5 /* usage-delete-build-settings.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "usage-delete-build-settings.gif"; sourceTree = "<group>"; };
+		3838CEC120ADEC75006E4AC5 /* usage-assign-project-configurations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "usage-assign-project-configurations.gif"; sourceTree = "<group>"; };
+		3838CEC220ADEC75006E4AC5 /* usage-build.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "usage-build.gif"; sourceTree = "<group>"; };
+		3838CEC320ADEC75006E4AC5 /* usage-update-info-plist.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "usage-update-info-plist.gif"; sourceTree = "<group>"; };
+		3838CEC420ADEC75006E4AC5 /* Carthage.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Carthage.md; sourceTree = "<group>"; };
+		3838CEC520ADEC75006E4AC5 /* Tutorial.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Tutorial.md; sourceTree = "<group>"; };
+		3838CEC620ADEC75006E4AC5 /* Code-Signing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Code-Signing.md"; sourceTree = "<group>"; };
+		3838CEC720ADEC75006E4AC5 /* CocoaPods.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CocoaPods.md; sourceTree = "<group>"; };
+		3838CEC820ADEC75006E4AC5 /* Variables.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Variables.md; sourceTree = "<group>"; };
+		3838CECA20ADEC75006E4AC5 /* macOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = macOS.xcconfig; sourceTree = "<group>"; };
+		3838CECB20ADEC75006E4AC5 /* tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tvOS.xcconfig; sourceTree = "<group>"; };
+		3838CECC20ADEC75006E4AC5 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
+		3838CECD20ADEC75006E4AC5 /* watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = watchOS.xcconfig; sourceTree = "<group>"; };
+		3838CECF20ADEC75006E4AC5 /* Extension.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Extension.xcconfig; sourceTree = "<group>"; };
+		3838CED020ADEC75006E4AC5 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
+		3838CED120ADEC75006E4AC5 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		3838CED220ADEC75006E4AC5 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		3838CED420ADEC75006E4AC5 /* Build */ = {isa = PBXFileReference; lastKnownFileType = text; path = Build; sourceTree = "<group>"; };
+		3838CED520ADEC75006E4AC5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3838CED720ADEC75006E4AC5 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		3838CED820ADEC75006E4AC5 /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
+		3838CED920ADEC75006E4AC5 /* Variables.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Variables.xcconfig; sourceTree = "<group>"; };
 		385B01AC2007C93000E3D478 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		385BDC15204FD961003B2689 /* AdvertisementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementViewController.swift; sourceTree = "<group>"; };
 		385BDC18204FD972003B2689 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +196,95 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3838CEB820ADEC75006E4AC5 /* xcconfigs */ = {
+			isa = PBXGroup;
+			children = (
+				3838CEB920ADEC75006E4AC5 /* Configurations */,
+				3838CEBC20ADEC75006E4AC5 /* LICENSE.md */,
+				3838CEBD20ADEC75006E4AC5 /* Documentation */,
+				3838CEC920ADEC75006E4AC5 /* Platforms */,
+				3838CECE20ADEC75006E4AC5 /* Targets */,
+				3838CED320ADEC75006E4AC5 /* Carthage */,
+				3838CED520ADEC75006E4AC5 /* README.md */,
+				3838CED620ADEC75006E4AC5 /* Common */,
+			);
+			path = xcconfigs;
+			sourceTree = "<group>";
+		};
+		3838CEB920ADEC75006E4AC5 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				3838CEBA20ADEC75006E4AC5 /* Debug.xcconfig */,
+				3838CEBB20ADEC75006E4AC5 /* Release.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		3838CEBD20ADEC75006E4AC5 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				3838CEBE20ADEC75006E4AC5 /* Best-Practices.md */,
+				3838CEBF20ADEC75006E4AC5 /* Images */,
+				3838CEC420ADEC75006E4AC5 /* Carthage.md */,
+				3838CEC520ADEC75006E4AC5 /* Tutorial.md */,
+				3838CEC620ADEC75006E4AC5 /* Code-Signing.md */,
+				3838CEC720ADEC75006E4AC5 /* CocoaPods.md */,
+				3838CEC820ADEC75006E4AC5 /* Variables.md */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
+		3838CEBF20ADEC75006E4AC5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3838CEC020ADEC75006E4AC5 /* usage-delete-build-settings.gif */,
+				3838CEC120ADEC75006E4AC5 /* usage-assign-project-configurations.gif */,
+				3838CEC220ADEC75006E4AC5 /* usage-build.gif */,
+				3838CEC320ADEC75006E4AC5 /* usage-update-info-plist.gif */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		3838CEC920ADEC75006E4AC5 /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				3838CECA20ADEC75006E4AC5 /* macOS.xcconfig */,
+				3838CECB20ADEC75006E4AC5 /* tvOS.xcconfig */,
+				3838CECC20ADEC75006E4AC5 /* iOS.xcconfig */,
+				3838CECD20ADEC75006E4AC5 /* watchOS.xcconfig */,
+			);
+			path = Platforms;
+			sourceTree = "<group>";
+		};
+		3838CECE20ADEC75006E4AC5 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				3838CECF20ADEC75006E4AC5 /* Extension.xcconfig */,
+				3838CED020ADEC75006E4AC5 /* Application.xcconfig */,
+				3838CED120ADEC75006E4AC5 /* Framework.xcconfig */,
+				3838CED220ADEC75006E4AC5 /* Tests.xcconfig */,
+			);
+			path = Targets;
+			sourceTree = "<group>";
+		};
+		3838CED320ADEC75006E4AC5 /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				3838CED420ADEC75006E4AC5 /* Build */,
+			);
+			path = Carthage;
+			sourceTree = "<group>";
+		};
+		3838CED620ADEC75006E4AC5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3838CED720ADEC75006E4AC5 /* Common.xcconfig */,
+				3838CED820ADEC75006E4AC5 /* Carthage.xcconfig */,
+				3838CED920ADEC75006E4AC5 /* Variables.xcconfig */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		38974AF5203732B50024CCD5 /* Advertisement */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +318,7 @@
 		38FE6BAA2006898100809A06 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				3838CEB820ADEC75006E4AC5 /* xcconfigs */,
 				38FE6BAB2006898100809A06 /* Framework */,
 				38FE6BAF2006898100809A06 /* Common */,
 			);
