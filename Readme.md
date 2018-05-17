@@ -11,7 +11,7 @@ Easy to use Bluetooth open source library by Netguru. Provides convenient method
 
 ## Requirements
 
-Swift 4, iOS 10.0 or higher.
+Swift 4.1, iOS 10.0 or higher.
 
 ## Cocoapods
 
