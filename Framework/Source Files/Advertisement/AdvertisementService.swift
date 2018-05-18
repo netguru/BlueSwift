@@ -44,7 +44,7 @@ internal final class AdvertisementService: NSObject {
     internal func stopAdvertising() {
         peripheralManager.stopAdvertising()
         peripheral?.configuration.services
-            .flatMap { $0.advertisementService }
+            .compactMap { $0.advertisementService }
             .forEach { peripheralManager.remove($0) }
         shouldAdvertise = false
     }

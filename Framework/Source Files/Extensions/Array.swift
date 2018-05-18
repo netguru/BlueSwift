@@ -11,7 +11,7 @@ internal extension Array {
     /// Utility method used for matching elements from two different arrays and returning an array of tuples. Matching is based
     /// on a return value from comparison handler.
     internal func matchingElementsWith<T>(_ array: [T], comparison: (Element, T) -> Bool) -> [(Element, T)] {
-        return flatMap { element in
+        return compactMap { element in
             guard let index = array.index(where: { comparison(element, $0) }) else { return nil }
             return (element, array[index])
         }

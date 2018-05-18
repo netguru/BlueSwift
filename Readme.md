@@ -11,7 +11,7 @@ Easy to use Bluetooth open source library by Netguru. Provides convenient method
 
 ## Requirements
 
-Swift 4, iOS 10.0 or higher.
+Swift 4.1, iOS 10.0 or higher.
 
 ## Cocoapods
 
@@ -29,7 +29,7 @@ Feel free to check out bundled sample project.
 
 Here you can find a sample code used to connect with a remote peripheral with one service and characteristic:
 
-```
+```swift
 let connection = BluetoothConnection.shared
 let characteristic = try! Characteristic(uuid: "your_characteristic_uuid", shouldObserveNotification: true)
 let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
@@ -44,7 +44,7 @@ connection.connect(peripheral) { _ in
 
 Handling write requests:
 
-```
+```swift
 let command = Command.utf8String("Hello world")
 peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
 	// do sth
@@ -53,7 +53,7 @@ peripheral.write(command: command, characteristic: someCharacteristic, handler: 
 
 Handling read requests:
 
-```
+```swift
 peripheral.read(characteristic, handler: { [weak self] data, error in
 	// do sth
 })
@@ -61,7 +61,7 @@ peripheral.read(characteristic, handler: { [weak self] data, error in
 
 Handling characteristic notifications:
 
-```
+```swift
 characteristic.notifyHandler = { [weak self] data in
 	// do sth
 }
@@ -71,7 +71,7 @@ characteristic.notifyHandler = { [weak self] data in
 
 ### Advertisement setup:
 
-```
+```swift
 let characteristic = try! Characteristic(uuid: "your_characteristic_uuid")
 let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
 let configuration = try! Configuration(services: [service], advertisement: "your_service_uuid")
@@ -85,7 +85,7 @@ advertisement.advertise(peripheral: peripheral) { _ in
 
 Updating values for characteristics:
 
-```
+```swift
 let command = Command.int8(3)
 advertisement.update(command, characteristic: characteristic) { error in
 	// notified subscribed centrals
@@ -94,7 +94,7 @@ advertisement.update(command, characteristic: characteristic) { error in
 
 Handling write requests:
 
-```
+```swift
 advertisement.writeRequestCallback = { characteristic, data in
 	// handle write request
 }
@@ -102,7 +102,7 @@ advertisement.writeRequestCallback = { characteristic, data in
 
 Handling read requests:
 
-```
+```swift
 advertisement.readRequestCallback = { characteristic -> Data in
 	// respond to read request
 }
