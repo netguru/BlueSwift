@@ -1,0 +1,126 @@
+#
+# bitrise.yml
+# Copyright © 2017 Netguru Sp. z o.o. All rights reserved.
+#
+# This `bitrise.yml` variant contains the default configuration to be used in
+# an iOS app repository. You can strip the comments in your `bitrise.yml`, if
+# you want.
+#
+# Scripts in the following `bitrise.yml` file makes use of the following
+# environment variables that should be set up as secret:
+#
+# - `HOCKEYAPP_APP_ID_STAGING`, `HOCKEYAPP_APP_ID_PRODUCTION`: App IDs of
+#   staging and production HockeyApp apps.
+#
+# - `HOCKEYAPP_API_TOKEN_STAGING`, `HOCKEYAPP_API_TOKEN_PRODUCTION`: API tokens
+#   used to upload and release builds to HockeyApp app.
+#
+# - `SLACK_WEBHOOK_URL`: A generic webhook integration URL used to post
+#   notifications to Slack.
+#
+# - `SLACK_CHANNEL` (optional): A target Slack channel to post notifications to.
+#   If not present, the default channel of the integration is used.
+#
+# - `JIRA_DOMAIN` (optional): A domain URL to the JIRA installation, typically a
+#   subdomain on `atlassian.net`. If not present, information about JIRA task
+#   will not be included in a Slack notification.
+#
+# - `JIRA_PROJECT_KEY` (optional): A JIRA project key assocciated with the
+#   repository. If not present, information about JIRA task will not be included
+#   in a Slack notification.
+#
+# Also, those scripts use the following environment variables that are declared
+# publicly in the following file:
+#
+# - `XCODEBUILD_PROJECT`: A path to a project or a workspace Xcode file.
+#
+# - `XCODEBUILD_SCHEME`: A name of the scheme to be built.
+#
+# - `XCODEBUILD_OPTIONS`: Additional build settings passed straight to each
+#   `xcodebuild` invocation.
+#
+
+# CLI metadata.
+#
+# This metadata is required to always be in `bitrise.yml`. The `format_version`
+# setting will be occasionally bumped.
+
+format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+# Workflow trigger map.
+#
+# The following trigger map triggers a build only for pull requests against
+# `develop` and `master` branches (from forks as well) and pushes to `develop`
+# and `master` branches.
+#
+# More on trigger maps: http://devcenter.bitrise.io/webhooks/trigger-map
+
+trigger_map:
+
+  - push_branch: develop
+    workflow: build-pull-request
+
+  - push_branch: master
+    workflow: build-pull-request
+
+  - pull_request_target_branch: develop
+    workflow: build-pull-request
+
+  - pull_request_target_branch: master
+    workflow: build-pull-request
+
+# Environment configuration.
+#
+# This list contains the default environment variables shared between workflows.
+
+app:
+  envs:
+    - XCODEBUILD_PROJECT: ./Bluetooth.xcodeproj
+    - XCODEBUILD_OPTIONS: _BUILD_NUMBER=$BITRISE_BUILD_NUMBER
+
+# Workflow declarations.
+#
+# This list contains workflows used in the above trigger map.
+
+workflows:
+
+  build-pull-request:
+    envs:
+      - XCODEBUILD_SCHEME: Staging
+    before_run:
+      - cache-pull
+      - bootstrap-cocoapods-keys
+      - bootstrap-carthage
+      - test-xcode
+    after_run:
+      - cache-push
+      - deploy-bitriseio
+      - notify-slack
+
+  # Bootstrap code signing by installing certificates and provisioning profiles.
+
+  bootstrap-code-signing:
+    steps:
+      - certificate-and-profile-installer: {}
+
+  # Build and test an app using `xcodebuild` command.
+
+  test-xcode:
+    steps:
+      - xcode-test:
+          inputs:
+            - project_path: $XCODEBUILD_PROJECT
+            - scheme: $XCODEBUILD_SCHEME
+            - xcodebuild_test_options: $XCODEBUILD_OPTIONS
+            - simulator_device: iPhone 7 Plus
+
+  # Deploy build artifacts to bitrise.io.
+
+  deploy-bitriseio:
+    steps:
+      - deploy-to-bitrise-io:
+          inputs:
+            - notify_user_groups: none
+            - is_enable_public_page: false
+
