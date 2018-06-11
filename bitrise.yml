@@ -3,31 +3,11 @@
 # Copyright © 2017 Netguru Sp. z o.o. All rights reserved.
 #
 # This `bitrise.yml` variant contains the default configuration to be used in
-# an iOS app repository. You can strip the comments in your `bitrise.yml`, if
+# an iOS app repository. You can strip the comments in your `bitrise.yml` if
 # you want.
 #
-# Scripts in the following `bitrise.yml` file makes use of the following
+# Scripts in the following `bitrise.yml` file make use of the following
 # environment variables that should be set up as secret:
-#
-# - `HOCKEYAPP_APP_ID_STAGING`, `HOCKEYAPP_APP_ID_PRODUCTION`: App IDs of
-#   staging and production HockeyApp apps.
-#
-# - `HOCKEYAPP_API_TOKEN_STAGING`, `HOCKEYAPP_API_TOKEN_PRODUCTION`: API tokens
-#   used to upload and release builds to HockeyApp app.
-#
-# - `SLACK_WEBHOOK_URL`: A generic webhook integration URL used to post
-#   notifications to Slack.
-#
-# - `SLACK_CHANNEL` (optional): A target Slack channel to post notifications to.
-#   If not present, the default channel of the integration is used.
-#
-# - `JIRA_DOMAIN` (optional): A domain URL to the JIRA installation, typically a
-#   subdomain on `atlassian.net`. If not present, information about JIRA task
-#   will not be included in a Slack notification.
-#
-# - `JIRA_PROJECT_KEY` (optional): A JIRA project key assocciated with the
-#   repository. If not present, information about JIRA task will not be included
-#   in a Slack notification.
 #
 # Also, those scripts use the following environment variables that are declared
 # publicly in the following file:
@@ -36,7 +16,7 @@
 #
 # - `XCODEBUILD_SCHEME`: A name of the scheme to be built.
 #
-# - `XCODEBUILD_OPTIONS`: Additional build settings passed straight to each
+# - `XCODEBUILD_OPTIONS`: An additional build settings passed straight to each
 #   `xcodebuild` invocation.
 #
 
