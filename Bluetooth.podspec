@@ -5,8 +5,8 @@ Pod::Spec.new do |spec|
   spec.homepage         = 'https://github.com/netguru/bluetooth'
   spec.authors          = { 'Jan Posz' => 'jan.posz@netguru.co' }
   spec.summary          = 'Easy and lightweight CoreBluetooth wrapper written in Swift.'
-  spec.source           = { :git => 'https://github.com/netguru/bluetooth', :tag => 'v1.0.0' }
-  spec.source_files     = 'Framework/*'
+  spec.source           = { :git => 'https://github.com/netguru/BlueSwift.git', :tag => 'v1.0.0-alpha' }
+  spec.source_files     = 'Framework/*.swift'
   spec.framework        = 'CoreBluetooth'
   spec.requires_arc     = true
 end
