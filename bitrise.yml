@@ -87,16 +87,9 @@ workflows:
 
   build-pull-request:
     envs:
-      - XCODEBUILD_SCHEME: Staging
+      - XCODEBUILD_SCHEME: Bluetooth
     before_run:
-      - cache-pull
-      - bootstrap-cocoapods-keys
-      - bootstrap-carthage
       - test-xcode
-    after_run:
-      - cache-push
-      - deploy-bitriseio
-      - notify-slack
 
   # Bootstrap code signing by installing certificates and provisioning profiles.
 
