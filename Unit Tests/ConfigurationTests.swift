@@ -5,7 +5,7 @@
 
 import XCTest
 import CoreBluetooth.CBUUID
-@testable import Bluetooth
+@testable import BlueSwift
 
 class ConfigurationTests: XCTestCase {
     

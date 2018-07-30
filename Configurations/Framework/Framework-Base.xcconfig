@@ -3,15 +3,11 @@
 //  Licensed under the MIT License.
 //
 
-#include "../xcconfigs/Targets/Framework.xcconfig"
 #include "../xcconfigs/Platforms/iOS.xcconfig"
+#include "../xcconfigs/Targets/Framework.xcconfig"
 
-_BUNDLE_NAME = Bluetooth
-_BUNDLE_IDENTIFIER = co.netguru.lib.bluetooth
-_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Framework/Supporting Files/Info.plist
-_BUNDLE_TESTABLE = YES
+_BUNDLE_NAME = BlueSwift
+_BUNDLE_IDENTIFIER = co.netguru.lib.blueswift
+_BUNDLE_INFOPLIST_PATH = $(PROJECT_DIR)/Framework/Supporting Files/Info.plist
 
-_COMPILER_SWIFT_VERSION = 4.1
-
-PRODUCT_BUNDLE_VERSION_STRING = 1.0.0
-PRODUCT_BUNDLE_VERSION = 1
+ENABLE_TESTABILITY = YES

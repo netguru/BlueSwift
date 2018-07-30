@@ -67,7 +67,7 @@ workflows:
 
   build-pull-request:
     envs:
-      - XCODEBUILD_SCHEME: Bluetooth
+      - XCODEBUILD_SCHEME: BlueSwift-iOS
     before_run:
       - test-xcode
 

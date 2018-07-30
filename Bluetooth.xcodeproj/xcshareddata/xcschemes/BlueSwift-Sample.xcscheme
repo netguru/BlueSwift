@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "0940"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3837BA301FFFC4CE00DF300E"
-               BuildableName = "Bluetooth.framework"
-               BlueprintName = "Bluetooth"
+               BlueprintIdentifier = "3837BA0A1FFFC2FE00DF300E"
+               BuildableName = "BlueSwiftSample.app"
+               BlueprintName = "Sample"
                ReferencedContainer = "container:Bluetooth.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3837BA381FFFC4CE00DF300E"
-               BuildableName = "Bluetooth Tests.xctest"
+               BuildableName = "BlueSwiftTests.xctest"
                BlueprintName = "FrameworkTests"
                ReferencedContainer = "container:Bluetooth.xcodeproj">
             </BuildableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3837BA301FFFC4CE00DF300E"
-            BuildableName = "Bluetooth.framework"
-            BlueprintName = "Bluetooth"
+            BlueprintIdentifier = "3837BA0A1FFFC2FE00DF300E"
+            BuildableName = "BlueSwiftSample.app"
+            BlueprintName = "Sample"
             ReferencedContainer = "container:Bluetooth.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,39 +61,41 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3837BA301FFFC4CE00DF300E"
-            BuildableName = "Bluetooth.framework"
-            BlueprintName = "Bluetooth"
+            BlueprintIdentifier = "3837BA0A1FFFC2FE00DF300E"
+            BuildableName = "BlueSwiftSample.app"
+            BlueprintName = "Sample"
             ReferencedContainer = "container:Bluetooth.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Staging"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3837BA301FFFC4CE00DF300E"
-            BuildableName = "Bluetooth.framework"
-            BlueprintName = "Bluetooth"
+            BlueprintIdentifier = "3837BA0A1FFFC2FE00DF300E"
+            BuildableName = "BlueSwiftSample.app"
+            BlueprintName = "Sample"
             ReferencedContainer = "container:Bluetooth.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Staging"
+      buildConfiguration = "Debug"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -1,0 +1,14 @@
+//
+//  Copyright © 2018 Netguru Sp. z o.o. All rights reserved.
+//  Licensed under the MIT License.
+//
+
+#include "../xcconfigs/Platforms/iOS.xcconfig"
+#include "../xcconfigs/Targets/Tests.xcconfig"
+
+_BUNDLE_NAME = BlueSwiftTests
+_BUNDLE_IDENTIFIER = co.netguru.lib.blueswift.tests
+_BUNDLE_INFOPLIST_PATH = $(PROJECT_DIR)/Unit Tests/Info.plist
+
+TEST_HOST = $(BUILT_PRODUCTS_DIR)/BlueSwiftSample.app/BlueSwiftSample
+BUNDLE_LOADER = $(TEST_HOST)

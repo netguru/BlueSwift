@@ -3,9 +3,8 @@
 //  Licensed under the MIT License.
 //
 
-
 import XCTest
-@testable import Bluetooth
+@testable import BlueSwift
 
 class CommandTests: XCTestCase {
     
