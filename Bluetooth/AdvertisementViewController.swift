@@ -4,7 +4,7 @@
 //
 
 import UIKit
-import Bluetooth
+import BlueSwift
 
 class AdvertisementViewController: UIViewController {
     

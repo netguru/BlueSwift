@@ -1,0 +1,19 @@
+//
+// Targets/Application.xcconfig
+//
+// Copyright © 2017 Netguru Sp. z o.o. All rights reserved.
+// Licensed under MIT License.
+//
+// This file contains build settings specific to application targets.
+//
+
+// MARK: Linking
+
+// Sets the `@rpath` for the application so that it can include frameworks in
+// the application bundle (inside the `Frameworks` folder).
+LD_RUNPATH_SEARCH_PATHS = @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks
+
+// MARK: Packaging
+
+// Define LLVM module.
+DEFINES_MODULE = YES

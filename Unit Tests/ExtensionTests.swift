@@ -5,7 +5,7 @@
 
 import XCTest
 import CoreBluetooth
-@testable import Bluetooth
+@testable import BlueSwift
 
 class ExtensionTests: XCTestCase {
     
