@@ -15,11 +15,11 @@ Swift 4.1, iOS 10.0 or higher.
 
 ## Cocoapods
 
-TODO
+pod 'BlueSwift'
 
 ## Carthage
 
-TODO
+github "netguru/BlueSwift"
 
 ## Example connection usage
 
