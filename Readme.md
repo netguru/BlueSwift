@@ -15,7 +15,7 @@ Swift 4.1, iOS 10.0 or higher.
 
 ## Cocoapods
 
-pod 'BlueSwift'
+pod "BlueSwift"
 
 ## Carthage
 
