@@ -1,6 +1,11 @@
 ![](https://img.shields.io/badge/swift-4.0-orange.svg)
+![](https://img.shields.io/github/release/netguru/BlueSwift.svg)
+![](https://img.shields.io/badge/carthage-compatible-green.svg)
+![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
+![](https://app.bitrise.io/app/23a07b63b3f55f97/status.svg?token=Rt_2gKUavbR8LQ7PVuTbYg&branch=master)
 
-Easy to use Bluetooth open source library by Netguru. Provides convenient methods of interacting with Bluetooth LE peripherals.
+Easy to use Bluetooth open source library by Netguru.
+Probably the easiest way to interact with bluetooth peripherals 🤟
 
 ## Features
 
@@ -111,4 +116,3 @@ advertisement.readRequestCallback = { characteristic -> Data in
 ### License
 
 Licensed under MIT license.
-
