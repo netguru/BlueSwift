@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
 ![](https://app.bitrise.io/app/23a07b63b3f55f97/status.svg?token=Rt_2gKUavbR8LQ7PVuTbYg&branch=master)
 
-Easy to use Bluetooth open source library brought to you by Netguru.
+Easy to use Bluetooth open source library brought to you by Netguru.<br/>
 Probably the easiest way to interact with bluetooth peripherals 🤟
 
 ## Features
@@ -97,20 +97,20 @@ advertisement.readRequestCallback = { characteristic -> Data in
 }
 ```
 
-### Dependency management:
+## Dependency management:
 
 BlueSwift can be drag'n dropped to the project directory, but what's more important it's supported by most common dependency management!
 
-## Cocoapods
+### Cocoapods
 
-`pod "BlueSwift"``
+`pod "BlueSwift"`
 
-## Carthage
+### Carthage
 
-`github "netguru/BlueSwift"``
+`github "netguru/BlueSwift"`
 
 ### License
 
-(As all cool open source software, it's...)
-Licensed under MIT license.
+(As all cool open source software, it's...)<br/>
+Licensed under MIT license.<br/>
 🚀🚀
