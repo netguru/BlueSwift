@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
 ![](https://app.bitrise.io/app/23a07b63b3f55f97/status.svg?token=Rt_2gKUavbR8LQ7PVuTbYg&branch=master)
 
-Easy to use Bluetooth open source library by Netguru.
+Easy to use Bluetooth open source library brought to you by Netguru.
 Probably the easiest way to interact with bluetooth peripherals 🤟
 
 ## Features
@@ -14,25 +14,9 @@ Probably the easiest way to interact with bluetooth peripherals 🤟
 - [x] Closure based read/write/notify requests.
 - [x] Built in data conversion method with `Command` wrapper.
 
-## Requirements
-
-Swift 4.2, iOS 10.0 or higher.
-
-## Cocoapods
-
-pod "BlueSwift"
-
-## Carthage
-
-github "netguru/BlueSwift"
-
-## Example connection usage
-
-Feel free to check out bundled sample project.
-
 ### Connection:
 
-Here you can find a sample code used to connect with a remote peripheral with one service and characteristic:
+Below you can find
 
 ```swift
 let connection = BluetoothConnection.shared
@@ -113,6 +97,20 @@ advertisement.readRequestCallback = { characteristic -> Data in
 }
 ```
 
+### Dependency management:
+
+BlueSwift can be drag'n dropped to the project directory, but what's more important it's supported by most common dependency management!
+
+## Cocoapods
+
+`pod "BlueSwift"``
+
+## Carthage
+
+`github "netguru/BlueSwift"``
+
 ### License
 
+(As all cool open source software, it's...)
 Licensed under MIT license.
+🚀🚀
