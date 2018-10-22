@@ -9,7 +9,7 @@ Probably the easiest way to interact with bluetooth peripherals 🤟
 
 ## Features
 
-- [x] Handles connection with remote peripharals.
+- [x] Handles connection with remote peripherals.
 - [x] Handles advertising an iPhone as Bluetooth LE peripheral.
 - [x] Closure based read/write/notify requests.
 - [x] Built in data conversion method with `Command` wrapper.
