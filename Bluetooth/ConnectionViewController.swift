@@ -14,7 +14,7 @@ class ConnectionViewController: UIViewController {
     
     private var loading = false {
         didSet {
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            let activityIndicator = UIActivityIndicatorView(style: .gray)
             activityIndicator.startAnimating()
             navigationItem.rightBarButtonItem = loading ? UIBarButtonItem(customView: activityIndicator) : nil
             title = loading ? "Connecting" : "Connected"
