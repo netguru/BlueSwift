@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/swift-4.0-orange.svg)
+![](https://img.shields.io/badge/swift-4.2-orange.svg)
 ![](https://img.shields.io/github/release/netguru/BlueSwift.svg)
 ![](https://img.shields.io/badge/carthage-compatible-green.svg)
 ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
@@ -16,7 +16,7 @@ Probably the easiest way to interact with bluetooth peripherals 🤟
 
 ## Requirements
 
-Swift 4.1, iOS 10.0 or higher.
+Swift 4.2, iOS 10.0 or higher.
 
 ## Cocoapods
 
