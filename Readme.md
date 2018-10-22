@@ -32,7 +32,7 @@ connection.connect(peripheral) { _ in
 
 ## 📡 Advertisement:
 
-Below you can find a code sample the setup the iPhone to advertise Bluetooth.
+Below you can find a code sample the setup the iPhone to advertise Bluetooth.<br/>
 That's all it takes to advertise one service containing one characteristic.
 
 ```swift
@@ -47,12 +47,13 @@ advertisement.advertise(peripheral: peripheral) { _ in
 
 ## ⚙️ More usage:
 
-For more advanced usage check out documentation page at: https://blueswift.github.io
+For more advanced usage check out documentation page at: https://blueswift.github.io<br/>
 Also feel free to check example project bundled with this repository! 👩🏼‍🏫 👨🏼‍🏫
 
 ## 🛠 Dependency management:
 
-BlueSwift can be drag'n dropped to the project directory,<br/>but what's more important it's supported by most common dependency management!
+BlueSwift can be drag'n dropped to the project directory,<br/>
+but what's more important it's supported by most common dependency management!
 
 ### ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
 
