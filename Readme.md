@@ -47,28 +47,27 @@ advertisement.advertise(peripheral: peripheral) { _ in
 
 ## ⚙️ Advanced usage:
 
-For more advanced usage check out documentation page at: blueswift.github.io
+For more advanced usage check out documentation page at: https://blueswift.github.io
 
-## Dependency management:
+## 🛠 Dependency management:
 
 BlueSwift can be drag'n dropped to the project directory,<br/>but what's more important it's supported by most common dependency management!
 
-### Cocoapods
+### ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
 
-`pod "BlueSwift"`
+Just drop the line below to your Podfile:
 
-### Carthage
+`pod 'BlueSwift'`
 
-`github "netguru/BlueSwift"`
+(but probably you'd like to pin it to the nearest major release, so `pod 'BlueSwift' , '~> 1.0.0'`)
 
-### License
+### ![](https://img.shields.io/badge/carthage-compatible-green.svg)
+
+`github 'netguru/BlueSwift'`
+
+## 📄 License
 
 (As all cool open source software, it's...)<br/>
 Licensed under MIT license.<br/>
 
-Also it would be really nice if you could drop us
-🚀🚀
-
-### Contributors
-
-📬  -
+Also it would be really nice if you could drop us a line about your usage!! 🚀🚀
