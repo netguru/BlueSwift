@@ -4,12 +4,10 @@
 ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
 ![](https://app.bitrise.io/app/23a07b63b3f55f97/status.svg?token=Rt_2gKUavbR8LQ7PVuTbYg&branch=master)
 
-Set of emojis ( 🛠 , ⚙️ , 📲 , 📡 , 📬  , 🤹🏻‍♂️ , )
-
 Easy to use Bluetooth open source library brought to you by Netguru.<br/>
 🤟 Probably the easiest way to interact with bluetooth peripherals 🤟
 
-## Features
+## 🤹🏻‍♂️ Features
 
 - [x] Handles connection with remote peripherals.
 - [x] Handles advertising an iPhone as Bluetooth LE peripheral.
@@ -18,7 +16,8 @@ Easy to use Bluetooth open source library brought to you by Netguru.<br/>
 
 ##  📲  Connection:
 
-
+Below you can find an easy code sample to connect to the peripheral.<br/>
+Really thats all that is needed 🍾🍾
 
 ```swift
 let connection = BluetoothConnection.shared
@@ -33,7 +32,8 @@ connection.connect(peripheral) { _ in
 
 ## 📡 Advertisement:
 
-
+Below you can find a code sample the setup the iPhone to advertise Bluetooth.
+That's all it takes to advertise one service containing one characteristic.
 
 ```swift
 let characteristic = try! Characteristic(uuid: "your_characteristic_uuid")
@@ -45,9 +45,10 @@ advertisement.advertise(peripheral: peripheral) { _ in
 }
 ```
 
-## ⚙️ Advanced usage:
+## ⚙️ More usage:
 
 For more advanced usage check out documentation page at: https://blueswift.github.io
+Also feel free to check example project bundled with this repository! 👩🏼‍🏫 👨🏼‍🏫
 
 ## 🛠 Dependency management:
 
