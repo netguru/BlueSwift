@@ -57,7 +57,7 @@ let command = Command.utf8String("Hello world")
 peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
 	// do sth
 })
-peripheral.read(characteristic, handler: { [weak self] data, error in
+peripheral.read(characteristic, handler: { data, error in
 	// do sth
 })
 ```
@@ -78,6 +78,7 @@ advertisement.writeRequestCallback = { characteristic, data in
 
 For more advanced usage check out documentation page at: https://netguru.github.io/BlueSwift/.<br/>
 Also feel free to check example project bundled with this repository! 👩🏼‍🏫 👨🏼‍🏫
+It's a complete app that allows connection and sending text messages between two iPhones.
 
 ## 🛠 Dependency management:
 
@@ -94,7 +95,11 @@ Just drop the line below to your Podfile:
 
 ### ![](https://img.shields.io/badge/carthage-compatible-green.svg)
 
+The same as with Cocoapods, insert the line below to your Cartfile:
+
 `github 'netguru/BlueSwift'`
+
+, or including version - `github 'netguru/BlueSwift' ~> 1.0.0`
 
 ## 📄 License
 
