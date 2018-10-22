@@ -45,9 +45,38 @@ advertisement.advertise(peripheral: peripheral) { _ in
 }
 ```
 
+## 📟 📲 Data transfer:
+
+Of course data transfer is also possible, both for advertising and connection mode!
+Below there are some basic examples, for more please see `More usage` section 👇🏻
+
+## Connection mode:
+
+```swift
+let command = Command.utf8String("Hello world")
+peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
+	// do sth
+})
+peripheral.read(characteristic, handler: { [weak self] data, error in
+	// do sth
+})
+```
+
+## Advertisement mode:
+
+```swift
+let command = Command.int8(3)
+advertisement.update(command, characteristic: characteristic) { error in
+	// notified subscribed centrals
+}
+advertisement.writeRequestCallback = { characteristic, data in
+	// handle write request
+}
+```
+
 ## ⚙️ More usage:
 
-For more advanced usage check out documentation page at: https://blueswift.github.io<br/>
+For more advanced usage check out documentation page at: https://netguru.github.io/BlueSwift/.<br/>
 Also feel free to check example project bundled with this repository! 👩🏼‍🏫 👨🏼‍🏫
 
 ## 🛠 Dependency management:
