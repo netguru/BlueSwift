@@ -4,8 +4,10 @@
 ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
 ![](https://app.bitrise.io/app/23a07b63b3f55f97/status.svg?token=Rt_2gKUavbR8LQ7PVuTbYg&branch=master)
 
+Set of emojis ( 🛠 , ⚙️ , 📲 , 📡 , 📬  , 🤹🏻‍♂️ , )
+
 Easy to use Bluetooth open source library brought to you by Netguru.<br/>
-Probably the easiest way to interact with bluetooth peripherals 🤟
+🤟 Probably the easiest way to interact with bluetooth peripherals 🤟
 
 ## Features
 
@@ -14,9 +16,9 @@ Probably the easiest way to interact with bluetooth peripherals 🤟
 - [x] Closure based read/write/notify requests.
 - [x] Built in data conversion method with `Command` wrapper.
 
-### Connection:
+##  📲  Connection:
 
-Below you can find
+
 
 ```swift
 let connection = BluetoothConnection.shared
@@ -29,36 +31,9 @@ connection.connect(peripheral) { _ in
 }
 ```
 
-### Data transfer:
+## 📡 Advertisement:
 
-Handling write requests:
 
-```swift
-let command = Command.utf8String("Hello world")
-peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
-	// do sth
-})
-```
-
-Handling read requests:
-
-```swift
-peripheral.read(characteristic, handler: { [weak self] data, error in
-	// do sth
-})
-```
-
-Handling characteristic notifications:
-
-```swift
-characteristic.notifyHandler = { [weak self] data in
-	// do sth
-}
-```
-
-## Example advertisement usage.
-
-### Advertisement setup:
 
 ```swift
 let characteristic = try! Characteristic(uuid: "your_characteristic_uuid")
@@ -70,36 +45,13 @@ advertisement.advertise(peripheral: peripheral) { _ in
 }
 ```
 
-### Handling requests:
+## ⚙️ Advanced usage:
 
-Updating values for characteristics:
-
-```swift
-let command = Command.int8(3)
-advertisement.update(command, characteristic: characteristic) { error in
-	// notified subscribed centrals
-}
-```
-
-Handling write requests:
-
-```swift
-advertisement.writeRequestCallback = { characteristic, data in
-	// handle write request
-}
-```
-
-Handling read requests:
-
-```swift
-advertisement.readRequestCallback = { characteristic -> Data in
-	// respond to read request
-}
-```
+For more advanced usage check out documentation page at: blueswift.github.io
 
 ## Dependency management:
 
-BlueSwift can be drag'n dropped to the project directory, but what's more important it's supported by most common dependency management!
+BlueSwift can be drag'n dropped to the project directory,<br/>but what's more important it's supported by most common dependency management!
 
 ### Cocoapods
 
@@ -113,4 +65,10 @@ BlueSwift can be drag'n dropped to the project directory, but what's more import
 
 (As all cool open source software, it's...)<br/>
 Licensed under MIT license.<br/>
+
+Also it would be really nice if you could drop us
 🚀🚀
+
+### Contributors
+
+📬  -
