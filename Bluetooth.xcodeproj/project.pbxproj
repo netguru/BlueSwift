@@ -539,7 +539,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Netguru;
 				TargetAttributes = {
 					3837BA0A1FFFC2FE00DF300E = {

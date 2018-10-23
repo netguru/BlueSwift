@@ -143,6 +143,8 @@ Select the project file in Navigator panel, go to project's General tab and assi
 
 ![](Images/usage-assign-project-configurations.gif)
 
+If Xcode can't see your custom `*.xcconfig` files, make sure they are included in the project.
+
 ### Step 7: Build the project!
 
 Everything should be configured properly by now. Test the configuration by building the project. If it builds without errors, all is good!
