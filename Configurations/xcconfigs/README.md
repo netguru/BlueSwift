@@ -1,6 +1,6 @@
 # xcconfigs
 
-![](https://img.shields.io/badge/xcode-9.1-green.svg)
+![](https://img.shields.io/badge/xcode-10.0-green.svg)
 [![](https://img.shields.io/github/release/netguru/xcconfigs.svg)](https://github.com/netguru/xcconfigs/releases)
 [![](https://img.shields.io/github/license/netguru/xcconfigs.svg)](LICENSE.md)
 
@@ -8,7 +8,7 @@ This is a collection of common Xcode build configuration files.
 
 ## Requirements
 
-The latest stable version of `xcconfigs` is compatible with **Xcode 9.1**.
+The latest stable version of `xcconfigs` is compatible with **Xcode 10.0**.
 
 ## Documentation
 
@@ -35,9 +35,9 @@ git submodule update --init --recursive
 
 ## Roadmap
 
-#### Version 0.5
+#### Version 0.7
 
-The main focus of this release will be fixing issues encountered when integrating version 0.4.
+The main focus of this release will be fixing issues encountered when integrating version 0.6.
 
 ## About
 
