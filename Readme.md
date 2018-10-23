@@ -25,8 +25,8 @@ let characteristic = try! Characteristic(uuid: "your_characteristic_uuid", shoul
 let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
 let configuration = try! Configuration(services: [service], advertisement: "your_advertising_uuid")
 let peripheral = Peripheral(configuration: configuration)
-connection.connect(peripheral) { _ in
-	print("Connected")
+connection.connect(peripheral) { error in
+	// do awesome stuff
 }
 ```
 
@@ -40,8 +40,8 @@ let characteristic = try! Characteristic(uuid: "your_characteristic_uuid")
 let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
 let configuration = try! Configuration(services: [service], advertisement: "your_service_uuid")
 let peripheral = Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("your_service_uuid")])
-advertisement.advertise(peripheral: peripheral) { _ in
-	// handle possible error            
+advertisement.advertise(peripheral: peripheral) { error in
+	// oh no, something failed in that case          
 }
 ```
 
@@ -55,10 +55,10 @@ Below there are some basic examples, for more please see `More usage` section ðŸ
 ```swift
 let command = Command.utf8String("Hello world")
 peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
-	// do sth
+	// written!
 })
 peripheral.read(characteristic, handler: { data, error in
-	// do sth
+	// read!
 })
 ```
 
@@ -67,10 +67,10 @@ peripheral.read(characteristic, handler: { data, error in
 ```swift
 let command = Command.int8(3)
 advertisement.update(command, characteristic: characteristic) { error in
-	// notified subscribed centrals
+	// data updated!
 }
 advertisement.writeRequestCallback = { characteristic, data in
-	// handle write request
+	// written!
 }
 ```
 
