@@ -14,10 +14,10 @@ public extension Peripheral where Type == Connectable {
     }
     
     /// Deafult initializer for Perpipheral.
-    /// - Parameter configuration: proviously created configuration containing all desired services and characteristics.
-    /// - Parameter deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here.
-    ///   When set, connection to peripheral is much quicker.
-    /// - SeeAlso: Configuration
+    /// - Parameters:
+    ///     - configuration: proviously created configuration containing all desired services and characteristics.
+    ///     - deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here. When set, connection to peripheral is much quicker.
+    /// - SeeAlso: `Configuration`
     public convenience init(configuration: Configuration, deviceIdentifier: String? = nil) {
         self.init(configuration: configuration, deviceIdentifier: deviceIdentifier, advertisementData: nil)
     }
@@ -29,12 +29,13 @@ public extension Peripheral where Type == Connectable {
     }
     
     /// Method used for writing to the peripheral after it's connected.
-    /// - Parameter command: a command to write to the device.
-    /// - Parameter characteristic: a characteristic the command should be directed to.
-    /// - Parameter handler: a completion handler indicating if reuqest was succesfull.
-    /// - SeeAlso: Command
-    /// - SeeAlso: Characteristic
-    /// - SeeAlso: Peripheral.TransmissionError
+    /// - Parameters:
+    ///     - command: a command to write to the device.
+    ///     - characteristic: a characteristic the command should be directed to.
+    ///     - handler: a completion handler indicating if reuqest was succesfull.
+    /// - SeeAlso: `Command`
+    /// - SeeAlso: `Characteristic`
+    /// - SeeAlso: `Peripheral.TransmissionError`
     public func write(command: Command, characteristic: Characteristic, handler: ((TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .write)
@@ -50,10 +51,11 @@ public extension Peripheral where Type == Connectable {
     }
     
     /// Method used to perform read request from peripheral after it's connected.
-    /// - Parameter characteristic: a characteristic you wish to read.
-    /// - Parameter handler: completion handler returning Data retrieved from characteristic or error if it failed.
-    /// - SeeAlso: Characteristic
-    /// - SeeAlso: Peripheral.TransmissionError
+    /// - Parameters:
+    ///     - characteristic: a characteristic you wish to read.
+    ///     - handler: completion handler returning Data retrieved from characteristic or error if it failed.
+    /// - SeeAlso: `Characteristic`
+    /// - SeeAlso: `Peripheral.TransmissionError`
     public func read(_ characteristic: Characteristic, handler: ((Data?, TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .read)

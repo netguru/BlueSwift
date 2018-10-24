@@ -32,10 +32,11 @@ public final class BluetoothConnection: NSObject {
     }
     
     /// Primary method used to connect to a device. Can be called multiple times to connect more than on device at the same time.
-    /// - Parameter peripheral: a configured device you wish to connect to.
-    /// - Parameter handler: a completion handler called upon succesfull connection or a error.
-    /// - SeeAlso: BluetoothConnection.ConnectionError
-    /// - SeeAlso: Peripheral
+    /// - Parameters:
+    ///     - peripheral: a configured device you wish to connect to.
+    ///     - handler: a completion handler called upon succesfull connection or a error.
+    /// - SeeAlso: `BluetoothConnection.ConnectionError`
+    /// - SeeAlso: `Peripheral`
     public func connect(_ peripheral: Peripheral<Connectable>, handler: ((ConnectionError?) -> ())?) {
         guard !peripheral.isConnected else {
             handler?(.deviceAlreadyConnected)

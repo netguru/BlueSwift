@@ -10,7 +10,7 @@ import CoreBluetooth
 internal final class AdvertisementService: NSObject {
     
     /// Peripheral manager used for advertisement.
-    /// SeeAlso: CBPeripheralManager
+    /// - SeeAlso: `CBPeripheralManager`
     private lazy var peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     
     /// Boolean value indicating whether device should advertise.
@@ -61,7 +61,7 @@ internal final class AdvertisementService: NSObject {
 
 extension AdvertisementService: CBPeripheralManagerDelegate {
     
-    /// SeeAlso: CBPeripheralManagerDelegate
+    /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         do {
             try peripheral.validateState()
@@ -74,7 +74,7 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         }
     }
     
-    /// SeeAlso: CBPeripheralManagerDelegate
+    /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
         if let error = error {
             errorHandler?(.otherError(error))
@@ -83,14 +83,14 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         self.peripheral?.configuration.services.map({ $0.assignAdvertisementService() }).forEach(peripheralManager.add(_:))
     }
     
-    /// SeeAlso: CBPeripheralManagerDelegate
+    /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
         if let error = error {
             errorHandler?(.otherError(error))
         }
     }
-    
-    /// SeeAlso: CBPeripheralManagerDelegate
+
+    /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
         let rawCharacteristic = request.characteristic
         guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
@@ -99,7 +99,7 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         peripheral.respond(to: request, withResult: .success)
     }
     
-    /// SeeAlso: CBPeripheralManagerDelegate
+    /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
         requests.forEach { request in
             let rawCharacteristic = request.characteristic
@@ -109,12 +109,12 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         }
     }
     
-    /// SeeAlso: CBPeripheralManagerDelegate
+    /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
         subsribedCentrals.append(central)
     }
     
-    /// SeeAlso: CBPeripheralManagerDelegate
+    /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
         guard let index = subsribedCentrals.index(where: { $0 === central }) else { return }
         subsribedCentrals.remove(at: index)
