@@ -2,8 +2,8 @@
 
 For the past previous years I've worked with several apps related to Bluetooth LE technology.
 At the start of every project I've came to a few conclusions:
-- CoreBluetooh integration is horrible
-- I had to write many small MVP projects(eg. for testing purposes)
+- CoreBluetooh delegate based API is horrible and really full of boilerplate
+- I had to write many small MVP projects(eg. for testing purposes) that made point 1 even more horrible
 
 That's pretty much everything that motivated me to create a library that will handle connection and data tranfer in just a couple of lines.
 I've also felt that it should be handled by closures instead of delegation for easier management.
@@ -12,7 +12,7 @@ Let's go with connection first.
 
 # Connection:
 
-Starting with some code to be deeply later:
+Starting with some code to be described in detail later:
 
 ```swift
 let connection = BluetoothConnection.shared
@@ -66,15 +66,57 @@ Here you have a convenient closure in every `Characteristic` object instance. It
 
 # Advertisement:
 
+```swift
+let characteristic = try! Characteristic(uuid: "your_characteristic_uuid")
+let service = try! Service(uuid: "your_service_uuid", characteristics: [characteristic])
+let configuration = try! Configuration(services: [service], advertisement: "your_service_uuid")
+let peripheral = Peripheral(configuration: configuration, advertisementData: [.localName("Test"), .servicesUUIDs("your_service_uuid")])
+advertisement.advertise(peripheral: peripheral) { _ in
+	// handle possible error            
+}
+```
 
+Advertisement setup is actually not that much different than connection. The main idea of creating a configuration that will specify all services and characteristics of the device is kept, only details varies.
+
+```swift
+let command = Command.int8(3)
+advertisement.update(command, characteristic: characteristic) { error in
+	// notified subscribed centrals
+}
+```
+
+Above method uses `Command` enum to create a `Data` object that will be updated on a given characteristic. It wil autmoatically update the value on each central that is currently subscribed to that characteristic.
+
+```swift
+advertisement.writeRequestCallback = { characteristic, data in
+	// handle write request
+}
+```
+
+If you wish to handle write requests from connected centrals, assign custom value to that closure, each write attempt will be called there with associated data and characteristic.
+
+```swift
+advertisement.readRequestCallback = { characteristic -> Data in
+	// respond to read request
+}
+```
+
+If you wish to handle read requests from connected centrals, assign custom value to that closure, each write attempt will be called there with associated characteristic. You should return any data that should be responded.
 
 # Public classes documentation:
 
-[BluetoothAdvertisement](./bluetoothAdvertisement.md)
 [BluetoothConnection](./bluetoothConnection.md)
-[Peripheral](./peripheral.md)
+
 [Service](./service.md)
+
 [Characteristic](./characteristic.md)
+
 [Configuration](./configuration.md)
-[AdvertisementData](./advertisementData.md)
+
+[Peripheral](./peripheral.md)
+
 [Command](./command.md)
+
+[BluetoothAdvertisement](./bluetoothAdvertisement.md)
+
+[AdvertisementData](./advertisementData.md)
