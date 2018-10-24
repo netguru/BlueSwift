@@ -15,6 +15,7 @@ internal extension CBUUID {
     
     /// Convenience initializer, a wrapper for default init(string: String) method with error handling, not crashing
     /// like default one.
+    ///
     /// - Parameter uuidString: a String wished to be converted into CBUIID.
     /// - Throws: `CreationError.invalidString` if passed String is not valid.
     convenience internal init(uuidString: String) throws {

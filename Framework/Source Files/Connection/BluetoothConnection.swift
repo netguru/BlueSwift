@@ -32,6 +32,7 @@ public final class BluetoothConnection: NSObject {
     }
     
     /// Primary method used to connect to a device. Can be called multiple times to connect more than on device at the same time.
+    ///
     /// - Parameters:
     ///     - peripheral: a configured device you wish to connect to.
     ///     - handler: a completion handler called upon succesfull connection or a error.
@@ -52,8 +53,8 @@ public final class BluetoothConnection: NSObject {
         }
     }
     
-    /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and
-    /// connection attempts will stop.
+    /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and connection attempts will stop.
+    ///
     /// - Parameter peripheral: a peripheral you wish to disconnect. Should be exactly the same instance that was used for connection.
     /// - Throws: BluetoothConnection.ConnectionError in case there was a disconnection problem
     /// - SeeAlso: BluetoothConnection.DisconnectionError

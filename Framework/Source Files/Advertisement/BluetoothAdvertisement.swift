@@ -19,6 +19,7 @@ public final class BluetoothAdvertisement {
     public init() { }
     
     /// Start advertising peripheral with parameters given by a configuration of passed peripheral.
+    ///
     /// - Parameters:
     ///     - peripheral: a peripheral containing configuration with specified services and characteristics.
     ///     - errorHandler: an error handler. Will be called only after unsuccesfull advertisement setup.
@@ -35,6 +36,7 @@ public final class BluetoothAdvertisement {
     
     /// Updates a value for specified characteristic with data.
     /// After the request a notify will be called on all subscribed centrals.
+    ///
     /// - Parameters:
     ///     - command: a comand to update on characteristic.
     ///     - characteristic: specified characteristic to be updated.

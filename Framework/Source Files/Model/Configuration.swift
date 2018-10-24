@@ -18,6 +18,7 @@ public struct Configuration {
     
     /// Creates a new instance of configuration containing Services desired peripheral should contain.
     /// Used to initialize a Peripheral instance.
+    ///
     /// - Parameters:
     ///     - services: An array of Services wished to use.
     ///     - advertisement: UUID of desired peripheral that is sepcified in adverisement header.

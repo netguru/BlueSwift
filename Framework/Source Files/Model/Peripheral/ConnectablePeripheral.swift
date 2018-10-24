@@ -14,6 +14,7 @@ public extension Peripheral where Type == Connectable {
     }
     
     /// Deafult initializer for Perpipheral.
+    ///
     /// - Parameters:
     ///     - configuration: proviously created configuration containing all desired services and characteristics.
     ///     - deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here. When set, connection to peripheral is much quicker.
@@ -29,6 +30,7 @@ public extension Peripheral where Type == Connectable {
     }
     
     /// Method used for writing to the peripheral after it's connected.
+    ///
     /// - Parameters:
     ///     - command: a command to write to the device.
     ///     - characteristic: a characteristic the command should be directed to.
@@ -51,6 +53,7 @@ public extension Peripheral where Type == Connectable {
     }
     
     /// Method used to perform read request from peripheral after it's connected.
+    ///
     /// - Parameters:
     ///     - characteristic: a characteristic you wish to read.
     ///     - handler: completion handler returning Data retrieved from characteristic or error if it failed.
