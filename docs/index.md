@@ -1,6 +1,6 @@
 # Documentation:
 
-[BluetoothAdvertisement](./bluetoothAdvertisement.md)
+<!-- [BluetoothAdvertisement](./bluetoothAdvertisement.md)
 
 [BluetoothConnection](./bluetoothConnection.md)
 
@@ -14,4 +14,4 @@
 
 [AdvertisementData](./advertisementData.md)
 
-[Command](./command.md)
+[Command](./command.md) -->
