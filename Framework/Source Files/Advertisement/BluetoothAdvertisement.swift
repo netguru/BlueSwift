@@ -22,7 +22,7 @@ public final class BluetoothAdvertisement {
     ///
     /// - Parameters:
     ///     - peripheral: a peripheral containing configuration with specified services and characteristics.
-    ///     - errorHandler: an error handler. Will be called only after unsuccesfull advertisement setup.
+    ///     - errorHandler: an error handler. Will be called only after unsuccessfull advertisement setup.
     /// - SeeAlso: `AdvertisementError`
     /// - SeeAlso: `Peripheral`
     public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: ((AdvertisementError) -> ())?) {

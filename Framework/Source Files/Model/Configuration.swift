@@ -21,7 +21,7 @@ public struct Configuration {
     ///
     /// - Parameters:
     ///     - services: An array of Services wished to use.
-    ///     - advertisement: UUID of desired peripheral that is sepcified in adverisement header.
+    ///     - advertisement: UUID of desired peripheral that is specified in advertisement header.
     /// - Throws: CBUUID.CreationError
     /// - SeeAlso: `CBUUID.CreationError`
     public init(services: [Service], advertisement: String) throws {

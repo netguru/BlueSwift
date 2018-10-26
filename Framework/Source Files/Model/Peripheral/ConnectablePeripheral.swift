@@ -16,8 +16,8 @@ public extension Peripheral where Type == Connectable {
     /// Deafult initializer for Perpipheral.
     ///
     /// - Parameters:
-    ///     - configuration: proviously created configuration containing all desired services and characteristics.
-    ///     - deviceIdentifier: optional parameter. If device identifier is cached locally than it should be passed here. When set, connection to peripheral is much quicker.
+    ///     - configuration: previously created configuration containing all desired services and characteristics.
+    ///     - deviceIdentifier: optional parameter. If device identifier is cached locally then it should be passed here. When set, connection to peripheral is much quicker.
     /// - SeeAlso: `Configuration`
     public convenience init(configuration: Configuration, deviceIdentifier: String? = nil) {
         self.init(configuration: configuration, deviceIdentifier: deviceIdentifier, advertisementData: nil)
@@ -34,7 +34,7 @@ public extension Peripheral where Type == Connectable {
     /// - Parameters:
     ///     - command: a command to write to the device.
     ///     - characteristic: a characteristic the command should be directed to.
-    ///     - handler: a completion handler indicating if reuqest was succesfull.
+    ///     - handler: a completion handler indicating if reuqest was successfull.
     /// - SeeAlso: `Command`
     /// - SeeAlso: `Characteristic`
     /// - SeeAlso: `Peripheral.TransmissionError`
