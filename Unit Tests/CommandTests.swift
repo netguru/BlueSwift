@@ -28,7 +28,7 @@ class CommandTests: XCTestCase {
         
         do {
             _ = try improperString.hexDecodedData()
-            XCTFail("Improper string succesfull parse should throw an error.")
+            XCTFail("Improper string successfull parse should throw an error.")
         }
         catch let error {
             guard let error = error as? Command.ConversionError else {

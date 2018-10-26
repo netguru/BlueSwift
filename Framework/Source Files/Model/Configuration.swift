@@ -18,10 +18,12 @@ public struct Configuration {
     
     /// Creates a new instance of configuration containing Services desired peripheral should contain.
     /// Used to initialize a Peripheral instance.
-    /// - Parameter services: An array of Services wished to use.
-    /// - Parameter advertisement: UUID of desired peripheral that is sepcified in adverisement header.
+    ///
+    /// - Parameters:
+    ///     - services: An array of Services wished to use.
+    ///     - advertisement: UUID of desired peripheral that is specified in advertisement header.
     /// - Throws: CBUUID.CreationError
-    /// - SeeAlso: CBUUID.CreationError
+    /// - SeeAlso: `CBUUID.CreationError`
     public init(services: [Service], advertisement: String) throws {
         advertisementUUID = try CBUUID(uuidString: advertisement)
         self.services = services
