@@ -59,7 +59,7 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
     internal var readHandler: ((Data?, TransmissionError?) -> ())?
     
     /// Called after reading data from characteristic.
-    /// - SeeAlso: CBPeripheralDelegate
+    /// - SeeAlso: `CBPeripheralDelegate`
     /// This should be moved to an extension in Swift 5 according to: https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md feature.
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         defer {
@@ -76,7 +76,7 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
     /// Called in two cases:
     /// 1) After performing read request from peripheral.
     /// 2) After peripheral updates value for characteristic with notify turned on.
-    /// - SeeAlso: CBPeripheralDelegate
+    /// - SeeAlso: `CBPeripheralDelegate`
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         defer {
             readHandler = nil

@@ -29,11 +29,12 @@ public class Characteristic {
     internal let bluetoothUUID: CBUUID
     
     /// Initializes a new instance of Characteristic. It's failable if passed UUID String is not parseable to UUID standards.
-    /// - Parameter uuid: UUID of desired service, should be parseable to CBUUID in order for the initializer to work.
-    /// - Parameter shouldObserveNotification: indicates if this characteristic should notify when it's value changes. Note that this
-    ///   will happen only when characteristic properties include Notify. False by default.
+    ///
+    /// - Parameters:
+    ///     - uuid: UUID of desired service, should be parseable to CBUUID in order for the initializer to work.
+    ///     - shouldObserveNotification: indicates if this characteristic should notify when it's value changes. Note that this will happen only when characteristic properties include Notify. False by default.
     /// - Throws: CBUUID.CreationError
-    /// - SeeAlso: CBUUID.CreationError
+    /// - SeeAlso: `CBUUID.CreationError`
     public init(uuid: String, shouldObserveNotification: Bool = false) throws {
         self.bluetoothUUID = try CBUUID(uuidString: uuid)
         self.uuid = uuid

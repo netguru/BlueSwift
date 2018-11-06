@@ -126,7 +126,7 @@ extension ConnectionService: CBCentralManagerDelegate {
         central.connect(peripheral, options: connectionOptions)
     }
     
-    /// Called upon a succesfull peripheral connection.
+    /// Called upon a successfull peripheral connection.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         guard let connectingPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first else { return }

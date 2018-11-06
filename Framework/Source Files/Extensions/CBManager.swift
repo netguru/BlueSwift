@@ -7,7 +7,8 @@ import Foundation
 import CoreBluetooth
 
 internal extension CBManager {
-    
+
+    /// Validates the current state of CBManager class to determine if Bluetooth is not supported on this device or is turned off or unavailable for some other reason.
     func validateState() throws {
         switch state {
         case .poweredOff, .resetting, .unauthorized:

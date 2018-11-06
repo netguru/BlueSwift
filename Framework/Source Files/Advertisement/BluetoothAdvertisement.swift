@@ -9,7 +9,7 @@ import Foundation
 public final class BluetoothAdvertisement {
     
     /// Advertisement service.
-    /// SeeAlso: AdvertisementService
+    /// - SeeAlso: `AdvertisementService`
     private lazy var advertisementService = AdvertisementService()
     
     /// A singleton instance.
@@ -19,10 +19,12 @@ public final class BluetoothAdvertisement {
     public init() { }
     
     /// Start advertising peripheral with parameters given by a configuration of passed peripheral.
-    /// Parameter peripheral: a peripheral containing configuration with specified services and characteristics.
-    /// Parameter errorHandler: an error handler. Will be called only after unsuccesfull advertisement setup.
-    /// SeeAlso: AdvertisementError
-    /// SeeAlso: Peripheral
+    ///
+    /// - Parameters:
+    ///     - peripheral: a peripheral containing configuration with specified services and characteristics.
+    ///     - errorHandler: an error handler. Will be called only after unsuccessfull advertisement setup.
+    /// - SeeAlso: `AdvertisementError`
+    /// - SeeAlso: `Peripheral`
     public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: ((AdvertisementError) -> ())?) {
         advertisementService.startAdvertising(peripheral, errorHandler: errorHandler)
     }
@@ -34,11 +36,13 @@ public final class BluetoothAdvertisement {
     
     /// Updates a value for specified characteristic with data.
     /// After the request a notify will be called on all subscribed centrals.
-    /// Parameter value: a data to update on characteristic.
-    /// Parameter characteristic: specified characteristic to be updated.
-    /// Parameter errorHandler: an error handler called if data update fails.
-    /// SeeAlso: AdvertisementError
-    /// SeeAlso: Characteristic
+    ///
+    /// - Parameters:
+    ///     - command: a comand to update on characteristic.
+    ///     - characteristic: specified characteristic to be updated.
+    ///     - errorHandler: an error handler called if data update fails.
+    /// - SeeAlso: `AdvertisementError`
+    /// - SeeAlso: `Characteristic`
     public func update(_ command: Command, characteristic: Characteristic, errorHandler: @escaping (AdvertisementError) -> (Void)) {
         do {
             try advertisementService.updateValue(command.convertedData(), characteristic: characteristic, errorHandler: errorHandler)
