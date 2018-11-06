@@ -1,5 +1,7 @@
 ![](./logo.png)
 
+<br/>
+
 ![](https://img.shields.io/badge/swift-4.2-orange.svg)
 ![](https://img.shields.io/github/release/netguru/BlueSwift.svg)
 ![](https://img.shields.io/badge/carthage-compatible-green.svg)
