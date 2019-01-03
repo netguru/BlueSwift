@@ -58,7 +58,7 @@ Below there are some basic examples, for more please see `More usage` section ðŸ
 
 ```swift
 let command = Command.utf8String("Hello world")
-peripheral.write(command: command, characteristic: someCharacteristic, handler: { error in
+peripheral.write(command: command, characteristic: someCharacteristic, type: .withResponse, handler: { error in
 	// written!
 })
 peripheral.read(characteristic, handler: { data, error in
