@@ -52,7 +52,7 @@ class ConnectionViewController: UIViewController {
     
     @IBAction func write() {
         let command = Command.utf8String(textField.text!)
-        peripheral.write(command: command, characteristic: otherCharacteristic) { error in
+        peripheral.write(command: command, characteristic: otherCharacteristic, type: .withResponse) { error in
             print("Did write")
         }
     }
