@@ -40,7 +40,7 @@ public extension Peripheral where Type == Connectable {
     /// - SeeAlso: `Characteristic`
     /// - SeeAlso: `CBCharacteristicWriteType`
     /// - SeeAlso: `Peripheral.TransmissionError`
-    public func write(command: Command, characteristic: Characteristic, type: CBCharacteristicWriteType, handler: ((TransmissionError?) -> ())?) {
+    public func write(command: Command, characteristic: Characteristic, type: CBCharacteristicWriteType = .withResponse, handler: ((TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .write)
             writeHandler = handler
