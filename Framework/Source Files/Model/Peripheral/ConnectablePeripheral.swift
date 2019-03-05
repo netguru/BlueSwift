@@ -35,14 +35,16 @@ public extension Peripheral where Type == Connectable {
     ///     - command: a command to write to the device.
     ///     - characteristic: a characteristic the command should be directed to.
     ///     - handler: a completion handler indicating if reuqest was successfull.
+    ///     - type: type of write request
     /// - SeeAlso: `Command`
     /// - SeeAlso: `Characteristic`
+    /// - SeeAlso: `CBCharacteristicWriteType`
     /// - SeeAlso: `Peripheral.TransmissionError`
-    public func write(command: Command, characteristic: Characteristic, handler: ((TransmissionError?) -> ())?) {
+    public func write(command: Command, characteristic: Characteristic, type: CBCharacteristicWriteType = .withResponse, handler: ((TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .write)
             writeHandler = handler
-            try peripheral?.writeValue(command.convertedData(), for: unwrapped, type: .withResponse)
+            try peripheral?.writeValue(command.convertedData(), for: unwrapped, type: type)
         } catch let error {
             guard let conversionError = error as? Command.ConversionError else {
                 handler?(error as? TransmissionError)
