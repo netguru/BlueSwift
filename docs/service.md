@@ -1,3 +1,19 @@
 ## Service
 
-🤖 Work in progress, please check back in a while 🤖
+## Overview
+
+
+
+## Topics
+
+```swift
+let uuid: String
+```
+
+```swift
+let characteristics: [Characteristic]
+```
+
+```swift
+init(uuid: String, characteristics: [Characteristic]) throws
+```
