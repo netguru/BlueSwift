@@ -116,7 +116,11 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
     
     /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
+        #if swift(>=5.0)
+        guard let index = subsribedCentrals.firstIndex(where: { $0 === central }) else { return }
+        #else
         guard let index = subsribedCentrals.index(where: { $0 === central }) else { return }
+        #endif
         subsribedCentrals.remove(at: index)
     }
 }
