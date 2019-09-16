@@ -27,7 +27,7 @@ internal extension Command {
     
     /// Variable used for conversion of parameters to Data possible to write to peripheral.
     /// - Throws: Command.ConversionError
-    internal func convertedData() throws -> Data {
+    func convertedData() throws -> Data {
         switch self {
         case .int8(let number):
             return number.decodedData

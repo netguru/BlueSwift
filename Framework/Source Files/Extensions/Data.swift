@@ -9,7 +9,7 @@ import Foundation
 internal extension Data {
     
     /// Returns encoded String.
-    internal var hexEncodedString: String {
+    var hexEncodedString: String {
         return map { String(format: "%02hhX", $0) }.joined()
     }
 }
