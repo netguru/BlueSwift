@@ -9,7 +9,7 @@ import Foundation
 internal extension UnsignedInteger {
     
     /// Returns decoded data with proper size.
-    internal var decodedData: Data {
+    var decodedData: Data {
         var mutableSelf = self
         return Data(bytes: &mutableSelf, count: MemoryLayout<Self>.size)
     }

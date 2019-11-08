@@ -19,7 +19,7 @@ public enum AdvertisementData {
 
 internal extension AdvertisementData {
     
-    internal var data: Any? {
+    var data: Any? {
         switch self {
         case .localName(let name):
             return name
@@ -36,7 +36,7 @@ internal extension AdvertisementData {
         }
     }
     
-    internal var key: String {
+    var key: String {
         switch self {
         case .localName(_):
             return CBAdvertisementDataLocalNameKey
