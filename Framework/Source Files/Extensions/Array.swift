@@ -12,7 +12,7 @@ internal extension Array {
     /// on a return value from comparison handler.
     func matchingElementsWith<T>(_ array: [T], comparison: (Element, T) -> Bool) -> [(Element, T)] {
         return compactMap { element in
-            guard let index = array.index(where: { comparison(element, $0) }) else { return nil }
+            guard let index = array.firstIndex(where: { comparison(element, $0) }) else { return nil }
             return (element, array[index])
         }
     }

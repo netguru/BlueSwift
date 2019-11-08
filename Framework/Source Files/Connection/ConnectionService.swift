@@ -52,7 +52,7 @@ extension ConnectionService {
     
     /// Disconnects given device.
     internal func disconnect(_ peripheral: CBPeripheral) {
-        if let index = peripherals.index(where: { $0.peripheral === peripheral }) {
+        if let index = peripherals.firstIndex(where: { $0.peripheral === peripheral }) {
             peripherals.remove(at: index)
         }
         centralManager.cancelPeripheralConnection(peripheral)
