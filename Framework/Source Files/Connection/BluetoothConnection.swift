@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /// Public facing interface granting methods to connect and disconnect devices.
 public final class BluetoothConnection: NSObject {
@@ -22,10 +23,11 @@ public final class BluetoothConnection: NSObject {
     /// Maximum amount of devices capable of connecting to a iOS device.
     private let deviceConnectionLimit = 8
     
-    /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
+    /// A advertisement validation handler. Will be called upon every peripheral discovery. Contains matched peripheral,
+    /// discovered peripheral from CoreBluetooth, advertisement data and RSSI value. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
     /// and advertising packet.
-    public var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))? {
+    public var advertisementValidationHandler: ((Peripheral<Connectable>, CBPeripheral, [String: Any], NSNumber) -> (Bool))? {
         didSet {
             connectionService.advertisementValidationHandler = advertisementValidationHandler
         }
