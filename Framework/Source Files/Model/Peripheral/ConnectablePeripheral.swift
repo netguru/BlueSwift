@@ -72,9 +72,12 @@ public extension Peripheral where Type == Connectable {
     }
 
     /// Method used to perform read RSSI request from peripheral.
-    /// 
+    ///
     /// - Parameter handler: completion handler returning RSSI value retrieved from peripheral.
-    func readRSSI(_ handler: ((NSNumber?, TransmissionError?) -> ())?) {
+    func readRSSI(_ handler: ((NSNumber?, TransmissionError?) -> ())?) throws {
+        guard isConnected else {
+            throw TransmissionError.deviceNotConnected
+        }
         rssiHandler = handler
         peripheral?.readRSSI()
     }

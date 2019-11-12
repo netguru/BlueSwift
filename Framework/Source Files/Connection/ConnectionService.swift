@@ -10,7 +10,10 @@ import CoreBluetooth
 internal final class ConnectionService: NSObject {
     
     /// Closure used to check given peripheral against advertisement packet of discovered peripheral.
-    internal var advertisementValidationHandler: ((Peripheral<Connectable>, CBPeripheral, [String: Any], NSNumber) -> (Bool))? = { _,_,_,_ in return true }
+    internal var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))? = { _,_,_ in return true }
+
+    /// Closure used to check given peripheral against advertisement packet of discovered peripheral.
+    internal var peripheralValidationHandler: ((Peripheral<Connectable>, CBPeripheral, [String: Any], NSNumber) -> (Bool))? = { _,_,_,_ in return true }
 
     /// Closure used to manage connection success or failure.
     internal var connectionHandler: ((Peripheral<Connectable>, ConnectionError?) -> ())?
@@ -115,7 +118,7 @@ extension ConnectionService: CBCentralManagerDelegate {
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         let devices = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData)})
 
-        guard let handler = advertisementValidationHandler,
+        guard let handler = peripheralValidationHandler,
             let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
             handler(matchingPeripheral, peripheral, advertisementData, RSSI),
             connectingPeripheral == nil
