@@ -39,7 +39,7 @@ public class Service {
 internal extension Service {
     
     /// Creates CBMutableService used for advertisement and assigns it to the local variable.
-    internal func assignAdvertisementService() -> CBMutableService {
+    func assignAdvertisementService() -> CBMutableService {
         let service = CBMutableService(type: bluetoothUUID, primary: true)
         var cbCharacteristics = [CBMutableCharacteristic]()
         characteristics.forEach { characteristic in
