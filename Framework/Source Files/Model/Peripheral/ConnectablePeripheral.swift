@@ -70,6 +70,18 @@ public extension Peripheral where Type == Connectable {
             handler?(nil, error as? TransmissionError)
         }
     }
+
+    /// Method used to perform read RSSI request from peripheral.
+    ///
+    /// - Parameter handler: completion handler returning RSSI value retrieved from peripheral.
+    func readRSSI(_ handler: ((NSNumber?, TransmissionError?) -> ())?) {
+        guard isConnected else {
+            handler?(nil, .deviceNotConnected)
+            return
+        }
+        rssiHandler = handler
+        peripheral?.readRSSI()
+    }
     
     /// Performs a general validation if write or read requests can be performed on specified characteristic.
     private func validateForTransmission(_ characteristic: Characteristic, action: TransmissionAction) throws -> CBCharacteristic {

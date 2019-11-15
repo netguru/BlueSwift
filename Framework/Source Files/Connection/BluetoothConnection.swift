@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /// Public facing interface granting methods to connect and disconnect devices.
 public final class BluetoothConnection: NSObject {
@@ -25,9 +26,20 @@ public final class BluetoothConnection: NSObject {
     /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
     /// and advertising packet.
+    @available(*, deprecated, message: "This closure will be removed in future version. Please use `peripheralValidationHandler`.")
     public var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))? {
         didSet {
             connectionService.advertisementValidationHandler = advertisementValidationHandler
+        }
+    }
+
+    /// A advertisement validation handler. Will be called upon every peripheral discovery. Contains matched peripheral,
+    /// discovered peripheral from CoreBluetooth, advertisement data and RSSI value. Return value from this closure
+    /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
+    /// and advertising packet.
+    public var peripheralValidationHandler: ((Peripheral<Connectable>, CBPeripheral, [String: Any], NSNumber) -> (Bool))? {
+        didSet {
+            connectionService.peripheralValidationHandler = peripheralValidationHandler
         }
     }
     
