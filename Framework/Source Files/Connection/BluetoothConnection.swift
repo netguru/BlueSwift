@@ -20,9 +20,6 @@ public final class BluetoothConnection: NSObject {
     /// Connection service implementing native CoreBluetooth stack.
     private lazy var connectionService = ConnectionService()
     
-    /// Maximum amount of devices capable of connecting to a iOS device.
-    private let deviceConnectionLimit = 8
-    
     /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
     /// and advertising packet.
@@ -55,7 +52,7 @@ public final class BluetoothConnection: NSObject {
             handler?(.deviceAlreadyConnected)
             return
         }
-        guard connectionService.connectedDevicesAmount <= deviceConnectionLimit else {
+        guard !connectionService.exceededDevicesConnectedLimit else {
             handler?(.deviceConnectionLimitExceed)
             return
         }

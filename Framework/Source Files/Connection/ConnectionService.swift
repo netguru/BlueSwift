@@ -18,10 +18,18 @@ internal final class ConnectionService: NSObject {
     /// Closure used to manage connection success or failure.
     internal var connectionHandler: ((Peripheral<Connectable>, ConnectionError?) -> ())?
     
-    /// Returns the amount of devices already scheduled for connection.
+    /// Returns the amount of devices already connected.
     internal var connectedDevicesAmount: Int {
-        return peripherals.count
+        return peripherals.filter { $0.isConnected }.count
     }
+
+    /// Indicates whether connected devices limit has been exceeded.
+    internal var exceededDevicesConnectedLimit: Bool {
+        return connectedDevicesAmount >= deviceConnectionLimit
+    }
+
+    /// Maximum amount of devices capable of connecting to a iOS device.
+    private let deviceConnectionLimit = 8
     
     /// Set of peripherals the manager should connect.
     private var peripherals = [Peripheral<Connectable>]()
