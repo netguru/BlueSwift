@@ -60,6 +60,14 @@ extension ConnectionService {
         }
         centralManager.cancelPeripheralConnection(peripheral)
     }
+
+    /// Function called to stop scanning for devices.
+    /// - Parameter removeUnconnectedDevices: indicates whether unconnected devices should be removed from the list. Default is `true`.
+    internal func stopScanning(removeUnconnectedDevices: Bool = true) {
+        centralManager.stopScan()
+        guard removeUnconnectedDevices else { return }
+        peripherals.removeAll(where: { !$0.isConnected })
+    }
 }
 
 private extension ConnectionService {

@@ -76,4 +76,10 @@ public final class BluetoothConnection: NSObject {
         }
         connectionService.disconnect(peripheral)
     }
+
+    /// Function called to stop scanning for devices.
+    /// - Parameter removeUnconnectedDevices: indicates whether unconnected devices should be removed from the list. Default is `true`.
+    public func stopScanning(removeUnconnectedDevices: Bool = true) {
+        connectionService.stopScanning(removeUnconnectedDevices: removeUnconnectedDevices)
+    }
 }
