@@ -145,6 +145,9 @@ extension ConnectionService: CBCentralManagerDelegate {
         connectingPeripheral?.peripheral = peripheral
         connectingPeripheral?.rssi = RSSI
         central.connect(peripheral, options: connectionOptions)
+        if exceededDevicesConnectedLimit {
+            centralManager.stopScan()
+        }
     }
     
     /// Called upon a successfull peripheral connection.
