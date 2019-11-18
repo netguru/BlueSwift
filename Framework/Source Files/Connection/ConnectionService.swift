@@ -70,11 +70,8 @@ extension ConnectionService {
     }
 
     /// Function called to stop scanning for devices.
-    /// - Parameter removeUnconnectedDevices: indicates whether unconnected devices should be removed from the list. Default is `true`.
-    internal func stopScanning(removeUnconnectedDevices: Bool = true) {
+    internal func stopScanning() {
         centralManager.stopScan()
-        guard removeUnconnectedDevices else { return }
-        peripherals.removeAll(where: { !$0.isConnected })
     }
 }
 
@@ -102,7 +99,7 @@ private extension ConnectionService {
     /// deviceIdentifier was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral
     /// can be directly connected.
     private func performDeviceAutoReconnection() {
-        let identifiers = peripherals.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
+        let identifiers = peripherals.filter { !$0.isConnected }.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
         guard !identifiers.isEmpty else { return }
         let retrievedPeripherals = centralManager.retrievePeripherals(withIdentifiers: identifiers)
         let matching = peripherals.matchingElementsWith(retrievedPeripherals)
