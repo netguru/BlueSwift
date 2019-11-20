@@ -9,11 +9,6 @@ import CoreBluetooth
 /// Public facing interface granting methods to connect and disconnect devices.
 public final class BluetoothConnection: NSObject {
     
-    /// List of possible disconnection errors.
-    public enum DisconnectionError: Error {
-        case deviceNotConnected
-    }
-    
     /// A singleton instance.
     public static let shared = BluetoothConnection()
     
@@ -65,13 +60,12 @@ public final class BluetoothConnection: NSObject {
     /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and connection attempts will stop.
     ///
     /// - Parameter peripheral: a peripheral you wish to disconnect. Should be exactly the same instance that was used for connection.
-    /// - Throws: BluetoothConnection.ConnectionError in case there was a disconnection problem
-    /// - SeeAlso: BluetoothConnection.DisconnectionError
-    public func disconnect(_ peripheral: Peripheral<Connectable>) throws {
-        guard let peripheral = peripheral.peripheral else {
-            throw DisconnectionError.deviceNotConnected
+    public func disconnect(_ peripheral: Peripheral<Connectable>) {
+        guard let cbPeripheral = peripheral.peripheral else {
+            connectionService.remove(peripheral)
+            return
         }
-        connectionService.disconnect(peripheral)
+        connectionService.disconnect(cbPeripheral)
     }
 
     /// Function called to stop scanning for devices.

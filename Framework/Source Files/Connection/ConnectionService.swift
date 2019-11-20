@@ -69,6 +69,13 @@ extension ConnectionService {
         centralManager.cancelPeripheralConnection(peripheral)
     }
 
+    /// Function called to remove peripheral from queue
+    /// - Parameter peripheral: peripheral to remove.
+    internal func remove(_ peripheral: Peripheral<Connectable>) {
+        guard let index = peripherals.firstIndex(where: { $0 === peripheral }) else { return }
+        peripherals.remove(at: index)
+    }
+
     /// Function called to stop scanning for devices.
     internal func stopScanning() {
         centralManager.stopScan()
@@ -135,8 +142,8 @@ extension ConnectionService: CBCentralManagerDelegate {
             let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
             handler(matchingPeripheral, peripheral, advertisementData, RSSI),
             connectingPeripheral == nil
-            else {
-                return
+        else {
+            return
         }
         connectingPeripheral = matchingPeripheral
         connectingPeripheral?.peripheral = peripheral
