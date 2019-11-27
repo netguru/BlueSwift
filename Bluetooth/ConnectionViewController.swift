@@ -71,7 +71,7 @@ class ConnectionViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        try? connection.disconnect(peripheral)
+        connection.disconnect(peripheral)
     }
     
     @IBAction func hideKeyboard() {

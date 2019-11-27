@@ -18,10 +18,18 @@ internal final class ConnectionService: NSObject {
     /// Closure used to manage connection success or failure.
     internal var connectionHandler: ((Peripheral<Connectable>, ConnectionError?) -> ())?
     
-    /// Returns the amount of devices already scheduled for connection.
+    /// Returns the amount of devices already connected.
     internal var connectedDevicesAmount: Int {
-        return peripherals.count
+        return peripherals.filter { $0.isConnected }.count
     }
+
+    /// Indicates whether connected devices limit has been exceeded.
+    internal var exceededDevicesConnectedLimit: Bool {
+        return connectedDevicesAmount >= deviceConnectionLimit
+    }
+
+    /// Maximum amount of devices capable of connecting to a iOS device.
+    private let deviceConnectionLimit = 8
     
     /// Set of peripherals the manager should connect.
     private var peripherals = [Peripheral<Connectable>]()
@@ -60,6 +68,18 @@ extension ConnectionService {
         }
         centralManager.cancelPeripheralConnection(peripheral)
     }
+
+    /// Function called to remove peripheral from queue
+    /// - Parameter peripheral: peripheral to remove.
+    internal func remove(_ peripheral: Peripheral<Connectable>) {
+        guard let index = peripherals.firstIndex(where: { $0 === peripheral }) else { return }
+        peripherals.remove(at: index)
+    }
+
+    /// Function called to stop scanning for devices.
+    internal func stopScanning() {
+        centralManager.stopScan()
+    }
 }
 
 private extension ConnectionService {
@@ -86,7 +106,7 @@ private extension ConnectionService {
     /// deviceIdentifier was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral
     /// can be directly connected.
     private func performDeviceAutoReconnection() {
-        let identifiers = peripherals.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
+        let identifiers = peripherals.filter { !$0.isConnected }.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
         guard !identifiers.isEmpty else { return }
         let retrievedPeripherals = centralManager.retrievePeripherals(withIdentifiers: identifiers)
         let matching = peripherals.matchingElementsWith(retrievedPeripherals)
@@ -122,13 +142,16 @@ extension ConnectionService: CBCentralManagerDelegate {
             let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
             handler(matchingPeripheral, peripheral, advertisementData, RSSI),
             connectingPeripheral == nil
-            else {
-                return
+        else {
+            return
         }
         connectingPeripheral = matchingPeripheral
         connectingPeripheral?.peripheral = peripheral
         connectingPeripheral?.rssi = RSSI
         central.connect(peripheral, options: connectionOptions)
+        if exceededDevicesConnectedLimit {
+            centralManager.stopScan()
+        }
     }
     
     /// Called upon a successfull peripheral connection.

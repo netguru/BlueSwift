@@ -15,6 +15,11 @@ public class Characteristic {
     
     /// A bool indicating if isNotifying value should be set on a characteristic upon discovery.
     public let isObservingValue: Bool
+
+    /// A bool indicating a peripheral can write the characteristic’s value with a response.
+    public var isWriteWithResponse: Bool? {
+        return rawCharacteristic?.properties.contains(.write)
+    }
     
     /// A handler indicating characteristic value update events.
     public var notifyHandler: ((Data?) -> ())?
