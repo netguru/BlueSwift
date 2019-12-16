@@ -99,6 +99,7 @@ private extension ConnectionService {
             return
         }
         scanParameters = Set(params)
+        guard case .poweredOn = centralManager.state else { return }
         centralManager.scanForPeripherals(withServices: Array(scanParameters), options: scanningOptions)
     }
     
