@@ -10,11 +10,11 @@ internal extension CBCharacteristic {
     
     /// Validates if given characteristic is readable.
     func validateForRead() -> Bool {
-        return properties == .read
+        return properties.contains(.read)
     }
     
     /// Validates if given characteristic is writeable.
     func validateForWrite() -> Bool {
-        return properties == .write || properties == .writeWithoutResponse
+        return properties.contains(.write) || properties.contains(.writeWithoutResponse)
     }
 }
