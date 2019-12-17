@@ -15,6 +15,6 @@ internal extension CBCharacteristic {
     
     /// Validates if given characteristic is writeable.
     func validateForWrite() -> Bool {
-        return properties == .write || properties == .writeWithoutResponse
+        return properties.contains(.write) || properties.contains(.writeWithoutResponse)
     }
 }
