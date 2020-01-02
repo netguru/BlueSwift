@@ -217,7 +217,13 @@ extension ConnectionService: CBPeripheralDelegate {
     /// longer needed we'll just return.
     /// - SeeAlso: CBPeripheralDelegate
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        guard let disconnectedPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first?.peripheral else { return }
-        centralManager.connect(disconnectedPeripheral, options: connectionOptions)
+        guard
+            let disconnectedPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first,
+            let nativePeripheral = disconnectedPeripheral.peripheral
+        else {
+            return
+        }
+        disconnectedPeripheral.disconnectionHandler?()
+        centralManager.connect(nativePeripheral, options: connectionOptions)
     }
 }
