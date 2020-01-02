@@ -50,6 +50,9 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
 
     /// Last received signal strength indicator of the peripheral, in decibels.
     public var rssi: NSNumber?
+
+    /// Handler which will be called when device will be disconnected.
+    public var disconnectionHandler: (() -> Void)?
     
     internal var advertisementData: [AdvertisementData]?
     
