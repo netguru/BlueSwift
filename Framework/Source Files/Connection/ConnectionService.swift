@@ -57,8 +57,15 @@ extension ConnectionService {
         if connectionHandler == nil {
             connectionHandler = handler
         }
-        peripherals.append(peripheral)
-        reloadScanning()
+        do {
+            try centralManager.validateState()
+            peripherals.append(peripheral)
+            reloadScanning()
+        } catch let error {
+            if let error = error as? BluetoothError {
+                handler(peripheral, .bluetoothError(error))
+            }
+        }
     }
     
     /// Disconnects given device.
