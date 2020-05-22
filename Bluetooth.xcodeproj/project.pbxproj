@@ -544,7 +544,7 @@
 				TargetAttributes = {
 					3837BA0A1FFFC2FE00DF300E = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3837BA301FFFC4CE00DF300E = {
 						CreatedOnToolsVersion = 9.2;
@@ -701,11 +701,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A142D24210F0EEE000A6089 /* Sample-Base.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9HJ69C5G9K;
-				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.lib.blueswift.sampleo;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -713,11 +708,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A142D24210F0EEE000A6089 /* Sample-Base.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9HJ69C5G9K;
-				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.lib.blueswift.sampleo;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -725,7 +715,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */;
 			buildSettings = {
-				ENABLE_BITCODE = YES;
 			};
 			name = Debug;
 		};
@@ -733,7 +722,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38FE6BAC2006898100809A06 /* Framework-Base.xcconfig */;
 			buildSettings = {
-				ENABLE_BITCODE = YES;
 			};
 			name = Release;
 		};
