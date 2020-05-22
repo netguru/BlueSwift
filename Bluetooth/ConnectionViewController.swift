@@ -17,7 +17,7 @@ class ConnectionViewController: UIViewController {
             let activityIndicator = UIActivityIndicatorView(style: .gray)
             activityIndicator.startAnimating()
             navigationItem.rightBarButtonItem = loading ? UIBarButtonItem(customView: activityIndicator) : nil
-            title = loading ? "Connecting" : "Connected"
+//            title = loading ? "Connecting" : "Connected"
         }
     }
     
@@ -32,7 +32,12 @@ class ConnectionViewController: UIViewController {
     
     @IBAction func connect() {
         loading = true
-        connection.connect(peripheral) { [weak self] _ in
+        connection.connect(peripheral) { [weak self] error in
+            guard error == nil else {
+                self?.title = "Connection failure"
+                return
+            }
+            self?.title = "Connected"
             self?.loading = false
         }
         handleNotifications()
@@ -49,7 +54,7 @@ class ConnectionViewController: UIViewController {
             self?.notifyLabel.text = "Notify result: \(encoded)"
         }
     }
-    
+
     @IBAction func write() {
         let command = Command.utf8String(textField.text!)
         peripheral.write(command: command, characteristic: otherCharacteristic) { error in
