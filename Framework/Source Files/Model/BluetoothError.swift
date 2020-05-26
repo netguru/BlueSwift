@@ -9,6 +9,7 @@ import Foundation
 public enum BluetoothError: Error {
     case bluetoothUnavailable
     case incompatibleDevice
+    case unauthorized
 }
 
 /// List of possible errors during advertisement.
