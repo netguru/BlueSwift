@@ -13,7 +13,7 @@ public final class BluetoothConnection: NSObject {
     public static let shared = BluetoothConnection()
     
     /// Connection service implementing native CoreBluetooth stack.
-    private lazy var connectionService = ConnectionService()
+    private var connectionService = ConnectionService()
     
     /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
