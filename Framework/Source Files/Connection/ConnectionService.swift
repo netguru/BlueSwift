@@ -44,10 +44,15 @@ internal final class ConnectionService: NSObject {
     private lazy var scanningOptions = [CBCentralManagerScanOptionAllowDuplicatesKey : true]
     
     /// CBCentralManager instance. Allows peripheral connection.
-    private lazy var centralManager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
+    private let centralManager = CBCentralManager()
     
     /// Set of advertisement UUID central manager should scan for.
     private var scanParameters: Set<CBUUID> = Set()
+
+    override init() {
+        super.init()
+        centralManager.delegate = self
+    }
 }
 
 extension ConnectionService {
