@@ -14,7 +14,12 @@ class ConnectionViewController: UIViewController {
 
     private var loadingState: LoadingState = .connected {
         didSet {
-            let activityIndicator = UIActivityIndicatorView(style: .medium)
+            let activityIndicator: UIActivityIndicatorView
+            if #available(iOS 13, *) {
+                activityIndicator = UIActivityIndicatorView(style: .medium)
+            } else {
+                activityIndicator = UIActivityIndicatorView(style: .gray)
+            }
             activityIndicator.startAnimating()
 
             switch self.loadingState {
