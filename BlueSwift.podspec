@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.frameworks = 'Foundation', 'CoreBluetooth'
 
-  spec.swift_version = '4.0'
+  spec.swift_version = '4.2'
   spec.ios.deployment_target = '10.0'
 
 end
