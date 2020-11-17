@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name = 'BlueSwift'
-  spec.version = '1.0.4'
+  spec.version = '1.0.5'
   spec.summary = 'Easy and lightweight CoreBluetooth wrapper written in Swift'
   spec.homepage = 'https://github.com/netguru/BlueSwift'
 
@@ -15,6 +15,6 @@ Pod::Spec.new do |spec|
   spec.frameworks = 'Foundation', 'CoreBluetooth'
 
   spec.swift_version = '5.3'
-  spec.ios.deployment_target = '14.0'
+  spec.ios.deployment_target = '11.0'
 
 end
