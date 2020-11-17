@@ -14,7 +14,7 @@ class ConnectionViewController: UIViewController {
 
     private var loadingState: LoadingState = .connected {
         didSet {
-            let activityIndicator = UIActivityIndicatorView(style: .gray)
+            let activityIndicator = UIActivityIndicatorView(style: .medium)
             activityIndicator.startAnimating()
 
             switch self.loadingState {
