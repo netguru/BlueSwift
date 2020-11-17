@@ -12,13 +12,24 @@ internal final class ConnectionService: NSObject {
     /// Closure used to check given peripheral against advertisement packet of discovered peripheral.
     internal var advertisementValidationHandler: ((Peripheral<Connectable>, String, [String: Any]) -> (Bool))? = { _,_,_ in return true }
 
+    /// Closure used to check given peripheral against advertisement packet of discovered peripheral.
+    internal var peripheralValidationHandler: ((Peripheral<Connectable>, CBPeripheral, [String: Any], NSNumber) -> (Bool))? = { _,_,_,_ in return true }
+
     /// Closure used to manage connection success or failure.
     internal var connectionHandler: ((Peripheral<Connectable>, ConnectionError?) -> ())?
     
-    /// Returns the amount of devices already scheduled for connection.
+    /// Returns the amount of devices already connected.
     internal var connectedDevicesAmount: Int {
-        return peripherals.count
+        return peripherals.filter { $0.isConnected }.count
     }
+
+    /// Indicates whether connected devices limit has been exceeded.
+    internal var exceededDevicesConnectedLimit: Bool {
+        return connectedDevicesAmount >= deviceConnectionLimit
+    }
+
+    /// Maximum amount of devices capable of connecting to a iOS device.
+    private let deviceConnectionLimit = 8
     
     /// Set of peripherals the manager should connect.
     private var peripherals = [Peripheral<Connectable>]()
@@ -33,10 +44,15 @@ internal final class ConnectionService: NSObject {
     private lazy var scanningOptions = [CBCentralManagerScanOptionAllowDuplicatesKey : true]
     
     /// CBCentralManager instance. Allows peripheral connection.
-    private lazy var centralManager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
+    private let centralManager = CBCentralManager()
     
     /// Set of advertisement UUID central manager should scan for.
     private var scanParameters: Set<CBUUID> = Set()
+
+    override init() {
+        super.init()
+        centralManager.delegate = self
+    }
 }
 
 extension ConnectionService {
@@ -46,16 +62,35 @@ extension ConnectionService {
         if connectionHandler == nil {
             connectionHandler = handler
         }
-        peripherals.append(peripheral)
-        reloadScanning()
+        do {
+            try centralManager.validateState()
+            peripherals.append(peripheral)
+            reloadScanning()
+        } catch let error {
+            if let error = error as? BluetoothError {
+                handler(peripheral, .bluetoothError(error))
+            }
+        }
     }
     
     /// Disconnects given device.
     internal func disconnect(_ peripheral: CBPeripheral) {
-        if let index = peripherals.index(where: { $0.peripheral === peripheral }) {
+        if let index = peripherals.firstIndex(where: { $0.peripheral === peripheral }) {
             peripherals.remove(at: index)
         }
         centralManager.cancelPeripheralConnection(peripheral)
+    }
+
+    /// Function called to remove peripheral from queue
+    /// - Parameter peripheral: peripheral to remove.
+    internal func remove(_ peripheral: Peripheral<Connectable>) {
+        guard let index = peripherals.firstIndex(where: { $0 === peripheral }) else { return }
+        peripherals.remove(at: index)
+    }
+
+    /// Function called to stop scanning for devices.
+    internal func stopScanning() {
+        centralManager.stopScan()
     }
 }
 
@@ -76,6 +111,7 @@ private extension ConnectionService {
             return
         }
         scanParameters = Set(params)
+        guard case .poweredOn = centralManager.state else { return }
         centralManager.scanForPeripherals(withServices: Array(scanParameters), options: scanningOptions)
     }
     
@@ -83,7 +119,7 @@ private extension ConnectionService {
     /// deviceIdentifier was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral
     /// can be directly connected.
     private func performDeviceAutoReconnection() {
-        let identifiers = peripherals.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
+        let identifiers = peripherals.filter { !$0.isConnected }.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
         guard !identifiers.isEmpty else { return }
         let retrievedPeripherals = centralManager.retrievePeripherals(withIdentifiers: identifiers)
         let matching = peripherals.matchingElementsWith(retrievedPeripherals)
@@ -114,16 +150,21 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         let devices = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData)})
-        guard let handler = advertisementValidationHandler,
+
+        guard let handler = peripheralValidationHandler,
             let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
-            handler(matchingPeripheral, peripheral.identifier.uuidString, advertisementData),
+            handler(matchingPeripheral, peripheral, advertisementData, RSSI),
             connectingPeripheral == nil
-            else {
-                return
+        else {
+            return
         }
         connectingPeripheral = matchingPeripheral
         connectingPeripheral?.peripheral = peripheral
+        connectingPeripheral?.rssi = RSSI
         central.connect(peripheral, options: connectionOptions)
+        if exceededDevicesConnectedLimit {
+            centralManager.stopScan()
+        }
     }
     
     /// Called upon a successfull peripheral connection.
@@ -188,7 +229,13 @@ extension ConnectionService: CBPeripheralDelegate {
     /// longer needed we'll just return.
     /// - SeeAlso: CBPeripheralDelegate
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        guard let disconnectedPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first?.peripheral else { return }
-        centralManager.connect(disconnectedPeripheral, options: connectionOptions)
+        guard
+            let disconnectedPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first,
+            let nativePeripheral = disconnectedPeripheral.peripheral
+        else {
+            return
+        }
+        disconnectedPeripheral.disconnectionHandler?()
+        centralManager.connect(nativePeripheral, options: connectionOptions)
     }
 }

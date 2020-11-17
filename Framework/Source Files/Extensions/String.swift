@@ -8,7 +8,7 @@ import Foundation
 internal extension String {
     
     /// Validates if String is a proper shoretened UUID which means its 4 or 6 characters long and contains only hexadecimal characters.
-    internal func isValidShortenedUUID() -> Bool {
+    func isValidShortenedUUID() -> Bool {
         var evaluation = self
         if hasPrefix("0x") {
             evaluation = evaluation.replacingOccurrences(of: "0x", with: "")
@@ -17,7 +17,7 @@ internal extension String {
     }
     
     /// Checks if string contains only hexadecimal characters.
-    internal var isHexadecimal: Bool {
+    var isHexadecimal: Bool {
         let invertedHexCharacterSet = NSCharacterSet(charactersIn: "0123456789ABCDEF").inverted
         return uppercased().rangeOfCharacter(from: invertedHexCharacterSet) == nil
     }
@@ -27,7 +27,7 @@ internal extension String {
 internal extension String {
     
     /// Returns Data with decoded string.
-    internal func hexDecodedData() throws -> Data {
+    func hexDecodedData() throws -> Data {
         guard isHexadecimal else {
             throw Command.ConversionError.incorrectInputFormat
         }

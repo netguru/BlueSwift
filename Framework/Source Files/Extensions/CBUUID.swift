@@ -18,7 +18,7 @@ internal extension CBUUID {
     ///
     /// - Parameter uuidString: a String wished to be converted into CBUIID.
     /// - Throws: `CreationError.invalidString` if passed String is not valid.
-    convenience internal init(uuidString: String) throws {
+    convenience init(uuidString: String) throws {
         guard let uuid = UUID(uuidString: uuidString) else {
             guard uuidString.isValidShortenedUUID() else { throw CreationError.invalidString }
             self.init(string: uuidString)

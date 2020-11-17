@@ -19,12 +19,12 @@ public extension Peripheral where Type == Connectable {
     ///     - configuration: previously created configuration containing all desired services and characteristics.
     ///     - deviceIdentifier: optional parameter. If device identifier is cached locally then it should be passed here. When set, connection to peripheral is much quicker.
     /// - SeeAlso: `Configuration`
-    public convenience init(configuration: Configuration, deviceIdentifier: String? = nil) {
+    convenience init(configuration: Configuration, deviceIdentifier: String? = nil) {
         self.init(configuration: configuration, deviceIdentifier: deviceIdentifier, advertisementData: nil)
     }
     
     /// Indicates if device is currently connected.
-    public var isConnected: Bool {
+    var isConnected: Bool {
         guard let peripheral = peripheral else { return false }
         return peripheral.state == .connected
     }
@@ -40,7 +40,7 @@ public extension Peripheral where Type == Connectable {
     /// - SeeAlso: `Characteristic`
     /// - SeeAlso: `CBCharacteristicWriteType`
     /// - SeeAlso: `Peripheral.TransmissionError`
-    public func write(command: Command, characteristic: Characteristic, type: CBCharacteristicWriteType = .withResponse, handler: ((TransmissionError?) -> ())?) {
+    func write(command: Command, characteristic: Characteristic, type: CBCharacteristicWriteType = .withResponse, handler: ((TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .write)
             writeHandler = handler
@@ -61,7 +61,7 @@ public extension Peripheral where Type == Connectable {
     ///     - handler: completion handler returning Data retrieved from characteristic or error if it failed.
     /// - SeeAlso: `Characteristic`
     /// - SeeAlso: `Peripheral.TransmissionError`
-    public func read(_ characteristic: Characteristic, handler: ((Data?, TransmissionError?) -> ())?) {
+    func read(_ characteristic: Characteristic, handler: ((Data?, TransmissionError?) -> ())?) {
         do {
             let unwrapped = try validateForTransmission(characteristic, action: .read)
             readHandler = handler
@@ -69,6 +69,18 @@ public extension Peripheral where Type == Connectable {
         } catch let error {
             handler?(nil, error as? TransmissionError)
         }
+    }
+
+    /// Method used to perform read RSSI request from peripheral.
+    ///
+    /// - Parameter handler: completion handler returning RSSI value retrieved from peripheral.
+    func readRSSI(_ handler: ((NSNumber?, TransmissionError?) -> ())?) {
+        guard isConnected else {
+            handler?(nil, .deviceNotConnected)
+            return
+        }
+        rssiHandler = handler
+        peripheral?.readRSSI()
     }
     
     /// Performs a general validation if write or read requests can be performed on specified characteristic.
@@ -79,10 +91,10 @@ public extension Peripheral where Type == Connectable {
         guard let characteristic = characteristic.rawCharacteristic else {
             throw TransmissionError.characteristicNotDiscovered
         }
-        if action == .read && characteristic.validateForRead() {
+        if action == .read && !characteristic.validateForRead() {
             throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
         }
-        if action == .write && characteristic.validateForWrite() {
+        if action == .write && !characteristic.validateForWrite() {
             throw TransmissionError.invalidCharacteristicPermissions(characteristic.properties)
         }
         return characteristic

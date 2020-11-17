@@ -9,12 +9,12 @@ import CoreBluetooth.CBCharacteristic
 internal extension CBCharacteristic {
     
     /// Validates if given characteristic is readable.
-    internal func validateForRead() -> Bool {
-        return properties == .read
+    func validateForRead() -> Bool {
+        return properties.contains(.read)
     }
     
     /// Validates if given characteristic is writeable.
-    internal func validateForWrite() -> Bool {
-        return properties == .write || properties == .writeWithoutResponse
+    func validateForWrite() -> Bool {
+        return properties.contains(.write) || properties.contains(.writeWithoutResponse)
     }
 }

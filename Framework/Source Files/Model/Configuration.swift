@@ -33,7 +33,7 @@ public struct Configuration {
 internal extension Configuration {
     
     /// Helper method to check peripheral advertisement against one passed in conifguration.
-    internal func matches(advertisement: [String: Any]) -> Bool {
+    func matches(advertisement: [String: Any]) -> Bool {
         guard let uuids = advertisement[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] else { return false }
         for uuid in uuids {
             if uuid.uuidString.uppercased() == advertisementUUID.uuidString.uppercased() { return true }
@@ -42,7 +42,7 @@ internal extension Configuration {
     }
     
     /// Helper method used to search characteristics wrapper for specified CBCharacteristic
-    internal func characteristic(matching cbCharacteristic: CBCharacteristic) -> Characteristic? {
+    func characteristic(matching cbCharacteristic: CBCharacteristic) -> Characteristic? {
         let characteristics = services.flatMap { $0.characteristics }
         return characteristics.filter { $0.bluetoothUUID.uuidString == cbCharacteristic.uuid.uuidString }.first
     }

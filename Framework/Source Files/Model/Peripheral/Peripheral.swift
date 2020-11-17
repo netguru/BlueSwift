@@ -42,6 +42,17 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
     /// A device parameter. Should be cached locally in order to pass for every connection after the first one.
     /// If passed, every connection should happen much quicker.
     public var deviceIdentifier: String?
+
+    /// Name of the peripheral returned from Apple native peripheral class.
+    public var name: String? {
+        return peripheral?.name
+    }
+
+    /// Last received signal strength indicator of the peripheral, in decibels.
+    public var rssi: NSNumber?
+
+    /// Handler which will be called when device will be disconnected.
+    public var disconnectionHandler: (() -> Void)?
     
     internal var advertisementData: [AdvertisementData]?
     
@@ -57,6 +68,9 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
     
     /// Private variable for storing reference to read completion callback.
     internal var readHandler: ((Data?, TransmissionError?) -> ())?
+
+    /// Private variable for storing reference to read rssi completion callback.
+    internal var rssiHandler: ((NSNumber?, TransmissionError?) -> ())?
     
     /// Called after reading data from characteristic.
     /// - SeeAlso: `CBPeripheralDelegate`
@@ -89,6 +103,22 @@ public final class Peripheral<Type: PeripheralType>: NSObject, CBPeripheralDeleg
         }
         guard let error = error else {
             handler(characteristic.value, nil)
+            return
+        }
+        handler(nil, .auxiliaryError(error))
+    }
+
+    /// Called after reading RRSI value from peripheral.
+    /// - SeeAlso: `CBPeripheralDelegate`
+    public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        defer {
+            rssiHandler = nil
+        }
+
+        guard let handler = rssiHandler else { return }
+        guard let error = error else {
+            rssi = RSSI
+            handler(RSSI, nil)
             return
         }
         handler(nil, .auxiliaryError(error))

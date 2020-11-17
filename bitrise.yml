@@ -86,7 +86,7 @@ workflows:
             - project_path: $XCODEBUILD_PROJECT
             - scheme: $XCODEBUILD_SCHEME
             - xcodebuild_test_options: $XCODEBUILD_OPTIONS
-            - simulator_device: iPhone 7 Plus
+            - simulator_device: iPhone 12
 
   # Deploy build artifacts to bitrise.io.
 
