@@ -12,11 +12,11 @@
      targets: [
          .target(
              name: "BlueSwift",
-             path: "BlueSwiftKit"
+             path: "Framework/Source Files"
          ),
          .testTarget(name: "BlueSwiftTests",
                      dependencies: ["BlueSwift"],
-                     path: "Tests/BlueSwiftKitTests"
+                     path: "Unit Tests"
          ),
      ]
  )
