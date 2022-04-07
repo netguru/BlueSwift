@@ -17,7 +17,10 @@ internal final class ConnectionService: NSObject {
 
     /// Closure used to manage connection success or failure.
     internal var connectionHandler: ((Peripheral<Connectable>, ConnectionError?) -> ())?
-    
+
+    /// Closure called when disconnecting a peripheral using `disconnect(_:)` is completed.
+    internal var peripheralConnectionCancelledHandler: ((Peripheral<Connectable>, CBPeripheral) -> ())?
+
     /// Returns the amount of devices already connected.
     internal var connectedDevicesAmount: Int {
         return peripherals.filter { $0.isConnected }.count
@@ -33,7 +36,10 @@ internal final class ConnectionService: NSObject {
     
     /// Set of peripherals the manager should connect.
     private var peripherals = [Peripheral<Connectable>]()
-    
+
+    /// Handle to peripherals which were requested to disconnect.
+    private var peripheralsToDisconnect = [Peripheral<Connectable>]()
+
     private weak var connectingPeripheral: Peripheral<Connectable>?
     
     /// Connection options - means you will be notified on connection and disconnection of devices.
@@ -76,7 +82,7 @@ extension ConnectionService {
     /// Disconnects given device.
     internal func disconnect(_ peripheral: CBPeripheral) {
         if let index = peripherals.firstIndex(where: { $0.peripheral === peripheral }) {
-            peripherals.remove(at: index)
+            peripheralsToDisconnect.append(peripherals.remove(at: index))
         }
         centralManager.cancelPeripheralConnection(peripheral)
     }
@@ -152,9 +158,9 @@ extension ConnectionService: CBCentralManagerDelegate {
         let devices = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData)})
 
         guard let handler = peripheralValidationHandler,
-            let matchingPeripheral = devices.filter({ $0.peripheral == nil }).first,
-            handler(matchingPeripheral, peripheral, advertisementData, RSSI),
-            connectingPeripheral == nil
+              let matchingPeripheral = devices.first(where: { $0.peripheral == nil }),
+              handler(matchingPeripheral, peripheral, advertisementData, RSSI),
+              connectingPeripheral == nil
         else {
             return
         }
@@ -170,7 +176,7 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Called upon a successfull peripheral connection.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        guard let connectingPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first else { return }
+        guard let connectingPeripheral = peripherals.first(where: { $0.peripheral === peripheral }) else { return }
         self.connectingPeripheral = connectingPeripheral
         connectingPeripheral.peripheral = peripheral
         peripheral.delegate = self
@@ -185,7 +191,7 @@ extension ConnectionService: CBCentralManagerDelegate {
 }
 
 extension ConnectionService: CBPeripheralDelegate {
-    
+
     /// Called upon discovery of services of a connected peripheral. Used to map model services to passed configuration and
     /// discover characteristics for each matching service.
     /// - SeeAlso: CBPeripheralDelegate
@@ -200,13 +206,13 @@ extension ConnectionService: CBPeripheralDelegate {
             peripheral.discoverCharacteristics(service.characteristics.map({ $0.bluetoothUUID }), for: cbService)
         })
     }
-    
+
     /// Called upon discovery of characteristics of a connected peripheral per each passed service. Used to map CBCharacteristic
     /// instances to passed configuration, assign characteristic raw values and setup notifications.
     /// - SeeAlso: CBPeripheralDelegate
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics, error == nil else { return }
-        let matchingService = connectingPeripheral?.configuration.services.filter({ $0.bluetoothUUID == service.uuid }).first
+        let matchingService = connectingPeripheral?.configuration.services.first(where: { $0.bluetoothUUID == service.uuid })
         let matchingCharacteristics = matchingService?.characteristics.matchingElementsWith(characteristics)
         guard matchingCharacteristics?.count != 0 else {
             centralManager.cancelPeripheralConnection(peripheral)
@@ -223,19 +229,26 @@ extension ConnectionService: CBPeripheralDelegate {
         }
         connectingPeripheral = nil
     }
-    
-    /// Called when device is disconnected, inside this method a device is reconnected. Connect method does not have a timeout
-    /// so connection will be triggered anytime in the future when the device is discovered. In case the connection is no
-    /// longer needed we'll just return.
+
+    /// Called when device is disconnected.
+    /// If connection was cancelled using `disconnect(_:)`, then `peripheralConnectionCancelledHandler(_:)` is called.
+    /// Otherwise device is reconnected. Connect method does not have a timeout, so connection will be triggered
+    /// anytime in the future when the device is discovered. In case the connection is no longer needed we'll just return.
     /// - SeeAlso: CBPeripheralDelegate
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        guard
-            let disconnectedPeripheral = peripherals.filter({ $0.peripheral === peripheral }).first,
-            let nativePeripheral = disconnectedPeripheral.peripheral
-        else {
+        /// `error` is nil if disconnect resulted from a call to `cancelPeripheralConnection(_:)`.
+        /// SeeAlso: https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate/1518791-centralmanager
+        if error == nil,
+           let disconnectedPeripheral = peripheralsToDisconnect.first(where: { $0.peripheral === peripheral }) {
+            peripheralsToDisconnect.removeAll(where: { $0 === disconnectedPeripheral })
+            peripheralConnectionCancelledHandler?(disconnectedPeripheral, peripheral)
             return
         }
-        disconnectedPeripheral.disconnectionHandler?()
-        centralManager.connect(nativePeripheral, options: connectionOptions)
+        
+        if let disconnectedPeripheral = peripherals.first(where: { $0.peripheral === peripheral }),
+           let nativePeripheral = disconnectedPeripheral.peripheral {
+            disconnectedPeripheral.disconnectionHandler?()
+            centralManager.connect(nativePeripheral, options: connectionOptions)
+        }
     }
 }

@@ -22,6 +22,13 @@ Advertising is passed in `[String: Any]` dictionary. This data is sent along wit
 If false is returned from this method, no attempt to connect a given peripheral will we attempted.
 
 ```swift
+var peripheralConnectionCancelledHandler: ((Peripheral<Connectable>, CBPeripheral) -> Void)?
+```
+
+An optional closure, nil by default - peripheral connection cancelled handler. Called when disconnecting a peripheral using `disconnect(_:)` is completed.
+Contains matched peripheral and native peripheral from CoreBluetooth.
+
+```swift
 func connect(_ peripheral: Peripheral<Connectable>, handler: ((ConnectionError?) -> ())?)
 ```
 

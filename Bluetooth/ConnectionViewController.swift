@@ -7,7 +7,7 @@ import UIKit
 import BlueSwift
 
 class ConnectionViewController: UIViewController {
-    
+
     @IBOutlet weak var notifyLabel: UILabel!
     @IBOutlet weak var readLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
