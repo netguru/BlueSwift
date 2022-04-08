@@ -82,7 +82,8 @@ extension ConnectionService {
     /// Disconnects given device.
     internal func disconnect(_ peripheral: CBPeripheral) {
         if let index = peripherals.firstIndex(where: { $0.peripheral === peripheral }) {
-            peripheralsToDisconnect.append(peripherals.remove(at: index))
+            let peripheralToDisconnect = peripherals.remove(at: index)
+            peripheralsToDisconnect.append(peripheralToDisconnect)
         }
         centralManager.cancelPeripheralConnection(peripheral)
     }
@@ -176,7 +177,7 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Called upon a successfull peripheral connection.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        guard let connectingPeripheral = peripherals.first(where: { $0.peripheral === peripheral }) else { return }
+        guard let connectingPeripheral = peripherals.first(withIdentical: peripheral) else { return }
         self.connectingPeripheral = connectingPeripheral
         connectingPeripheral.peripheral = peripheral
         peripheral.delegate = self
@@ -239,13 +240,13 @@ extension ConnectionService: CBPeripheralDelegate {
         /// `error` is nil if disconnect resulted from a call to `cancelPeripheralConnection(_:)`.
         /// SeeAlso: https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate/1518791-centralmanager
         if error == nil,
-           let disconnectedPeripheral = peripheralsToDisconnect.first(where: { $0.peripheral === peripheral }) {
+           let disconnectedPeripheral = peripheralsToDisconnect.first(withIdentical: peripheral) {
             peripheralsToDisconnect.removeAll(where: { $0 === disconnectedPeripheral })
             peripheralConnectionCancelledHandler?(disconnectedPeripheral, peripheral)
             return
         }
         
-        if let disconnectedPeripheral = peripherals.first(where: { $0.peripheral === peripheral }),
+        if let disconnectedPeripheral = peripherals.first(withIdentical: peripheral),
            let nativePeripheral = disconnectedPeripheral.peripheral {
             disconnectedPeripheral.disconnectionHandler?()
             centralManager.connect(nativePeripheral, options: connectionOptions)
