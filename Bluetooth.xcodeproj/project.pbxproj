@@ -41,6 +41,8 @@
 		38FE6BE7200689AB00809A06 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BA82006898100809A06 /* ConfigurationTests.swift */; };
 		3A369634210F1C4E007C62F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A369633210F1C4E007C62F1 /* CoreBluetooth.framework */; };
 		3A369636210F1C57007C62F1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A369635210F1C57007C62F1 /* XCTest.framework */; };
+		4BEB6E6F2800735D0061C702 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6E6E2800735D0061C702 /* Sequence.swift */; };
+		4BEB6E72280077010061C702 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6E70280075510061C702 /* SequenceExtensionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,8 @@
 		3A142D24210F0EEE000A6089 /* Sample-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Sample-Base.xcconfig"; sourceTree = "<group>"; };
 		3A369633210F1C4E007C62F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.4.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
 		3A369635210F1C57007C62F1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4BEB6E6E2800735D0061C702 /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		4BEB6E70280075510061C702 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				38FE6BA72006898100809A06 /* ExtensionTests.swift */,
+				4BEB6E70280075510061C702 /* SequenceExtensionTests.swift */,
 				382CD41E2028F4B50065DFF6 /* CommandTests.swift */,
 				38FE6BA82006898100809A06 /* ConfigurationTests.swift */,
 				38FE6BA92006898100809A06 /* Info.plist */,
@@ -387,6 +392,7 @@
 				38FE6BBB2006898100809A06 /* CBUUID.swift */,
 				38FE6BBC2006898100809A06 /* String.swift */,
 				385B01AC2007C93000E3D478 /* Array.swift */,
+				4BEB6E6E2800735D0061C702 /* Sequence.swift */,
 				3863BE73200D582600FD4EC9 /* Int.swift */,
 				3863BE75200D5B9B00FD4EC9 /* Data.swift */,
 				3863BE68200BDDBA00FD4EC9 /* CBCharacteristic.swift */,
@@ -620,6 +626,7 @@
 			files = (
 				38BE35DC203DD67D0018EA0D /* ConnectablePeripheral.swift in Sources */,
 				3863BE69200BDDBA00FD4EC9 /* CBCharacteristic.swift in Sources */,
+				4BEB6E6F2800735D0061C702 /* Sequence.swift in Sources */,
 				385B01AD2007C93000E3D478 /* Array.swift in Sources */,
 				38FE6BD82006898100809A06 /* String.swift in Sources */,
 				382CD41C2028E5950065DFF6 /* Int.swift in Sources */,
@@ -645,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BEB6E72280077010061C702 /* SequenceExtensionTests.swift in Sources */,
 				382CD41F2028F4B50065DFF6 /* CommandTests.swift in Sources */,
 				38FE6BE7200689AB00809A06 /* ConfigurationTests.swift in Sources */,
 				38FE6BE6200689A700809A06 /* ExtensionTests.swift in Sources */,

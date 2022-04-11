@@ -4,6 +4,7 @@
 xcuserdata
 profile
 build
+.build
 output
 DerivedData
 *.mode1v3

@@ -8,13 +8,13 @@ import CoreBluetooth
 
 /// Public facing interface granting methods to connect and disconnect devices.
 public final class BluetoothConnection: NSObject {
-    
+
     /// A singleton instance.
     public static let shared = BluetoothConnection()
-    
+
     /// Connection service implementing native CoreBluetooth stack.
     private var connectionService = ConnectionService()
-    
+
     /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
     /// and advertising packet.
@@ -34,7 +34,15 @@ public final class BluetoothConnection: NSObject {
             connectionService.peripheralValidationHandler = peripheralValidationHandler
         }
     }
-    
+
+    /// A peripheral connection cancelled handler. Called when disconnecting a peripheral using `disconnect(_:)` is completed.
+    /// Contains matched peripheral and native peripheral from CoreBluetooth.
+    public var peripheralConnectionCancelledHandler: ((Peripheral<Connectable>, CBPeripheral) -> Void)? {
+        didSet {
+            connectionService.peripheralConnectionCancelledHandler = peripheralConnectionCancelledHandler
+        }
+    }
+
     /// Primary method used to connect to a device. Can be called multiple times to connect more than on device at the same time.
     ///
     /// - Parameters:
@@ -56,7 +64,7 @@ public final class BluetoothConnection: NSObject {
             handler?(error)
         }
     }
-    
+
     /// Primary method to disconnect a device. If it's not yet connected it'll be removed from connection queue, and connection attempts will stop.
     ///
     /// - Parameter peripheral: a peripheral you wish to disconnect. Should be exactly the same instance that was used for connection.
