@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2022-04-14
+
+### Added
+
+- `bluetoothAuthorizationStatus` public property was added to `BluetoothConnection` to determine current Bluetooth authorization status.
+- `requestBluetoothAuthorization()` public method was added to `BluetoothConnection` to requests User for authorization to use Bluetooth.
+- `BluetoothAuthorizationStatus` enum describing Bluetooth authorization status
+
+### Changed
+
+- `ConnectionService`: centralManager (`CBCentralManager`) is instantiated lazily to postpone showing Bluetooth authorization popup until it is needed.
 
 ## [1.1.0] - 2022-04-13
 

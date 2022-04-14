@@ -31,6 +31,18 @@ internal final class ConnectionService: NSObject {
         return connectedDevicesAmount >= deviceConnectionLimit
     }
 
+    /// Current Bluetooth authorization status.
+    internal var bluetoothAuthorizationStatus: BluetoothAuthorizationStatus {
+        if #available(iOSApplicationExtension 13.1, *) {
+            return CBManager.authorization.bluetoothAuthorizationStatus
+        } else if #available(iOSApplicationExtension 13.0, *) {
+            return centralManager.authorization.bluetoothAuthorizationStatus
+        } else {
+            // Until iOS 12 applications could access Bluetooth without the user’s authorization
+            return .allowedAlways
+        }
+    }
+
     /// Maximum amount of devices capable of connecting to a iOS device.
     private let deviceConnectionLimit = 8
     
@@ -50,15 +62,15 @@ internal final class ConnectionService: NSObject {
     private lazy var scanningOptions = [CBCentralManagerScanOptionAllowDuplicatesKey : true]
     
     /// CBCentralManager instance. Allows peripheral connection.
-    private let centralManager = CBCentralManager()
-    
+    private lazy var centralManager: CBCentralManager = {
+        // iOS displays Bluetooth authorization popup when `CBCentralManager` is instantiated and authorization status is not determined.
+        let manager = CBCentralManager()
+        manager.delegate = self
+        return manager
+    }()
+
     /// Set of advertisement UUID central manager should scan for.
     private var scanParameters: Set<CBUUID> = Set()
-
-    override init() {
-        super.init()
-        centralManager.delegate = self
-    }
 }
 
 extension ConnectionService {
@@ -98,6 +110,11 @@ extension ConnectionService {
     /// Function called to stop scanning for devices.
     internal func stopScanning() {
         centralManager.stopScan()
+    }
+
+    /// Triggers showing Bluetooth authorization popup by instantiating the central manager.
+    internal func requestBluetoothAuthorization() {
+        _ = centralManager
     }
 }
 

@@ -43,6 +43,11 @@ public final class BluetoothConnection: NSObject {
         }
     }
 
+    /// Current Bluetooth authorization status.
+    public var bluetoothAuthorizationStatus: BluetoothAuthorizationStatus {
+        connectionService.bluetoothAuthorizationStatus
+    }
+
     /// Primary method used to connect to a device. Can be called multiple times to connect more than on device at the same time.
     ///
     /// - Parameters:
@@ -79,5 +84,10 @@ public final class BluetoothConnection: NSObject {
     /// Function called to stop scanning for devices.
     public func stopScanning() {
         connectionService.stopScanning()
+    }
+
+    /// Requests User for authorization to use Bluetooth.
+    public func requestBluetoothAuthorization() {
+        connectionService.requestBluetoothAuthorization()
     }
 }
