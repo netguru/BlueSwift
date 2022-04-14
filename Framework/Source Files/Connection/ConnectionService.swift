@@ -62,8 +62,8 @@ internal final class ConnectionService: NSObject {
     private lazy var scanningOptions = [CBCentralManagerScanOptionAllowDuplicatesKey : true]
     
     /// CBCentralManager instance. Allows peripheral connection.
+    /// iOS displays Bluetooth authorization popup when `CBCentralManager` is instantiated and authorization status is not determined.
     private lazy var centralManager: CBCentralManager = {
-        // iOS displays Bluetooth authorization popup when `CBCentralManager` is instantiated and authorization status is not determined.
         let manager = CBCentralManager()
         manager.delegate = self
         return manager
