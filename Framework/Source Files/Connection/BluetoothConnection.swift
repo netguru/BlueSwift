@@ -15,7 +15,7 @@ public final class BluetoothConnection: NSObject {
     /// Connection service implementing native CoreBluetooth stack.
     private var connectionService = ConnectionService()
 
-    /// A advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
+    /// An advertisement validation handler. Will be called upon every peripheral discovery. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
     /// and advertising packet.
     @available(*, deprecated, message: "This closure will be removed in future version. Please use `peripheralValidationHandler`.")
@@ -25,13 +25,21 @@ public final class BluetoothConnection: NSObject {
         }
     }
 
-    /// A advertisement validation handler. Will be called upon every peripheral discovery. Contains matched peripheral,
+    /// A peripheral validation handler. Will be called upon every peripheral discovery. Contains matched peripheral,
     /// discovered peripheral from CoreBluetooth, advertisement data and RSSI value. Return value from this closure
     /// will indicate if manager should or shouldn't start connection with the passed peripheral according to it's identifier
     /// and advertising packet.
     public var peripheralValidationHandler: ((Peripheral<Connectable>, CBPeripheral, [String: Any], NSNumber) -> (Bool))? {
         didSet {
             connectionService.peripheralValidationHandler = peripheralValidationHandler
+        }
+    }
+
+    /// Callback for update to Bluetooth sensor state for current device.
+    /// Assign custom block to this property to monitor Central Manager state changes (`poweredOn`,  `poweredOff`, `unauthorized` etc.).
+    public var centralManagerStateUpdateHandler: ((CBManagerState) -> Void)? {
+        didSet {
+            connectionService.centralManagerStateUpdateHandler = centralManagerStateUpdateHandler
         }
     }
 

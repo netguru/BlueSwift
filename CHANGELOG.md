@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2022-09-06
+
+### Added
+
+- added settable `centralManagerStateUpdateHandler` public property to `BluetoothConnection` to monitor updates to Central Manager state.
+
 ## [1.1.1] - 2022-04-14
 
 ### Added
