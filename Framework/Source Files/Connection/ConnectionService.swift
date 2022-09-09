@@ -21,6 +21,9 @@ internal final class ConnectionService: NSObject {
     /// Closure called when disconnecting a peripheral using `disconnect(_:)` is completed.
     internal var peripheralConnectionCancelledHandler: ((Peripheral<Connectable>, CBPeripheral) -> ())?
 
+    /// Called when Bluetooth sensor state for current device was updated.
+    internal var centralManagerStateUpdateHandler: ((CBManagerState) -> Void)?
+
     /// Returns the amount of devices already connected.
     internal var connectedDevicesAmount: Int {
         return peripherals.filter { $0.isConnected }.count
@@ -159,6 +162,8 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Determines Bluetooth sensor state for current device.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        centralManagerStateUpdateHandler?(central.state)
+
         guard let handler = connectionHandler, let anyDevice = peripherals.first else { return }
         do {
             try central.validateState()
