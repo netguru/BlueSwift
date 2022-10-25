@@ -199,7 +199,12 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Called upon a successfull peripheral connection.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        guard let connectingPeripheral = peripherals.first(withIdentical: peripheral) else { return }
+        guard let connectingPeripheral = peripherals.first(withIdentical: peripheral) else {
+            // Central manager did connect to a peripheral, which is not on the list of allowed peripherals at this moment.
+            // Peripheral might have re-connected unexpectedly. Disconnect it, so it can be discovered.
+            centralManager.cancelPeripheralConnection(peripheral)
+            return
+        }
         self.connectingPeripheral = connectingPeripheral
         connectingPeripheral.peripheral = peripheral
         peripheral.delegate = self
