@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2022-10-25
+
+### Changed
+
+- Peripheral which was connected, but it was not on the list of peripherals that should be connected, is disconnected. This change allows to discover this peripheral again. 
+
 ## [1.1.2] - 2022-09-06
 
 ### Added

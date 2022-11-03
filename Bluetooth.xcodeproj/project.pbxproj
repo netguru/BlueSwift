@@ -41,6 +41,8 @@
 		38FE6BE7200689AB00809A06 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE6BA82006898100809A06 /* ConfigurationTests.swift */; };
 		3A369634210F1C4E007C62F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A369633210F1C4E007C62F1 /* CoreBluetooth.framework */; };
 		3A369636210F1C57007C62F1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A369635210F1C57007C62F1 /* XCTest.framework */; };
+		4B2ACCCD29083F4300EF10B6 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B2ACCCC29083F4200EF10B6 /* Readme.md */; };
+		4B2ACCCF29083F5400EF10B6 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B2ACCCE29083F5400EF10B6 /* CHANGELOG.md */; };
 		4B62466A280811CA009A8CC7 /* BluetoothAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B624669280811CA009A8CC7 /* BluetoothAuthorizationStatus.swift */; };
 		4BEB6E6F2800735D0061C702 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6E6E2800735D0061C702 /* Sequence.swift */; };
 		4BEB6E72280077010061C702 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6E70280075510061C702 /* SequenceExtensionTests.swift */; };
@@ -153,6 +155,8 @@
 		3A142D24210F0EEE000A6089 /* Sample-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Sample-Base.xcconfig"; sourceTree = "<group>"; };
 		3A369633210F1C4E007C62F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.4.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
 		3A369635210F1C57007C62F1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4B2ACCCC29083F4200EF10B6 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		4B2ACCCE29083F5400EF10B6 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		4B624669280811CA009A8CC7 /* BluetoothAuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAuthorizationStatus.swift; sourceTree = "<group>"; };
 		4BEB6E6E2800735D0061C702 /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		4BEB6E70280075510061C702 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 		3837BA021FFFC2FE00DF300E = {
 			isa = PBXGroup;
 			children = (
+				4B2ACCCC29083F4200EF10B6 /* Readme.md */,
+				4B2ACCCE29083F5400EF10B6 /* CHANGELOG.md */,
 				38FE6BC32006898100809A06 /* Bluetooth */,
 				38FE6BB32006898100809A06 /* Framework */,
 				38FE6BA62006898100809A06 /* Unit Tests */,
@@ -591,7 +597,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				38EBB9572052D0EF002797A1 /* Main.storyboard in Resources */,
+				4B2ACCCF29083F5400EF10B6 /* CHANGELOG.md in Resources */,
 				38FE6BE42006898F00809A06 /* Assets.xcassets in Resources */,
+				4B2ACCCD29083F4300EF10B6 /* Readme.md in Resources */,
 				38FE6BE52006899300809A06 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
