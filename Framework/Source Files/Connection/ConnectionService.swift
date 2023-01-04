@@ -106,8 +106,7 @@ extension ConnectionService {
     /// Function called to remove peripheral from queue
     /// - Parameter peripheral: peripheral to remove.
     internal func remove(_ peripheral: Peripheral<Connectable>) {
-        guard let index = peripherals.firstIndex(where: { $0 === peripheral }) else { return }
-        peripherals.remove(at: index)
+        peripherals.removeAll { $0 === peripheral }
     }
 
     /// Function called to stop scanning for devices.
