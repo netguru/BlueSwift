@@ -1,12 +1,6 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [1.1.4] - 2023-01-04
-
-### Changed
-
-- Refactor array-index based removing peripheral from list of peripherals to connect with.
-
 ## [1.1.3] - 2022-10-25
 
 ### Changed
