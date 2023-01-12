@@ -68,7 +68,7 @@
         <!--Advertisement View Controller-->
         <scene sceneID="UYj-xF-5gF">
             <objects>
-                <viewController id="hEK-kS-TRu" customClass="AdvertisementViewController" customModule="Bluetooth_Demo" sceneMemberID="viewController">
+                <viewController id="hEK-kS-TRu" customClass="AdvertisementViewController" customModule="BlueSwiftSample" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="frJ-vL-qJg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
