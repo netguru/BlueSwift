@@ -44,6 +44,7 @@
 		4B2ACCCD29083F4300EF10B6 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B2ACCCC29083F4200EF10B6 /* Readme.md */; };
 		4B2ACCCF29083F5400EF10B6 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B2ACCCE29083F5400EF10B6 /* CHANGELOG.md */; };
 		4B62466A280811CA009A8CC7 /* BluetoothAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B624669280811CA009A8CC7 /* BluetoothAuthorizationStatus.swift */; };
+		4B9FB9F1296DECF900C778A4 /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9FB9EF296DEC9D00C778A4 /* SynchronizedArray.swift */; };
 		4BEB6E6F2800735D0061C702 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6E6E2800735D0061C702 /* Sequence.swift */; };
 		4BEB6E72280077010061C702 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6E70280075510061C702 /* SequenceExtensionTests.swift */; };
 /* End PBXBuildFile section */
@@ -158,6 +159,7 @@
 		4B2ACCCC29083F4200EF10B6 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		4B2ACCCE29083F5400EF10B6 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		4B624669280811CA009A8CC7 /* BluetoothAuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAuthorizationStatus.swift; sourceTree = "<group>"; };
+		4B9FB9EF296DEC9D00C778A4 /* SynchronizedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedArray.swift; sourceTree = "<group>"; };
 		4BEB6E6E2800735D0061C702 /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		4BEB6E70280075510061C702 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -376,6 +378,7 @@
 		38FE6BB62006898100809A06 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B9FB9EE296DEC8A00C778A4 /* Utilities */,
 				38974AF5203732B50024CCD5 /* Advertisement */,
 				38FE6BB72006898100809A06 /* Connection */,
 				38FE6BBA2006898100809A06 /* Extensions */,
@@ -476,6 +479,14 @@
 				3A369633210F1C4E007C62F1 /* CoreBluetooth.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B9FB9EE296DEC8A00C778A4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4B9FB9EF296DEC9D00C778A4 /* SynchronizedArray.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -653,6 +664,7 @@
 				38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */,
 				38974AFA20373A660024CCD5 /* AdvertisementService.swift in Sources */,
 				38974AF8203738F30024CCD5 /* BluetoothAdvertisement.swift in Sources */,
+				4B9FB9F1296DECF900C778A4 /* SynchronizedArray.swift in Sources */,
 				38FE6BDC2006898100809A06 /* Configuration.swift in Sources */,
 				382516562049899F0097F9D7 /* AdvertisementData.swift in Sources */,
 				38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */,

@@ -26,7 +26,11 @@ internal final class ConnectionService: NSObject {
 
     /// Returns the amount of devices already connected.
     internal var connectedDevicesAmount: Int {
-        return peripherals.filter { $0.isConnected }.count
+        return peripherals.read { storage in
+            storage
+                .filter { $0.isConnected }
+                .count
+        }
     }
 
     /// Indicates whether connected devices limit has been exceeded.
@@ -50,10 +54,10 @@ internal final class ConnectionService: NSObject {
     private let deviceConnectionLimit = 8
     
     /// Set of peripherals the manager should connect.
-    private var peripherals = [Peripheral<Connectable>]()
+    private var peripherals: SynchronizedArray<Peripheral<Connectable>> = []
 
     /// Handle to peripherals which were requested to disconnect.
-    private var peripheralsToDisconnect = [Peripheral<Connectable>]()
+    private var peripheralsToDisconnect: SynchronizedArray<Peripheral<Connectable>> = []
 
     private weak var connectingPeripheral: Peripheral<Connectable>?
     
@@ -96,9 +100,10 @@ extension ConnectionService {
     
     /// Disconnects given device.
     internal func disconnect(_ peripheral: CBPeripheral) {
-        if let index = peripherals.firstIndex(where: { $0.peripheral === peripheral }) {
-            let peripheralToDisconnect = peripherals.remove(at: index)
-            peripheralsToDisconnect.append(peripheralToDisconnect)
+        peripherals.write { storage in
+            guard let index = storage.firstIndex(where: { $0.peripheral === peripheral }) else { return }
+            let peripheralToDisconnect = storage.remove(at: index)
+            self.peripheralsToDisconnect.append(peripheralToDisconnect)
         }
         centralManager.cancelPeripheralConnection(peripheral)
     }
@@ -106,8 +111,10 @@ extension ConnectionService {
     /// Function called to remove peripheral from queue
     /// - Parameter peripheral: peripheral to remove.
     internal func remove(_ peripheral: Peripheral<Connectable>) {
-        guard let index = peripherals.firstIndex(where: { $0 === peripheral }) else { return }
-        peripherals.remove(at: index)
+        peripherals.write { storage in
+            guard let index = storage.firstIndex(where: { $0 === peripheral }) else { return }
+            storage.remove(at: index)
+        }
     }
 
     /// Function called to stop scanning for devices.
@@ -130,9 +137,11 @@ private extension ConnectionService {
             centralManager.stopScan()
         }
         performDeviceAutoReconnection()
-        let params = peripherals.compactMap { (peripheral) -> CBUUID? in
-            guard peripheral.peripheral == nil else { return nil }
-            return peripheral.configuration.advertisementUUID
+        let params: [CBUUID] = peripherals.read { storage in
+            storage.compactMap { (peripheral) -> CBUUID? in
+                guard peripheral.peripheral == nil else { return nil }
+                return peripheral.configuration.advertisementUUID
+            }
         }
         guard params.count != 0 else {
             return
@@ -146,13 +155,17 @@ private extension ConnectionService {
     /// deviceIdentifier was passed during initialization. If it's correctly retrieved, scanning is unnecessary and peripheral
     /// can be directly connected.
     private func performDeviceAutoReconnection() {
-        let identifiers = peripherals.filter { !$0.isConnected }.compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
-        guard !identifiers.isEmpty else { return }
-        let retrievedPeripherals = centralManager.retrievePeripherals(withIdentifiers: identifiers)
-        let matching = peripherals.matchingElementsWith(retrievedPeripherals)
-        matching.forEach { (peripheral, cbPeripheral) in
-            peripheral.peripheral = cbPeripheral
-            centralManager.connect(cbPeripheral, options: connectionOptions)
+        peripherals.read { storage in
+            let identifiers = storage
+                .filter { !$0.isConnected }
+                .compactMap { UUID(uuidString: $0.deviceIdentifier ?? "") }
+            guard !identifiers.isEmpty else { return }
+            let retrievedPeripherals = centralManager.retrievePeripherals(withIdentifiers: identifiers)
+            let matching = storage.matchingElementsWith(retrievedPeripherals)
+            matching.forEach { (peripheral, cbPeripheral) in
+                peripheral.peripheral = cbPeripheral
+                centralManager.connect(cbPeripheral, options: connectionOptions)
+            }
         }
     }
 }
@@ -164,7 +177,10 @@ extension ConnectionService: CBCentralManagerDelegate {
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         centralManagerStateUpdateHandler?(central.state)
 
-        guard let handler = connectionHandler, let anyDevice = peripherals.first else { return }
+        guard let handler = connectionHandler,
+              let anyDevice = peripherals.first
+        else { return }
+
         do {
             try central.validateState()
             reloadScanning()
@@ -178,15 +194,18 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Called when a peripheral with desired advertised service is discovered.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        let devices = peripherals.filter({ $0.configuration.matches(advertisement: advertisementData)})
+        let matchingPeripheral = peripherals.read { storage in
+            storage
+                .filter({ $0.configuration.matches(advertisement: advertisementData)})
+                .first(where: { $0.peripheral == nil })
+        }
 
         guard let handler = peripheralValidationHandler,
-              let matchingPeripheral = devices.first(where: { $0.peripheral == nil }),
-              handler(matchingPeripheral, peripheral, advertisementData, RSSI),
-              connectingPeripheral == nil
-        else {
-            return
-        }
+              let matchingPeripheral,
+              connectingPeripheral == nil,
+              handler(matchingPeripheral, peripheral, advertisementData, RSSI)
+        else { return }
+
         connectingPeripheral = matchingPeripheral
         connectingPeripheral?.peripheral = peripheral
         connectingPeripheral?.rssi = RSSI
@@ -199,7 +218,8 @@ extension ConnectionService: CBCentralManagerDelegate {
     /// Called upon a successfull peripheral connection.
     /// - SeeAlso: CBCentralManagerDelegate
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        guard let connectingPeripheral = peripherals.first(withIdentical: peripheral) else {
+        let connectingPeripheral = peripherals.read { $0.first(withIdentical: peripheral) }
+        guard let connectingPeripheral else {
             // Central manager did connect to a peripheral, which is not on the list of allowed peripherals at this moment.
             // Peripheral might have re-connected unexpectedly. Disconnect it, so it can be discovered.
             centralManager.cancelPeripheralConnection(peripheral)
@@ -266,14 +286,16 @@ extension ConnectionService: CBPeripheralDelegate {
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         /// `error` is nil if disconnect resulted from a call to `cancelPeripheralConnection(_:)`.
         /// SeeAlso: https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate/1518791-centralmanager
-        if error == nil,
-           let disconnectedPeripheral = peripheralsToDisconnect.first(withIdentical: peripheral) {
-            peripheralsToDisconnect.removeAll(where: { $0 === disconnectedPeripheral })
-            peripheralConnectionCancelledHandler?(disconnectedPeripheral, peripheral)
+        if error == nil {
+            peripheralsToDisconnect.write { [weak self] storage in
+                guard let disconnectedPeripheral = storage.first(withIdentical: peripheral) else { return }
+                storage.removeAll(where: { $0 === disconnectedPeripheral })
+                self?.peripheralConnectionCancelledHandler?(disconnectedPeripheral, peripheral)
+            }
             return
         }
-        
-        if let disconnectedPeripheral = peripherals.first(withIdentical: peripheral),
+
+        if let disconnectedPeripheral = peripherals.read({ $0.first(withIdentical: peripheral) }),
            let nativePeripheral = disconnectedPeripheral.peripheral {
             disconnectedPeripheral.disconnectionHandler?()
             centralManager.connect(nativePeripheral, options: connectionOptions)
