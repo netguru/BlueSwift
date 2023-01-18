@@ -10,7 +10,7 @@ import Foundation
 final class SynchronizedArray<Element> {
 
     /// A concurrent queue which manages access to ``SynchronizedArray/storage``.
-    private let queue = DispatchQueue(label: "com.keto-mojo.sdk.framework.SynchronizedArray", attributes: .concurrent)
+    private let queue = DispatchQueue(label: "co.netguru.lib.blueswift.SynchronizedArray", attributes: .concurrent)
     /// Internal storage of the ``SynchronizedArray``.
     private var storage: [Element]
 
