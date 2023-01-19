@@ -9,13 +9,17 @@ import Foundation
 /// To avoid race condition while performing multiple operations on ``SynchronizedArray`` use ``SynchronizedArray/read(_:)`` and ``SynchronizedArray/write(_:)`` methods.
 final class SynchronizedArray<Element> {
 
-    /// A concurrent queue which manages access to ``SynchronizedArray/storage``.
-    private let queue = DispatchQueue(label: "co.netguru.lib.blueswift.SynchronizedArray", attributes: .concurrent)
+    /// A queue which manages access to ``SynchronizedArray/storage``. Should be a concurrent queue.
+    private let queue: DispatchQueueProtocol
     /// Internal storage of the ``SynchronizedArray``.
     private var storage: [Element]
 
     /// Initializes new ``SynchronizedArray`` with empty storage.
-    init() {
+    /// - Parameter queue: A queue which manages access to internal storage. Concurrent queue is recommended.
+    init(
+        queue: DispatchQueueProtocol = DispatchQueue(label: "co.netguru.lib.blueswift.SynchronizedArray", attributes: .concurrent)
+    ) {
+        self.queue = queue
         storage = []
     }
 
@@ -47,9 +51,19 @@ extension SynchronizedArray {
         read { $0.count }
     }
 
+    /// A Boolean value indicating whether the collection is empty.
+    var isEmpty: Bool {
+        read { $0.isEmpty }
+    }
+
     /// The first element of the array.
     var first: Element? {
         read { $0.first }
+    }
+
+    /// The last element of the collection.
+    var last: Element? {
+        read { $0.last }
     }
 
     /// Adds a new element at the end of the array.
@@ -57,6 +71,14 @@ extension SynchronizedArray {
     func append(_ newElement: Element) {
         write {
             $0.append(newElement)
+        }
+    }
+
+    /// Adds a new element at the end of the array.
+    /// - Parameter newElement: The element to append to the array.
+    func append<S>(contentsOf newElements: S) where Element == S.Element, S : Sequence {
+        write {
+            $0.append(contentsOf: newElements)
         }
     }
 
@@ -119,5 +141,21 @@ extension SynchronizedArray: ExpressibleByArrayLiteral {
     /// SeeAlso: ``ExpressibleByArrayLiteral/init(arrayLiteral:)``.
     convenience init(arrayLiteral elements: Element...) {
         self.init(contentsOf: elements)
+    }
+}
+
+extension SynchronizedArray: Equatable where Element: Equatable {
+
+    /// SeeAlso: `Equatable/==(lhs:rhs:)`.
+    static func == (lhs: SynchronizedArray<Element>, rhs: SynchronizedArray<Element>) -> Bool {
+        lhs.storage == rhs.storage
+    }
+}
+
+extension SynchronizedArray: CustomDebugStringConvertible {
+
+    /// SeeAlso: `CustomDebugStringConvertible/debugDescription`.
+    var debugDescription: String {
+        storage.debugDescription
     }
 }
