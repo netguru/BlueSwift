@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.4] - 2023-01-20
+
+### Changed
+
+- Synchronize access to array storing peripherals to increase thread safety.
+
+
 ## [1.1.3] - 2022-10-25
 
 ### Changed
