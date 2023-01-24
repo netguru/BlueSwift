@@ -95,7 +95,7 @@ Just drop the line below to your Podfile:
 
 `pod 'BlueSwift'`
 
-(but probably you'd like to pin it to the nearest major release, so `pod 'BlueSwift' , '~> 1.1.4'`)
+(but probably you'd like to pin it to the nearest major release, so `pod 'BlueSwift' , '~> 1.1.5'`)
 
 ### ![](https://img.shields.io/badge/carthage-compatible-green.svg)
 
@@ -103,7 +103,7 @@ The same as with Cocoapods, insert the line below to your Cartfile:
 
 `github 'netguru/BlueSwift'`
 
-, or including version - `github 'netguru/BlueSwift' ~> 1.1.4`
+, or including version - `github 'netguru/BlueSwift' ~> 1.1.5`
 
 ## 📄 License
 
