@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.5] - 2023-01-24
+
+### Changed
+
+- Fix official cocoapods release
+
 ## [1.1.4] - 2023-01-20
 
 ### Changed

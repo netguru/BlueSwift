@@ -20,10 +20,10 @@ import CoreBluetooth
     case allowedAlways = 3
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension BluetoothAuthorizationStatus {
 
     /// `CBManagerAuthorization` representation of current authorization status.
+    @available(iOS 13.0, *)
     var cbManagerAuthorization: CBManagerAuthorization {
         switch self {
         case .notDetermined:
@@ -38,10 +38,11 @@ extension BluetoothAuthorizationStatus {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
+@available(iOS 13.0, *)
 extension CBManagerAuthorization {
 
     /// `BluetoothAuthorizationStatus` representation of current authorization status.
+    @available(iOSApplicationExtension 13.0, *)
     var bluetoothAuthorizationStatus: BluetoothAuthorizationStatus {
         switch self {
         case .notDetermined:

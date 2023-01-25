@@ -40,9 +40,9 @@ internal final class ConnectionService: NSObject {
 
     /// Current Bluetooth authorization status.
     internal var bluetoothAuthorizationStatus: BluetoothAuthorizationStatus {
-        if #available(iOSApplicationExtension 13.1, *) {
+        if #available(iOS 13.1, *) {
             return CBManager.authorization.bluetoothAuthorizationStatus
-        } else if #available(iOSApplicationExtension 13.0, *) {
+        } else if #available(iOS 13.0, *) {
             return centralManager.authorization.bluetoothAuthorizationStatus
         } else {
             // Until iOS 12 applications could access Bluetooth without the user’s authorization
