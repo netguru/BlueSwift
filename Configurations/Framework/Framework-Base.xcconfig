@@ -11,3 +11,6 @@ _BUNDLE_IDENTIFIER = co.netguru.lib.blueswift
 _BUNDLE_INFOPLIST_PATH = $(PROJECT_DIR)/Framework/Supporting Files/Info.plist
 
 ENABLE_TESTABILITY = YES
+
+// Build library for distribution to enable Swift library evolution
+BUILD_LIBRARY_FOR_DISTRIBUTION = YES
