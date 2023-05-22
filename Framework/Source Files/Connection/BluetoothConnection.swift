@@ -53,7 +53,8 @@ public final class BluetoothConnection: NSObject {
 
     /// Current Bluetooth authorization status.
     public var bluetoothAuthorizationStatus: BluetoothAuthorizationStatus {
-        connectionService.bluetoothAuthorizationStatus
+        BlueSwiftLogger.shared.log(.info, "bluetoothAuthorizationStatus", data: connectionService.bluetoothAuthorizationStatus)
+        return connectionService.bluetoothAuthorizationStatus
     }
 
     /// Primary method used to connect to a device. Can be called multiple times to connect more than on device at the same time.
@@ -96,6 +97,7 @@ public final class BluetoothConnection: NSObject {
 
     /// Requests User for authorization to use Bluetooth.
     public func requestBluetoothAuthorization() {
+        BlueSwiftLogger.shared.log(.info, "requestBluetoothAuthorization")
         connectionService.requestBluetoothAuthorization()
     }
 }

@@ -59,6 +59,13 @@ internal final class AdvertisementService: NSObject {
     }
 }
 
+extension AdvertisementService {
+    enum LogEvent {
+        case peripheralManagerDidUpdateState, peripheralManagerDidStartAdvertising, peripheralManagerDidAddService, peripheralManagerDidReceiveReadRequest
+        case peripheralManagerDidReceiveWriteRequest, peripheralManagerDidSubscribeToCharacteristic, peripheralManagerDidUnsubscribeFromCharacteristic
+    }
+}
+
 extension AdvertisementService: CBPeripheralManagerDelegate {
     
     /// - SeeAlso: `CBPeripheralManagerDelegate`
@@ -66,10 +73,14 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
         do {
             try peripheral.validateState()
             if !peripheralManager.isAdvertising && shouldAdvertise {
-                peripheralManager.startAdvertising(self.peripheral?.advertisementData?.combined())
+                let advertisementData = self.peripheral?.advertisementData?.combined()
+                BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidUpdateState, data: "startAdvertising: \(String(describing: advertisementData))")
+                peripheralManager.startAdvertising(advertisementData)
             }
         } catch let error {
+            BlueSwiftLogger.shared.log(.error, LogEvent.peripheralManagerDidUpdateState, data: error)
             guard let error = error as? BluetoothError else { return }
+            BlueSwiftLogger.shared.log(.error, LogEvent.peripheralManagerDidUpdateState, data: error)
             errorHandler?(.bluetoothError(error))
         }
     }
@@ -77,21 +88,26 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
     /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
         if let error = error {
+            BlueSwiftLogger.shared.log(.error, LogEvent.peripheralManagerDidStartAdvertising, data: error)
             errorHandler?(.otherError(error))
             return
         }
+        BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidStartAdvertising)
         self.peripheral?.configuration.services.map({ $0.assignAdvertisementService() }).forEach(peripheralManager.add(_:))
     }
     
     /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
+        BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidAddService, data: service)
         if let error = error {
+            BlueSwiftLogger.shared.log(.error, LogEvent.peripheralManagerDidAddService, data: error)
             errorHandler?(.otherError(error))
         }
     }
 
     /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
+        BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidReceiveReadRequest, data: request)
         let rawCharacteristic = request.characteristic
         guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
         guard let data = readCallback?(characteristic) else { return }
@@ -102,6 +118,7 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
     /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
         requests.forEach { request in
+            BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidReceiveWriteRequest, data: request)
             let rawCharacteristic = request.characteristic
             guard let characteristic = self.peripheral?.configuration.characteristic(matching: rawCharacteristic) else { return }
             writeCallback?(characteristic, request.value)
@@ -111,12 +128,15 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
     
     /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+        BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidSubscribeToCharacteristic, data: characteristic)
         subsribedCentrals.append(central)
     }
     
     /// - SeeAlso: `CBPeripheralManagerDelegate`
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
+        BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidUnsubscribeFromCharacteristic, data: characteristic)
         guard let index = subsribedCentrals.firstIndex(where: { $0 === central }) else { return }
+        BlueSwiftLogger.shared.log(.info, LogEvent.peripheralManagerDidUnsubscribeFromCharacteristic, data: "subsribedCentrals.remove(at: \(index)")
         subsribedCentrals.remove(at: index)
     }
 }

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		105B88612A1B8B7A00E1E040 /* BlueSwiftLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105B885B2A1B8B7A00E1E040 /* BlueSwiftLogger.swift */; };
+		105B88622A1B8B7A00E1E040 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105B885C2A1B8B7A00E1E040 /* Logger.swift */; };
+		105B88632A1B8B7A00E1E040 /* CustomFunctionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105B885D2A1B8B7A00E1E040 /* CustomFunctionLogger.swift */; };
+		105B88642A1B8B7A00E1E040 /* FileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105B885E2A1B8B7A00E1E040 /* FileLogger.swift */; };
+		105B88652A1B8B7A00E1E040 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105B885F2A1B8B7A00E1E040 /* ConsoleLogger.swift */; };
+		105B88662A1B8B7A00E1E040 /* AnyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105B88602A1B8B7A00E1E040 /* AnyLogger.swift */; };
 		382516562049899F0097F9D7 /* AdvertisementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382516552049899F0097F9D7 /* AdvertisementData.swift */; };
 		3825165820498C450097F9D7 /* BluetoothError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825165720498C450097F9D7 /* BluetoothError.swift */; };
 		382CD41C2028E5950065DFF6 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3863BE73200D582600FD4EC9 /* Int.swift */; };
@@ -91,6 +97,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		105B885B2A1B8B7A00E1E040 /* BlueSwiftLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueSwiftLogger.swift; sourceTree = "<group>"; };
+		105B885C2A1B8B7A00E1E040 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		105B885D2A1B8B7A00E1E040 /* CustomFunctionLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunctionLogger.swift; sourceTree = "<group>"; };
+		105B885E2A1B8B7A00E1E040 /* FileLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileLogger.swift; sourceTree = "<group>"; };
+		105B885F2A1B8B7A00E1E040 /* ConsoleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogger.swift; sourceTree = "<group>"; };
+		105B88602A1B8B7A00E1E040 /* AnyLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyLogger.swift; sourceTree = "<group>"; };
 		382516552049899F0097F9D7 /* AdvertisementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementData.swift; sourceTree = "<group>"; };
 		3825165720498C450097F9D7 /* BluetoothError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothError.swift; sourceTree = "<group>"; };
 		382CD41E2028F4B50065DFF6 /* CommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTests.swift; sourceTree = "<group>"; };
@@ -199,6 +211,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		105B885A2A1B8B7A00E1E040 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				105B885B2A1B8B7A00E1E040 /* BlueSwiftLogger.swift */,
+				105B885C2A1B8B7A00E1E040 /* Logger.swift */,
+				105B885D2A1B8B7A00E1E040 /* CustomFunctionLogger.swift */,
+				105B885E2A1B8B7A00E1E040 /* FileLogger.swift */,
+				105B885F2A1B8B7A00E1E040 /* ConsoleLogger.swift */,
+				105B88602A1B8B7A00E1E040 /* AnyLogger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		3837BA021FFFC2FE00DF300E = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +411,7 @@
 		38FE6BB62006898100809A06 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				105B885A2A1B8B7A00E1E040 /* Logger */,
 				4B9FB9EE296DEC8A00C778A4 /* Utilities */,
 				38974AF5203732B50024CCD5 /* Advertisement */,
 				38FE6BB72006898100809A06 /* Connection */,
@@ -672,21 +698,27 @@
 				382CD41C2028E5950065DFF6 /* Int.swift in Sources */,
 				38FE6BDA2006898100809A06 /* Service.swift in Sources */,
 				38BE35E1203DD8D40018EA0D /* CBManager.swift in Sources */,
+				105B88622A1B8B7A00E1E040 /* Logger.swift in Sources */,
 				3825165820498C450097F9D7 /* BluetoothError.swift in Sources */,
 				3863BE67200BD5E700FD4EC9 /* Command.swift in Sources */,
+				105B88632A1B8B7A00E1E040 /* CustomFunctionLogger.swift in Sources */,
 				38FE6BD92006898100809A06 /* Peripheral.swift in Sources */,
 				38FE6BDB2006898100809A06 /* Characteristic.swift in Sources */,
 				4BDD6CE02979410D00918E27 /* DispatchQueueProtocol.swift in Sources */,
+				105B88612A1B8B7A00E1E040 /* BlueSwiftLogger.swift in Sources */,
 				38BE35DF203DD6B30018EA0D /* AdvertisablePeripheral.swift in Sources */,
 				382CD41D2028F1360065DFF6 /* Data.swift in Sources */,
 				38FE6BD52006898100809A06 /* ConnectionService.swift in Sources */,
 				38974AFA20373A660024CCD5 /* AdvertisementService.swift in Sources */,
 				38974AF8203738F30024CCD5 /* BluetoothAdvertisement.swift in Sources */,
+				105B88662A1B8B7A00E1E040 /* AnyLogger.swift in Sources */,
 				4B9FB9F1296DECF900C778A4 /* SynchronizedArray.swift in Sources */,
+				105B88652A1B8B7A00E1E040 /* ConsoleLogger.swift in Sources */,
 				38FE6BDC2006898100809A06 /* Configuration.swift in Sources */,
 				382516562049899F0097F9D7 /* AdvertisementData.swift in Sources */,
 				38FE6BD62006898100809A06 /* BluetoothConnection.swift in Sources */,
 				38FE6BD72006898100809A06 /* CBUUID.swift in Sources */,
+				105B88642A1B8B7A00E1E040 /* FileLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
