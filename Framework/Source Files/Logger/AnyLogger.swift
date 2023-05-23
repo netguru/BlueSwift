@@ -8,14 +8,14 @@ import Foundation
 /// A type-erased `Logger`, which behavior is defined by given closure.
 final class AnyLogger: Logger {
 
-    typealias EventHandler = ((@autoclosure () -> Event), EventContext) -> Void
+    typealias EventHandler = (Event, EventContext) -> Void
     private let eventHandler: EventHandler
 
     init(_ eventHandler: @escaping EventHandler) {
         self.eventHandler = eventHandler
     }
 
-    func log(event: @autoclosure () -> Event, context: EventContext) {
+    func log(event: Event, context: EventContext) {
         eventHandler(event, context)
     }
 

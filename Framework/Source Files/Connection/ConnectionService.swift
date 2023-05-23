@@ -257,7 +257,7 @@ extension ConnectionService: CBCentralManagerDelegate {
         guard let connectingPeripheral else {
             // Central manager did connect to a peripheral, which is not on the list of allowed peripherals at this moment.
             // Peripheral might have re-connected unexpectedly. Disconnect it, so it can be discovered.
-            BlueSwiftLogger.shared.log(.info, LogEvent.didConnectPeripheral, data: "Connected to peripheral which is not on allow list")
+            BlueSwiftLogger.shared.log(.info, LogEvent.didConnectPeripheral, data: "Connected to peripheral which is not on allow list. Will call cancelPeripheralConnection()")
             centralManager.cancelPeripheralConnection(peripheral)
             return
         }

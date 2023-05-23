@@ -55,8 +55,8 @@ final class FileLogger: Logger {
         try self.init(fileName: fileName)
     }
 
-    func log(event: @autoclosure () -> Event, context: EventContext) {
-        let event = event()
+    func log(event: Event, context: EventContext) {
+        let event = event
         let eventString = event as? String ?? String(describing: event)
         let date = dateFormatter.string(from: Date())
         let category = context.category

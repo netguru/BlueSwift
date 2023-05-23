@@ -26,7 +26,7 @@ public final class BlueSwiftLogger: Logger {
         self.logger = AnyLogger
             .compose(loggers: loggers)?
             .mapEvent { event, context in
-                BlueSwiftLogger.eventDescription(event: event(), context: context)
+                BlueSwiftLogger.eventDescription(event: event, context: context)
             }
     }
 
@@ -35,11 +35,11 @@ public final class BlueSwiftLogger: Logger {
         self.logger = AnyLogger
             .compose(loggers: loggers)?
             .mapEvent { event, context in
-                BlueSwiftLogger.eventDescription(event: event(), context: context)
+                BlueSwiftLogger.eventDescription(event: event, context: context)
             }
     }
 
-    public func log(event: @autoclosure () -> Event, context: EventContext) {
+    public func log(event: Event, context: EventContext) {
         logger?.log(event: event, context: context)
     }
 }
@@ -55,7 +55,7 @@ public extension BlueSwiftLogger {
         return fileLogger ?? AnyLogger.empty
     }
 
-    static func makeCustomFunctionLogger(eventHandler: @escaping (@autoclosure () -> Logger.Event, EventContext) -> Void) -> Logger {
+    static func makeCustomFunctionLogger(eventHandler: @escaping (Logger.Event, EventContext) -> Void) -> Logger {
         CustomFunctionLogger(eventHandler)
     }
 }

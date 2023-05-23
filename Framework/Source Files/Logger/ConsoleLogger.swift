@@ -12,9 +12,9 @@ final class ConsoleLogger: Logger {
     /// String representing KetoMojo Sync App in logging system.
     let subsystem = Bundle.main.bundleIdentifier ?? "co.netguru.lib.blueswift"
 
-    func log(event: @autoclosure () -> Event, context: EventContext) {
+    func log(event: Event, context: EventContext) {
         let oslog = OSLog(subsystem: subsystem, category: context.category)
-        let event = event()
+        let event = event
         let logString = event as? String ?? String(describing: event)
         os_log("%{public}@", log: oslog, type: context.type.osLogType, logString)
     }
