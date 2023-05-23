@@ -65,7 +65,7 @@ public extension Logger {
     /// - Returns: a new logger which transforms events.
     func mapEvent(_ transform: @escaping (Event, EventContext) -> Event) -> Logger {
         AnyLogger { event, context in
-            self.log(event: { transform(event, context) }, context: context)
+            self.log(event: transform(event, context), context: context)
         }
     }
 

@@ -16,6 +16,7 @@ final class FileLogger: Logger {
 
     private let stream: TextOutputStream
     private let dateFormatter: DateFormatter
+    private let fileManager: FileManager
 
     /// String representing KetoMojo Sync App in logging system.
     let subsystem = Bundle.main.bundleIdentifier ?? "co.netguru.lib.blueswift"
@@ -33,6 +34,7 @@ final class FileLogger: Logger {
         fileManager: FileManager
     ) throws {
         do {
+            self.fileManager = fileManager
             self.stream = try FileOutputStream(fileURL: fileURL, encoding: encoding, fileManager: fileManager)
         } catch FileOutputStream.Error.couldNotCreateFile {
             throw Error.couldNotCreateFile
@@ -42,17 +44,16 @@ final class FileLogger: Logger {
         self.dateFormatter = dateFormatter
     }
 
-    convenience init(fileName: String) throws {
-        let fileManager = FileManager.default
+    convenience init(fileName: String, fileManager: FileManager = .default) throws {
         guard let url = fileManager.documentsDirectoryURL(forFile: fileName) else { throw Error.invalidFileURL }
         try self.init(fileURL: url, encoding: .utf8, dateFormatter: .fileLogger, fileManager: fileManager)
     }
 
     /// Creates new `FileLogger` using new file in documents directory with name starting with current date and time.
-    convenience init() throws {
+    convenience init(fileManager: FileManager = .default) throws {
         let dateString = DateFormatter.logFileName.string(from: Date())
         let fileName = "\(dateString)-BlueSwift.log" // create new log file for each FileLogger instance
-        try self.init(fileName: fileName)
+        try self.init(fileName: fileName, fileManager: fileManager)
     }
 
     func log(event: Event, context: EventContext) {
@@ -64,6 +65,12 @@ final class FileLogger: Logger {
 
         var stream = self.stream
         stream.write(string)
+    }
+
+    func logFilesURLs() -> [URL] {
+        guard let documentsDirectory = fileManager.documentsDirectory else { return [] }
+        let items = try? fileManager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil)
+        return items ?? []
     }
 }
 
