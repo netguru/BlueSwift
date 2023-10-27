@@ -7,10 +7,9 @@ import Foundation
 
 /// Extension for signed integers allowing conversion to Data with proper size.
 internal extension UnsignedInteger {
-    
+
     /// Returns decoded data with proper size.
     var decodedData: Data {
-        var mutableSelf = self
-        return Data(bytes: &mutableSelf, count: MemoryLayout<Self>.size)
+        return withUnsafeBytes(of: self) { Data($0) }
     }
 }
