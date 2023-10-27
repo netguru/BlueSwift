@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.6] - 2023-10-27
+
+### Changed
+
+- Fix Swift 5.9 (Xcode 15) build error caused by `Data(bytes:count:)` initializer.
+
 ## [1.1.5] - 2023-01-24
 
 ### Changed
