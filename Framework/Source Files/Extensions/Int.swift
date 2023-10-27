@@ -10,7 +10,6 @@ internal extension UnsignedInteger {
 
     /// Returns decoded data with proper size.
     var decodedData: Data {
-        let data = withUnsafeBytes(of: self) { Data($0) }
-        return data
+        return withUnsafeBytes(of: self) { Data($0) }
     }
 }
