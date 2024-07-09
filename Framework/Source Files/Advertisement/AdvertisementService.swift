@@ -30,10 +30,10 @@ internal final class AdvertisementService: NSObject {
     internal var writeCallback: ((Characteristic, Data?) -> ())?
     
     /// Callback called upon upcoming errors.
-    private var errorHandler: ((AdvertisementError) -> ())?
+    private var errorHandler: ((AdvertisementError?) -> ())?
     
     /// Starts advertising peripheral with given configuration of services and characteristics.
-    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: ((AdvertisementError) -> ())?) {
+    internal func startAdvertising(_ peripheral: Peripheral<Advertisable>, errorHandler: ((AdvertisementError?) -> ())?) {
         self.peripheral = peripheral
         self.errorHandler = errorHandler
         peripheralManager.startAdvertising(peripheral.advertisementData?.combined())
@@ -81,6 +81,7 @@ extension AdvertisementService: CBPeripheralManagerDelegate {
             return
         }
         self.peripheral?.configuration.services.map({ $0.assignAdvertisementService() }).forEach(peripheralManager.add(_:))
+        errorHandler?(nil)
     }
     
     /// - SeeAlso: `CBPeripheralManagerDelegate`

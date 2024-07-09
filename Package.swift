@@ -3,7 +3,7 @@
 
  let package = Package(
      name: "BlueSwift",
-     platforms: [ .iOS(.v10) ],
+     platforms: [ .iOS(.v10), .macOS(.v11) ],
      products: [
          .library(
              name: "BlueSwift",

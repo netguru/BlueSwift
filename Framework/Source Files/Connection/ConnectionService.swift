@@ -84,18 +84,9 @@ extension ConnectionService {
     
     /// Starts connection with passed device. Connection result is passed in handler closure.
     internal func connect(_ peripheral: Peripheral<Connectable>, handler: @escaping (Peripheral<Connectable>, ConnectionError?) -> ()) {
-        if connectionHandler == nil {
-            connectionHandler = handler
-        }
-        do {
-            try centralManager.validateState()
-            peripherals.append(peripheral)
-            reloadScanning()
-        } catch let error {
-            if let error = error as? BluetoothError {
-                handler(peripheral, .bluetoothError(error))
-            }
-        }
+        connectionHandler = handler
+        peripherals.append(peripheral)
+        reloadScanning()
     }
     
     /// Disconnects given device.

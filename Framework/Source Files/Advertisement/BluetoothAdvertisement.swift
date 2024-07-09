@@ -25,7 +25,7 @@ public final class BluetoothAdvertisement {
     ///     - errorHandler: an error handler. Will be called only after unsuccessfull advertisement setup.
     /// - SeeAlso: `AdvertisementError`
     /// - SeeAlso: `Peripheral`
-    public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: ((AdvertisementError) -> ())?) {
+    public func advertise(peripheral: Peripheral<Advertisable>, errorHandler: ((AdvertisementError?) -> ())?) {
         advertisementService.startAdvertising(peripheral, errorHandler: errorHandler)
     }
     
