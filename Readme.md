@@ -6,6 +6,7 @@
 ![](https://img.shields.io/github/release/netguru/BlueSwift.svg)
 ![](https://img.shields.io/badge/carthage-compatible-green.svg)
 ![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
+[![libs.tech recommends](https://libs.tech/project/116670675/badge.svg)](https://libs.tech/project/116670675/blueswift)
 ![](https://app.bitrise.io/app/23a07b63b3f55f97/status.svg?token=Rt_2gKUavbR8LQ7PVuTbYg&branch=master)
 
 Easy to use Bluetooth open source library brought to you by Netguru.<br/>
